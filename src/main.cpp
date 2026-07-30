@@ -1,0 +1,101 @@
+#include <Arduino.h>
+#include "config.h"
+#include "audio/audio_capture.h"
+#include "audio/fft_processor.h"
+#include "audio/beat_detector.h"
+#include "led/led_controller.h"
+#include "led/patterns.h"
+#include "modes/mode_manager.h"
+
+static int32_t audio_buffer[SAMPLES];
+static unsigned long last_audio_tick = 0;
+static unsigned long last_led_render = 0;
+
+static FrequencyBands current_bands = {0, 0, 0, 0, 0};
+static BeatState current_beat = {false, 0, 0};
+
+// Button state
+static unsigned long btn_mode_pressed_at = 0;
+static bool btn_mode_was_pressed = false;
+
+static void handle_buttons() {
+    bool pressed = digitalRead(BTN_MODE_PIN) == LOW;
+
+    if (pressed && !btn_mode_was_pressed) {
+        btn_mode_pressed_at = millis();
+        btn_mode_was_pressed = true;
+    }
+
+    if (!pressed && btn_mode_was_pressed) {
+        unsigned long duration = millis() - btn_mode_pressed_at;
+        if (duration >= BTN_LONG_PRESS_MS) {
+            // Long press: cycle mode
+            Mode m = mode_manager_get_mode();
+            if (m == Mode::AUDIO_REACTIVE) {
+                mode_manager_set_mode(Mode::MANUAL);
+            } else {
+                mode_manager_set_mode(Mode::AUDIO_REACTIVE);
+            }
+        } else if (duration >= BTN_DEBOUNCE_MS) {
+            // Short press: next pattern
+            mode_manager_next_pattern();
+        }
+        btn_mode_was_pressed = false;
+    }
+
+    // Brightness button
+    if (digitalRead(BTN_BRIGHT_PIN) == LOW) {
+        uint8_t b = led_get_brightness();
+        b = (b >= 200) ? 30 : b + 40;
+        led_set_brightness(b);
+        delay(200);
+    }
+}
+
+void setup() {
+    Serial.begin(115200);
+    delay(500);
+    Serial.println("Music LED Strip - Initializing...");
+
+    pinMode(BTN_MODE_PIN, INPUT_PULLUP);
+    pinMode(BTN_BRIGHT_PIN, INPUT_PULLUP);
+
+    led_controller_init();
+    audio_capture_init();
+    fft_processor_init();
+    beat_detector_init();
+    mode_manager_init();
+
+    Serial.println("Ready! Mode: Audio Reactive");
+    Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
+}
+
+void loop() {
+    unsigned long now = millis();
+
+    handle_buttons();
+
+    // Audio processing tick (~43Hz)
+    if (now - last_audio_tick >= AUDIO_TICK_MS) {
+        last_audio_tick = now;
+
+        size_t samples_read = audio_capture_read(audio_buffer, SAMPLES);
+        if (samples_read == SAMPLES) {
+            current_bands = fft_process(audio_buffer, SAMPLES);
+            current_beat = beat_detect(current_bands);
+        }
+    }
+
+    // LED render tick (~60 FPS)
+    if (now - last_led_render >= LED_RENDER_MS) {
+        last_led_render = now;
+
+        if (mode_manager_get_mode() == Mode::AUDIO_REACTIVE) {
+            Pattern* pattern = mode_manager_get_current_pattern();
+            pattern->update(current_bands, current_beat);
+            pattern->render(leds, NUM_LEDS);
+        }
+
+        led_show();
+    }
+}
