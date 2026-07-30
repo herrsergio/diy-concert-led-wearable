@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music LED Strip - Wiring Diagram</title>
+    <style>
+        body {
+            background: #1a1a2e;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            color: #e0e0e0;
+        }
+        h1 {
+            text-align: center;
+            color: #39ff14;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .legend {
+            margin: 20px auto;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+        .legend-color {
+            width: 30px;
+            height: 4px;
+            border-radius: 2px;
+        }
+        .notes {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #16213e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .notes h3 {
+            color: #39ff14;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music LED Strip - Wiring Diagram</h1>
+    <p class="subtitle">ESP32-S3 + WS2812B + INMP441 | Breadboard Layout</p>
+
+    <div class="diagram-container">
+        <svg viewBox="0 0 920 620" xmlns="http://www.w3.org/2000/svg" width="920" height="620">
+            <!-- Background -->
+            <rect width="920" height="620" fill="#1a1a2e" rx="10"/>
+
+            <!-- ESP32-S3 Module -->
+            <rect x="340" y="180" width="160" height="280" rx="8" fill="#2d2d44" stroke="#5555aa" stroke-width="2"/>
+            <rect x="395" y="170" width="50" height="15" rx="3" fill="#444" stroke="#666" stroke-width="1"/>
+            <text x="420" y="181" text-anchor="middle" font-size="7" fill="#aaa">USB-C</text>
+            <text x="420" y="210" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">ESP32-S3</text>
+            <text x="420" y="225" text-anchor="middle" font-size="9" fill="#888">DevKitC-1</text>
+
+            <!-- ESP32 Pin Labels - Left Side -->
+            <text x="350" y="260" text-anchor="end" font-size="9" fill="#ff6b6b">5V</text>
+            <circle cx="340" cy="257" r="4" fill="#ff6b6b"/>
+            <text x="350" y="280" text-anchor="end" font-size="9" fill="#4a4a4a">GND</text>
+            <circle cx="340" cy="277" r="4" fill="#555"/>
+            <text x="350" y="300" text-anchor="end" font-size="9" fill="#ffd93d">3.3V</text>
+            <circle cx="340" cy="297" r="4" fill="#ffd93d"/>
+            <text x="350" y="320" text-anchor="end" font-size="9" fill="#6bcfff">GPIO 15</text>
+            <circle cx="340" cy="317" r="4" fill="#6bcfff"/>
+            <text x="350" y="340" text-anchor="end" font-size="9" fill="#6bcfff">GPIO 16</text>
+            <circle cx="340" cy="337" r="4" fill="#6bcfff"/>
+            <text x="350" y="360" text-anchor="end" font-size="9" fill="#6bcfff">GPIO 17</text>
+            <circle cx="340" cy="357" r="4" fill="#6bcfff"/>
+
+            <!-- ESP32 Pin Labels - Right Side -->
+            <text x="490" y="260" text-anchor="start" font-size="9" fill="#39ff14">GPIO 38</text>
+            <circle cx="500" cy="257" r="4" fill="#39ff14"/>
+            <text x="490" y="300" text-anchor="start" font-size="9" fill="#ff9f43">GPIO 4</text>
+            <circle cx="500" cy="297" r="4" fill="#ff9f43"/>
+            <text x="490" y="320" text-anchor="start" font-size="9" fill="#ff9f43">GPIO 5</text>
+            <circle cx="500" cy="317" r="4" fill="#ff9f43"/>
+            <text x="490" y="380" text-anchor="start" font-size="9" fill="#4a4a4a">GND</text>
+            <circle cx="500" cy="377" r="4" fill="#555"/>
+
+            <!-- WS2812B LED Strip -->
+            <rect x="620" y="100" width="260" height="80" rx="6" fill="#1a1a1a" stroke="#39ff14" stroke-width="2"/>
+            <text x="750" y="125" text-anchor="middle" font-size="11" fill="#39ff14" font-weight="bold">WS2812B LED Strip</text>
+            <text x="750" y="142" text-anchor="middle" font-size="9" fill="#888">60 LEDs/m, 1m, IP30</text>
+            <!-- LED dots -->
+            <circle cx="640" cy="160" r="4" fill="#ff0000" opacity="0.8"/>
+            <circle cx="655" cy="160" r="4" fill="#00ff00" opacity="0.8"/>
+            <circle cx="670" cy="160" r="4" fill="#0000ff" opacity="0.8"/>
+            <circle cx="685" cy="160" r="4" fill="#ff00ff" opacity="0.8"/>
+            <circle cx="700" cy="160" r="4" fill="#ffff00" opacity="0.8"/>
+            <circle cx="715" cy="160" r="4" fill="#00ffff" opacity="0.8"/>
+            <circle cx="730" cy="160" r="4" fill="#ff6600" opacity="0.8"/>
+            <circle cx="745" cy="160" r="4" fill="#39ff14" opacity="0.8"/>
+            <circle cx="760" cy="160" r="4" fill="#ff0066" opacity="0.8"/>
+            <circle cx="775" cy="160" r="4" fill="#6666ff" opacity="0.8"/>
+            <circle cx="790" cy="160" r="4" fill="#ff3333" opacity="0.8"/>
+            <text x="820" y="163" font-size="9" fill="#666">...</text>
+            <!-- Strip pins -->
+            <text x="640" y="98" text-anchor="middle" font-size="8" fill="#39ff14">DIN</text>
+            <circle cx="640" cy="100" r="3" fill="#39ff14"/>
+            <text x="720" y="98" text-anchor="middle" font-size="8" fill="#ff6b6b">+5V</text>
+            <circle cx="720" cy="100" r="3" fill="#ff6b6b"/>
+            <text x="800" y="98" text-anchor="middle" font-size="8" fill="#555">GND</text>
+            <circle cx="800" cy="100" r="3" fill="#555"/>
+
+            <!-- 470 Ohm Resistor -->
+            <rect x="560" y="250" width="50" height="14" rx="3" fill="#8B4513" stroke="#a0522d" stroke-width="1"/>
+            <rect x="565" y="253" width="5" height="8" fill="#ffd93d"/>
+            <rect x="572" y="253" width="5" height="8" fill="#9400d3"/>
+            <rect x="579" y="253" width="5" height="8" fill="#8B4513"/>
+            <rect x="586" y="253" width="5" height="8" fill="#ffd700"/>
+            <text x="585" y="278" text-anchor="middle" font-size="8" fill="#aaa">470&#937;</text>
+
+            <!-- Wire: GPIO 38 -> Resistor -> DIN -->
+            <line x1="504" y1="257" x2="560" y2="257" stroke="#39ff14" stroke-width="2"/>
+            <line x1="610" y1="257" x2="640" y2="257" stroke="#39ff14" stroke-width="2"/>
+            <line x1="640" y1="257" x2="640" y2="103" stroke="#39ff14" stroke-width="2"/>
+
+            <!-- Wire: 5V -> Strip +5V -->
+            <line x1="340" y1="257" x2="200" y2="257" stroke="#ff6b6b" stroke-width="2"/>
+            <line x1="200" y1="257" x2="200" y2="60" stroke="#ff6b6b" stroke-width="2"/>
+            <line x1="200" y1="60" x2="720" y2="60" stroke="#ff6b6b" stroke-width="2"/>
+            <line x1="720" y1="60" x2="720" y2="97" stroke="#ff6b6b" stroke-width="2"/>
+
+            <!-- Wire: GND -> Strip GND -->
+            <line x1="340" y1="277" x2="180" y2="277" stroke="#555" stroke-width="2"/>
+            <line x1="180" y1="277" x2="180" y2="45" stroke="#555" stroke-width="2"/>
+            <line x1="180" y1="45" x2="800" y2="45" stroke="#555" stroke-width="2"/>
+            <line x1="800" y1="45" x2="800" y2="97" stroke="#555" stroke-width="2"/>
+
+            <!-- 1000uF Capacitor -->
+            <rect x="740" y="55" width="10" height="25" rx="2" fill="#333" stroke="#888" stroke-width="1"/>
+            <rect x="752" y="55" width="10" height="25" rx="2" fill="#333" stroke="#888" stroke-width="1"/>
+            <line x1="745" y1="55" x2="745" y2="45" stroke="#555" stroke-width="1.5"/>
+            <line x1="757" y1="55" x2="757" y2="60" stroke="#ff6b6b" stroke-width="1.5"/>
+            <text x="751" y="92" text-anchor="middle" font-size="7" fill="#aaa">1000uF</text>
+            <text x="751" y="100" text-anchor="middle" font-size="7" fill="#aaa">6.3V</text>
+            <!-- + sign on cap -->
+            <text x="762" y="62" font-size="8" fill="#ff6b6b">+</text>
+
+            <!-- INMP441 Microphone -->
+            <rect x="60" y="290" width="140" height="110" rx="6" fill="#2d2d44" stroke="#6bcfff" stroke-width="2"/>
+            <text x="130" y="315" text-anchor="middle" font-size="11" fill="#6bcfff" font-weight="bold">INMP441</text>
+            <text x="130" y="332" text-anchor="middle" font-size="9" fill="#888">I2S MEMS Mic</text>
+            <!-- Mic hole -->
+            <circle cx="130" cy="360" r="12" fill="none" stroke="#6bcfff" stroke-width="1" stroke-dasharray="2,2"/>
+            <circle cx="130" cy="360" r="3" fill="#6bcfff" opacity="0.5"/>
+            <!-- Pin labels -->
+            <text x="205" y="305" font-size="8" fill="#6bcfff">SCK</text>
+            <circle cx="200" cy="302" r="3" fill="#6bcfff"/>
+            <text x="205" y="325" font-size="8" fill="#6bcfff">WS</text>
+            <circle cx="200" cy="322" r="3" fill="#6bcfff"/>
+            <text x="205" y="345" font-size="8" fill="#6bcfff">SD</text>
+            <circle cx="200" cy="342" r="3" fill="#6bcfff"/>
+            <text x="205" y="365" font-size="8" fill="#ffd93d">VDD</text>
+            <circle cx="200" cy="362" r="3" fill="#ffd93d"/>
+            <text x="205" y="385" font-size="8" fill="#555">GND</text>
+            <circle cx="200" cy="382" r="3" fill="#555"/>
+            <text x="205" y="395" font-size="8" fill="#555">L/R</text>
+            <circle cx="200" cy="392" r="3" fill="#555"/>
+
+            <!-- Wires: ESP32 -> INMP441 -->
+            <!-- GPIO 16 -> SCK -->
+            <line x1="340" y1="337" x2="240" y2="337" stroke="#6bcfff" stroke-width="2"/>
+            <line x1="240" y1="337" x2="240" y2="302" stroke="#6bcfff" stroke-width="2"/>
+            <line x1="240" y1="302" x2="203" y2="302" stroke="#6bcfff" stroke-width="2"/>
+            <!-- GPIO 15 -> WS -->
+            <line x1="340" y1="317" x2="250" y2="317" stroke="#6bcfff" stroke-width="2" stroke-dasharray="6,3"/>
+            <line x1="250" y1="317" x2="250" y2="322" stroke="#6bcfff" stroke-width="2" stroke-dasharray="6,3"/>
+            <line x1="250" y1="322" x2="203" y2="322" stroke="#6bcfff" stroke-width="2" stroke-dasharray="6,3"/>
+            <!-- GPIO 17 -> SD -->
+            <line x1="340" y1="357" x2="260" y2="357" stroke="#6bcfff" stroke-width="2" stroke-dasharray="2,4"/>
+            <line x1="260" y1="357" x2="260" y2="342" stroke="#6bcfff" stroke-width="2" stroke-dasharray="2,4"/>
+            <line x1="260" y1="342" x2="203" y2="342" stroke="#6bcfff" stroke-width="2" stroke-dasharray="2,4"/>
+            <!-- 3.3V -> VDD -->
+            <line x1="340" y1="297" x2="270" y2="297" stroke="#ffd93d" stroke-width="2"/>
+            <line x1="270" y1="297" x2="270" y2="362" stroke="#ffd93d" stroke-width="2"/>
+            <line x1="270" y1="362" x2="203" y2="362" stroke="#ffd93d" stroke-width="2"/>
+            <!-- GND -> INMP441 GND + L/R -->
+            <line x1="180" y1="277" x2="180" y2="382" stroke="#555" stroke-width="2"/>
+            <line x1="180" y1="382" x2="197" y2="382" stroke="#555" stroke-width="2"/>
+            <line x1="180" y1="392" x2="197" y2="392" stroke="#555" stroke-width="2"/>
+
+            <!-- Buttons -->
+            <!-- Mode Button -->
+            <rect x="620" y="280" width="70" height="40" rx="4" fill="#2d2d44" stroke="#ff9f43" stroke-width="1.5"/>
+            <circle cx="655" cy="300" r="8" fill="#444" stroke="#ff9f43" stroke-width="1.5"/>
+            <text x="655" y="330" text-anchor="middle" font-size="8" fill="#ff9f43">MODE/PATTERN</text>
+            <!-- Brightness Button -->
+            <rect x="620" y="350" width="70" height="40" rx="4" fill="#2d2d44" stroke="#ff9f43" stroke-width="1.5"/>
+            <circle cx="655" cy="370" r="8" fill="#444" stroke="#ff9f43" stroke-width="1.5"/>
+            <text x="655" y="400" text-anchor="middle" font-size="8" fill="#ff9f43">BRIGHTNESS</text>
+
+            <!-- Wire: GPIO 4 -> Mode Button -->
+            <line x1="504" y1="297" x2="550" y2="297" stroke="#ff9f43" stroke-width="2"/>
+            <line x1="550" y1="297" x2="620" y2="297" stroke="#ff9f43" stroke-width="2"/>
+            <!-- Wire: GPIO 5 -> Brightness Button -->
+            <line x1="504" y1="317" x2="540" y2="317" stroke="#ff9f43" stroke-width="2" stroke-dasharray="6,3"/>
+            <line x1="540" y1="317" x2="540" y2="367" stroke="#ff9f43" stroke-width="2" stroke-dasharray="6,3"/>
+            <line x1="540" y1="367" x2="620" y2="367" stroke="#ff9f43" stroke-width="2" stroke-dasharray="6,3"/>
+            <!-- Buttons to GND -->
+            <line x1="690" y1="300" x2="720" y2="300" stroke="#555" stroke-width="2"/>
+            <line x1="720" y1="300" x2="720" y2="377" stroke="#555" stroke-width="2"/>
+            <line x1="690" y1="370" x2="720" y2="370" stroke="#555" stroke-width="2"/>
+            <line x1="720" y1="377" x2="504" y2="377" stroke="#555" stroke-width="2"/>
+
+            <!-- Power Section Label -->
+            <rect x="60" y="480" width="800" height="110" rx="8" fill="#16213e" stroke="#333" stroke-width="1"/>
+            <text x="80" y="505" font-size="11" fill="#ffd93d" font-weight="bold">Power (Wearable Build - Phase 4)</text>
+
+            <!-- 18650 Battery -->
+            <rect x="90" y="520" width="100" height="45" rx="6" fill="#2d2d44" stroke="#ff6b6b" stroke-width="1.5"/>
+            <rect x="190" y="533" width="8" height="18" rx="2" fill="#ff6b6b" opacity="0.6"/>
+            <text x="140" y="542" text-anchor="middle" font-size="9" fill="#fff">18650</text>
+            <text x="140" y="556" text-anchor="middle" font-size="8" fill="#888">3.7V 3000mAh</text>
+
+            <!-- TP4056 Charger -->
+            <rect x="240" y="520" width="100" height="45" rx="4" fill="#2d2d44" stroke="#ff6b6b" stroke-width="1"/>
+            <text x="290" y="542" text-anchor="middle" font-size="9" fill="#fff">TP4056</text>
+            <text x="290" y="556" text-anchor="middle" font-size="8" fill="#888">USB-C Charge</text>
+
+            <!-- MT3608 Boost -->
+            <rect x="400" y="520" width="100" height="45" rx="4" fill="#2d2d44" stroke="#ff6b6b" stroke-width="1"/>
+            <text x="450" y="542" text-anchor="middle" font-size="9" fill="#fff">MT3608</text>
+            <text x="450" y="556" text-anchor="middle" font-size="8" fill="#888">3.7V -> 5V Boost</text>
+
+            <!-- Slide Switch -->
+            <rect x="550" y="530" width="60" height="25" rx="4" fill="#2d2d44" stroke="#fff" stroke-width="1"/>
+            <circle cx="575" cy="542" r="5" fill="#39ff14"/>
+            <text x="580" y="568" text-anchor="middle" font-size="8" fill="#888">ON/OFF</text>
+
+            <!-- Power flow arrows -->
+            <line x1="198" y1="542" x2="238" y2="542" stroke="#ff6b6b" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+            <line x1="342" y1="542" x2="398" y2="542" stroke="#ff6b6b" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+            <line x1="502" y1="542" x2="548" y2="542" stroke="#ff6b6b" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+            <line x1="612" y1="542" x2="650" y2="542" stroke="#ff6b6b" stroke-width="1.5"/>
+            <text x="660" y="538" font-size="8" fill="#ff6b6b">5V to ESP32</text>
+            <text x="660" y="550" font-size="8" fill="#ff6b6b">+ LED Strip</text>
+
+            <!-- Arrow markers -->
+            <defs>
+                <marker id="arrowRed" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#ff6b6b"/>
+                </marker>
+                <marker id="arrowGreen" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#39ff14"/>
+                </marker>
+            </defs>
+
+            <!-- Signal labels on wires -->
+            <text x="530" y="245" font-size="7" fill="#39ff14">DATA</text>
+            <text x="230" y="290" font-size="7" fill="#6bcfff">I2S</text>
+
+            <!-- Title annotations -->
+            <rect x="620" y="210" width="90" height="45" rx="4" fill="none" stroke="#39ff14" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="665" y="228" text-anchor="middle" font-size="8" fill="#39ff14">Internal</text>
+            <text x="665" y="240" text-anchor="middle" font-size="8" fill="#39ff14">Pull-up</text>
+            <text x="665" y="252" text-anchor="middle" font-size="8" fill="#888">No ext. resistor</text>
+            <!-- Arrow from note to buttons -->
+            <line x1="665" y1="255" x2="655" y2="278" stroke="#39ff14" stroke-width="0.5" stroke-dasharray="2,2" marker-end="url(#arrowGreen)"/>
+        </svg>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff6b6b;"></div>
+            <span>5V Power (red wire)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #555;"></div>
+            <span>GND (black wire)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ffd93d;"></div>
+            <span>3.3V Power (yellow wire)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #39ff14;"></div>
+            <span>LED Data (green wire)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #6bcfff;"></div>
+            <span>I2S signals (blue wires)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff9f43;"></div>
+            <span>Button signals (orange wires)</span>
+        </div>
+    </div>
+
+    <div class="notes">
+        <h3>Wiring Notes</h3>
+        <p><strong>470 ohm resistor</strong> on the data line protects the first LED from voltage spikes. Place it as close to the strip's DIN pin as possible.</p>
+        <p><strong>1000uF capacitor</strong> across the strip's power rails prevents inrush current from damaging LEDs on power-on. Observe polarity (+ to 5V).</p>
+        <p><strong>INMP441 L/R pin</strong> tied to GND selects the left I2S channel. The firmware reads I2S_CHANNEL_FMT_ONLY_LEFT.</p>
+        <p><strong>Buttons</strong> use ESP32 internal pull-ups (INPUT_PULLUP). Press connects to GND (active LOW). No external resistors needed.</p>
+        <p><strong>For breadboard testing</strong>: power everything from USB-C on the ESP32. The onboard 5V pin provides USB voltage directly to the strip.</p>
+        <p><strong>For wearable build</strong>: add 18650 + TP4056 (charging) + MT3608 (boost to 5V) + slide switch. See bottom section of diagram.</p>
+    </div>
+</body>
+</html>
