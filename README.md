@@ -20,20 +20,23 @@ A wearable, audio-reactive LED strip built on ESP32-S3 that pulses and changes c
 
 ### Wiring
 
-```
-ESP32-S3 GPIO 38  --[470Ω]--  WS2812B DIN
-ESP32-S3 5V       ----------  WS2812B +5V  --┐
-ESP32-S3 GND      ----------  WS2812B GND  --┤-- 1000uF cap
-                                              │
-ESP32-S3 GPIO 16  ----------  INMP441 SCK
-ESP32-S3 GPIO 15  ----------  INMP441 WS
-ESP32-S3 GPIO 17  ----------  INMP441 SD
-ESP32-S3 3.3V     ----------  INMP441 VDD
-ESP32-S3 GND      ----------  INMP441 GND + L/R
+Open [`docs/wiring-diagram.html`](docs/wiring-diagram.html) in a browser for the full visual diagram with color-coded wires and component layout.
 
-ESP32-S3 GPIO 4   -- Button -- GND  (pattern cycle)
-ESP32-S3 GPIO 5   -- Button -- GND  (brightness)
-```
+Quick reference:
+
+| ESP32-S3 Pin | Connects To | Wire Color |
+|---|---|---|
+| GPIO 38 | WS2812B DIN (through 470 ohm resistor) | Green |
+| 5V | WS2812B +5V | Red |
+| GND | WS2812B GND, INMP441 GND + L/R, Buttons | Black |
+| 3.3V | INMP441 VDD | Yellow |
+| GPIO 16 | INMP441 SCK (BCLK) | Blue |
+| GPIO 15 | INMP441 WS (LRCLK) | Blue |
+| GPIO 17 | INMP441 SD (DOUT) | Blue |
+| GPIO 4 | Mode button -> GND | Orange |
+| GPIO 5 | Brightness button -> GND | Orange |
+
+Place a 1000uF capacitor across the strip's +5V and GND pins.
 
 ## Building and Flashing
 
