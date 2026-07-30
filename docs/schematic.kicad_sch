@@ -1,0 +1,335 @@
+(kicad_sch
+  (version 20231120)
+  (generator "custom")
+  (uuid "a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+  (paper "A4")
+
+  (title_block
+    (title "Music LED Strip - Audio Reactive Wearable")
+    (date "2026-07-30")
+    (rev "1.0")
+    (comment 1 "ESP32-S3 + WS2812B + INMP441")
+    (comment 2 "Phase 1: Breadboard Prototype")
+  )
+
+  ;; --- ESP32-S3 DevKitC-1 ---
+  (symbol
+    (lib_id "MCU_Module:ESP32-S3-DevKitC-1")
+    (at 127 95.25 0)
+    (unit 1)
+    (uuid "esp32-s3-main")
+    (property "Reference" "U1"
+      (at 127 63.5 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "ESP32-S3-DevKitC-1"
+      (at 127 66.04 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" ""
+      (at 127 95.25 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "5V" (at 109.22 76.2 0))
+    (pin "GND" (at 109.22 78.74 0))
+    (pin "3V3" (at 109.22 81.28 0))
+    (pin "GPIO4" (at 144.78 81.28 180))
+    (pin "GPIO5" (at 144.78 83.82 180))
+    (pin "GPIO15" (at 109.22 88.9 0))
+    (pin "GPIO16" (at 109.22 91.44 0))
+    (pin "GPIO17" (at 109.22 93.98 0))
+    (pin "GPIO38" (at 144.78 76.2 180))
+  )
+
+  ;; --- WS2812B LED Strip ---
+  (symbol
+    (lib_id "LED:WS2812B")
+    (at 203.2 76.2 0)
+    (unit 1)
+    (uuid "ws2812b-strip")
+    (property "Reference" "LED1"
+      (at 203.2 68.58 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "WS2812B_60LED_1m"
+      (at 203.2 71.12 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" ""
+      (at 203.2 76.2 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "DIN" (at 190.5 76.2 0))
+    (pin "VDD" (at 203.2 68.58 270))
+    (pin "VSS" (at 203.2 83.82 90))
+  )
+
+  ;; --- INMP441 I2S MEMS Microphone ---
+  (symbol
+    (lib_id "Audio:INMP441")
+    (at 63.5 91.44 0)
+    (unit 1)
+    (uuid "inmp441-mic")
+    (property "Reference" "U2"
+      (at 63.5 80.01 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "INMP441"
+      (at 63.5 82.55 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" ""
+      (at 63.5 91.44 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "SCK" (at 78.74 86.36 180))
+    (pin "WS" (at 78.74 88.9 180))
+    (pin "SD" (at 78.74 91.44 180))
+    (pin "VDD" (at 63.5 80.01 270))
+    (pin "GND" (at 63.5 102.87 90))
+    (pin "L/R" (at 78.74 96.52 180))
+  )
+
+  ;; --- 470 Ohm Resistor (Data Line Protection) ---
+  (symbol
+    (lib_id "Device:R")
+    (at 172.72 76.2 90)
+    (unit 1)
+    (uuid "r-470ohm")
+    (property "Reference" "R1"
+      (at 172.72 73.66 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "470"
+      (at 172.72 78.74 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+      (at 172.72 76.2 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (at 167.64 76.2 0))
+    (pin "2" (at 177.8 76.2 180))
+  )
+
+  ;; --- 1000uF Bulk Capacitor ---
+  (symbol
+    (lib_id "Device:CP")
+    (at 190.5 68.58 0)
+    (unit 1)
+    (uuid "c-1000uf")
+    (property "Reference" "C1"
+      (at 193.04 66.04 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "1000uF/6.3V"
+      (at 193.04 68.58 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
+      (at 190.5 68.58 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "+" (at 190.5 63.5 270))
+    (pin "-" (at 190.5 73.66 90))
+  )
+
+  ;; --- Mode Button (Tactile) ---
+  (symbol
+    (lib_id "Switch:SW_Push")
+    (at 162.56 81.28 0)
+    (unit 1)
+    (uuid "sw-mode")
+    (property "Reference" "SW1"
+      (at 162.56 78.74 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "MODE/PATTERN"
+      (at 162.56 83.82 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "1" (at 157.48 81.28 0))
+    (pin "2" (at 167.64 81.28 180))
+  )
+
+  ;; --- Brightness Button (Tactile) ---
+  (symbol
+    (lib_id "Switch:SW_Push")
+    (at 162.56 88.9 0)
+    (unit 1)
+    (uuid "sw-brightness")
+    (property "Reference" "SW2"
+      (at 162.56 86.36 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "BRIGHTNESS"
+      (at 162.56 91.44 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "1" (at 157.48 88.9 0))
+    (pin "2" (at 167.64 88.9 180))
+  )
+
+  ;; --- Power Supply Section (Wearable Build) ---
+  ;; 18650 Battery
+  (symbol
+    (lib_id "Device:Battery")
+    (at 50.8 127 0)
+    (unit 1)
+    (uuid "bat-18650")
+    (property "Reference" "BT1"
+      (at 53.34 124.46 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "18650_3000mAh"
+      (at 53.34 129.54 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "+" (at 50.8 121.92 270))
+    (pin "-" (at 50.8 132.08 90))
+  )
+
+  ;; TP4056 USB-C Charging Module
+  (symbol
+    (lib_id "Battery_Management:TP4056")
+    (at 78.74 127 0)
+    (unit 1)
+    (uuid "tp4056-charger")
+    (property "Reference" "U3"
+      (at 78.74 119.38 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "TP4056_USB-C"
+      (at 78.74 121.92 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "BAT+" (at 68.58 124.46 0))
+    (pin "BAT-" (at 68.58 129.54 0))
+    (pin "OUT+" (at 88.9 124.46 180))
+    (pin "OUT-" (at 88.9 129.54 180))
+  )
+
+  ;; MT3608 Boost Converter (3.7V -> 5V)
+  (symbol
+    (lib_id "Regulator_Switching:MT3608")
+    (at 114.3 127 0)
+    (unit 1)
+    (uuid "mt3608-boost")
+    (property "Reference" "U4"
+      (at 114.3 119.38 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "MT3608_5V"
+      (at 114.3 121.92 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "VIN+" (at 104.14 124.46 0))
+    (pin "GND" (at 104.14 129.54 0))
+    (pin "VOUT" (at 124.46 124.46 180))
+  )
+
+  ;; Power Switch
+  (symbol
+    (lib_id "Switch:SW_SPDT")
+    (at 137.16 124.46 0)
+    (unit 1)
+    (uuid "sw-power")
+    (property "Reference" "SW3"
+      (at 137.16 119.38 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "ON/OFF"
+      (at 137.16 121.92 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "COM" (at 132.08 124.46 0))
+    (pin "A" (at 142.24 121.92 180))
+    (pin "B" (at 142.24 127 180))
+  )
+
+  ;; ============ WIRES / NETS ============
+
+  ;; --- LED Data Path: GPIO38 -> R1 -> WS2812B DIN ---
+  (wire (pts (xy 144.78 76.2) (xy 167.64 76.2)))
+  (wire (pts (xy 177.8 76.2) (xy 190.5 76.2)))
+
+  ;; --- 5V Power to LED Strip ---
+  (wire (pts (xy 109.22 76.2) (xy 104.14 76.2)))
+  (wire (pts (xy 104.14 76.2) (xy 104.14 63.5)))
+  (wire (pts (xy 104.14 63.5) (xy 190.5 63.5)))
+  (wire (pts (xy 190.5 63.5) (xy 203.2 63.5)))
+  (wire (pts (xy 203.2 63.5) (xy 203.2 68.58)))
+
+  ;; --- Capacitor across LED power ---
+  (wire (pts (xy 190.5 63.5) (xy 190.5 63.5)))
+  (wire (pts (xy 190.5 73.66) (xy 190.5 83.82)))
+
+  ;; --- GND bus ---
+  (wire (pts (xy 109.22 78.74) (xy 104.14 78.74)))
+  (wire (pts (xy 104.14 78.74) (xy 104.14 109.22)))
+  (wire (pts (xy 104.14 109.22) (xy 190.5 109.22)))
+  (wire (pts (xy 190.5 83.82) (xy 190.5 109.22)))
+  (wire (pts (xy 203.2 83.82) (xy 203.2 109.22)))
+
+  ;; --- I2S: GPIO16 -> INMP441 SCK ---
+  (wire (pts (xy 109.22 91.44) (xy 93.98 91.44)))
+  (wire (pts (xy 93.98 91.44) (xy 93.98 86.36)))
+  (wire (pts (xy 93.98 86.36) (xy 78.74 86.36)))
+
+  ;; --- I2S: GPIO15 -> INMP441 WS ---
+  (wire (pts (xy 109.22 88.9) (xy 78.74 88.9)))
+
+  ;; --- I2S: GPIO17 -> INMP441 SD ---
+  (wire (pts (xy 109.22 93.98) (xy 96.52 93.98)))
+  (wire (pts (xy 96.52 93.98) (xy 96.52 91.44)))
+  (wire (pts (xy 96.52 91.44) (xy 78.74 91.44)))
+
+  ;; --- 3.3V -> INMP441 VDD ---
+  (wire (pts (xy 109.22 81.28) (xy 99.06 81.28)))
+  (wire (pts (xy 99.06 81.28) (xy 99.06 80.01)))
+  (wire (pts (xy 99.06 80.01) (xy 63.5 80.01)))
+
+  ;; --- GND -> INMP441 GND ---
+  (wire (pts (xy 63.5 102.87) (xy 63.5 109.22)))
+  (wire (pts (xy 63.5 109.22) (xy 104.14 109.22)))
+
+  ;; --- INMP441 L/R -> GND ---
+  (wire (pts (xy 78.74 96.52) (xy 86.36 96.52)))
+  (wire (pts (xy 86.36 96.52) (xy 86.36 109.22)))
+
+  ;; --- GPIO4 -> Mode Button -> GND ---
+  (wire (pts (xy 144.78 81.28) (xy 157.48 81.28)))
+  (wire (pts (xy 167.64 81.28) (xy 172.72 81.28)))
+  (wire (pts (xy 172.72 81.28) (xy 172.72 109.22)))
+
+  ;; --- GPIO5 -> Brightness Button -> GND ---
+  (wire (pts (xy 144.78 83.82) (xy 152.4 83.82)))
+  (wire (pts (xy 152.4 83.82) (xy 152.4 88.9)))
+  (wire (pts (xy 152.4 88.9) (xy 157.48 88.9)))
+  (wire (pts (xy 167.64 88.9) (xy 175.26 88.9)))
+  (wire (pts (xy 175.26 88.9) (xy 175.26 109.22)))
+
+  ;; ============ NET LABELS ============
+  (net_label "+5V" (at 104.14 63.5 0))
+  (net_label "GND" (at 104.14 109.22 0))
+  (net_label "+3V3" (at 99.06 81.28 0))
+  (net_label "LED_DATA" (at 160.02 76.2 0))
+  (net_label "I2S_SCK" (at 86.36 86.36 0))
+  (net_label "I2S_WS" (at 86.36 88.9 0))
+  (net_label "I2S_SD" (at 86.36 91.44 0))
+
+  ;; ============ POWER FLAGS ============
+  (power_flag (at 104.14 63.5 0) (uuid "pf-5v"))
+  (power_flag (at 104.14 109.22 180) (uuid "pf-gnd"))
+
+  ;; ============ TEXT NOTES ============
+  (text "NOTES:\n1. R1 (470 ohm) must be placed close to WS2812B DIN pin\n2. C1 (1000uF) across LED strip +5V/GND prevents inrush damage\n3. INMP441 L/R tied to GND = left channel (matches firmware config)\n4. Buttons use ESP32 internal pull-up (INPUT_PULLUP), no external resistors\n5. For breadboard testing: power from USB-C on ESP32 DevKit\n6. For wearable: add battery section (BT1 + U3 + U4 + SW3)"
+    (at 40.64 144.78 0)
+    (effects (font (size 1.27 1.27)))
+  )
+
+  (text "POWER SECTION (Phase 4 - Wearable Build)\n18650 (3.7V) -> TP4056 (charge/protect) -> MT3608 (boost to 5V) -> SW3 -> System 5V\nEstimated runtime: ~3.3h at 40% brightness (900mA avg draw)"
+    (at 40.64 157.48 0)
+    (effects (font (size 1.27 1.27)))
+  )
+)
