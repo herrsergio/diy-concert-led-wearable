@@ -53,6 +53,21 @@ pio run
 pio run --target upload --target monitor
 ```
 
+## Simulator (Wokwi)
+
+You can test patterns and button behavior without hardware using the [Wokwi simulator](https://wokwi.com/).
+
+```bash
+# Build the simulator environment (uses synthetic audio instead of I2S mic)
+pio run -e wokwi
+```
+
+Then in VS Code with the [Wokwi extension](https://marketplace.visualstudio.com/items?itemName=Wokwi.wokwi-vscode) installed, press F1 and select "Wokwi: Start Simulator".
+
+The simulator environment defines `SIMULATE_AUDIO`, which replaces the I2S microphone input with a synthetic signal: a 130 BPM bass kick + mid-frequency content + hi-hat bursts. This drives all patterns so you can see them animate and test button cycling.
+
+**Simulator layout**: ESP32-S3 + 60 WS2812B LEDs (two 30-LED strips chained) + 470 ohm data resistor + MODE button + BRIGHTNESS button.
+
 ## Usage
 
 1. Power on the ESP32-S3 via USB or battery
