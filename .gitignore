@@ -1,0 +1,7 @@
+.pio/
+.vscode/
+.venv/
+lib/
+include/
+*.bin
+*.elf
