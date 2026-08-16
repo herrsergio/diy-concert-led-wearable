@@ -19,8 +19,12 @@
 // --- Buttons ---
 #define BTN_MODE_PIN      4         // Pattern/mode cycle button
 #define BTN_BRIGHT_PIN    5         // Brightness adjust button
+#ifndef BTN_DEBOUNCE_MS
 #define BTN_DEBOUNCE_MS   50
+#endif
+#ifndef BTN_LONG_PRESS_MS
 #define BTN_LONG_PRESS_MS 1000
+#endif
 
 // --- Audio Processing ---
 #define FFT_BAND_BASS_LOW     20
