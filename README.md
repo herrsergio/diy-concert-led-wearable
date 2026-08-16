@@ -66,7 +66,7 @@ Then in VS Code with the [Wokwi extension](https://marketplace.visualstudio.com/
 
 The simulator environment defines `SIMULATE_AUDIO`, which replaces the I2S microphone input with a synthetic signal: a 130 BPM bass kick + mid-frequency content + hi-hat bursts. This drives all patterns so you can see them animate and test button cycling.
 
-**Simulator layout**: ESP32-S3 + 60 WS2812B LEDs (two 30-LED strips chained) + 470 ohm data resistor + MODE button + BRIGHTNESS button.
+**Simulator layout**: ESP32 DevKit C V4 (used as a stand-in for the S3 in diagram.json) + 10 WS2812B LEDs (two 5-LED strips chained on GPIO 2) + 470 ohm data resistor + MODE button + BRIGHTNESS button. The `BTN_LONG_PRESS_MS` threshold is overridden to 5000ms in the wokwi build because the simulation runs slower than real time.
 
 ## Usage
 
