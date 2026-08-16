@@ -12,8 +12,8 @@ static FrequencyBars freq_bars;
 static SKZColors skz_colors;
 
 static Pattern* patterns[NUM_PATTERNS] = {
-    &pulse_beat,
     &rainbow_wave,
+    &pulse_beat,
     &strobe_kick,
     &freq_bars,
     &skz_colors
