@@ -52,6 +52,11 @@ All pin mappings are in `src/config.h`. Key pins: GPIO 38 (LED data), GPIO 15/16
 - `docs/wiring-diagram.html` -- Visual SVG diagram (open in browser), color-coded wires, component layout, and wiring notes
 - `docs/schematic.kicad_sch` -- KiCad schematic with all components, nets, and power section for wearable build. Requires community libraries for INMP441 and ESP32-S3-DevKitC symbols.
 
+### Wokwi Simulator Notes
+
+- `diagram.json` uses `board-esp32-devkit-c-v4` (plain ESP32) as a stand-in; the real target is `esp32-s3-devkitc-1`. Before flashing real hardware, restore `LED_PIN` to 38 in `config.h`.
+- The `[env:wokwi]` build targets `esp32dev` and defines `SIMULATE_AUDIO=1` (bypasses I2S and FFT, generates synthetic band values directly) and `BTN_LONG_PRESS_MS=5000` (simulation runs slower than real time, so button press durations are inflated).
+
 ## Future Modules (not yet implemented)
 
 - `src/ble/` -- NimBLE passive scanner for concert lightstick sync
