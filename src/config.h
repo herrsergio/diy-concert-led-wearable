@@ -1,8 +1,8 @@
 #pragma once
 
 // --- LED Strip Configuration ---
-#define LED_PIN           38
-#define NUM_LEDS          60
+#define LED_PIN           2
+#define NUM_LEDS          10
 #define LED_TYPE          WS2812B
 #define COLOR_ORDER       GRB
 #define MAX_BRIGHTNESS    128       // 0-255, capped for battery life (~50%)

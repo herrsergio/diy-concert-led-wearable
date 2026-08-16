@@ -68,6 +68,10 @@ void setup() {
 
     Serial.println("Ready! Mode: Audio Reactive");
     Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
+
+    fill_solid(leds, NUM_LEDS, CRGB::Red);
+    led_show();
+    delay(1000);
 }
 
 void loop() {
