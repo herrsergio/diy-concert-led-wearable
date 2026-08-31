@@ -58,6 +58,7 @@ static const i2s_config_t i2s_config = {
 };
 
 static const i2s_pin_config_t pin_config = {
+    .mclk_io_num = I2S_PIN_NO_CHANGE,
     .bck_io_num = I2S_SCK_PIN,
     .ws_io_num = I2S_WS_PIN,
     .data_out_num = I2S_PIN_NO_CHANGE,
