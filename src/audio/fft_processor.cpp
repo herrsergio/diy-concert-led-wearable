@@ -1,5 +1,32 @@
 #include "fft_processor.h"
 #include "../config.h"
+
+#ifdef SIMULATE_AUDIO
+
+#include <Arduino.h>
+#include <math.h>
+
+void fft_processor_init() {}
+
+FrequencyBands fft_process(const int32_t* samples, size_t num_samples) {
+    unsigned long ms = millis();
+    float beat_phase = fmod(ms / 460.0f, 1.0f);
+    float kick = (beat_phase < 0.08f) ? (1.0f - beat_phase / 0.08f) : 0.0f;
+    float hat_phase = fmod((ms + 230) / 460.0f, 1.0f);
+    float hat = (hat_phase < 0.03f) ? 0.3f : 0.0f;
+    float mid_mod = 0.3f * (0.5f + 0.5f * sinf(2.0f * M_PI * 2.0f * ms / 1000.0f));
+
+    FrequencyBands bands;
+    bands.bass    = kick * 0.9f;
+    bands.low_mid = kick * 0.3f + 0.05f;
+    bands.mid     = mid_mod;
+    bands.high    = hat;
+    bands.overall = (bands.bass + bands.low_mid + bands.mid + bands.high) / 4.0f;
+    return bands;
+}
+
+#else
+
 #include <arduinoFFT.h>
 
 static double v_real[SAMPLES];
@@ -46,3 +73,5 @@ FrequencyBands fft_process(const int32_t* samples, size_t num_samples) {
 
     return bands;
 }
+
+#endif

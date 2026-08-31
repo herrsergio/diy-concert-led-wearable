@@ -24,21 +24,26 @@ static void handle_buttons() {
     if (pressed && !btn_mode_was_pressed) {
         btn_mode_pressed_at = millis();
         btn_mode_was_pressed = true;
+        Serial.println("[BTN] MODE pressed");
     }
 
     if (!pressed && btn_mode_was_pressed) {
         unsigned long duration = millis() - btn_mode_pressed_at;
+        Serial.printf("[BTN] MODE released, duration=%lums\n", duration);
         if (duration >= BTN_LONG_PRESS_MS) {
-            // Long press: cycle mode
             Mode m = mode_manager_get_mode();
             if (m == Mode::AUDIO_REACTIVE) {
                 mode_manager_set_mode(Mode::MANUAL);
+                Serial.println("[BTN] -> MANUAL mode");
             } else {
                 mode_manager_set_mode(Mode::AUDIO_REACTIVE);
+                Serial.println("[BTN] -> AUDIO_REACTIVE mode");
             }
         } else if (duration >= BTN_DEBOUNCE_MS) {
-            // Short press: next pattern
             mode_manager_next_pattern();
+            Serial.printf("[BTN] -> pattern %d: %s\n", mode_manager_get_pattern_index(), mode_manager_get_pattern_name());
+        } else {
+            Serial.println("[BTN] ignored (too short)");
         }
         btn_mode_was_pressed = false;
     }
@@ -68,6 +73,10 @@ void setup() {
 
     Serial.println("Ready! Mode: Audio Reactive");
     Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
+
+    fill_solid(leds, NUM_LEDS, CRGB::Red);
+    led_show();
+    delay(1000);
 }
 
 void loop() {
