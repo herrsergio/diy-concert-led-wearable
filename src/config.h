@@ -34,7 +34,7 @@
 #define FFT_BAND_HIGH_HIGH    16000
 
 #define BEAT_MIN_INTERVAL_MS  200   // Max ~300 BPM
-#define BEAT_SENSITIVITY      1.4f  // Adaptive threshold multiplier
+#define BEAT_SENSITIVITY      2.0f  // Adaptive threshold multiplier
 #define BEAT_HISTORY_SIZE     43    // ~1 second of FFT frames at 43Hz
 
 // --- Timing ---
