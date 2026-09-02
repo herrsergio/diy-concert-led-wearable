@@ -22,6 +22,14 @@ BeatState beat_detect(const FrequencyBands& bands) {
     unsigned long now = millis();
     BeatState state = { false, 0, 0 };
 
+    if (bands.bass < BEAT_NOISE_FLOOR) {
+        current_decay *= 0.92f;
+        if (current_decay < 0.01f) current_decay = 0;
+        state.decay = current_decay;
+        prev_bass = bands.bass;
+        return state;
+    }
+
     // Spectral flux: positive difference in bass energy
     float flux = bands.bass - prev_bass;
     if (flux < 0) flux = 0;
