@@ -76,15 +76,13 @@ void FrequencyBars::render(CRGB* leds, int num_leds) {
 
     for (int band = 0; band < 4; band++) {
         int start = band * section;
-        int lit_count = (int)(band_levels[band] * section * 10.0f);
-        if (lit_count > section) lit_count = section;
+        int end = (band == 3) ? num_leds : start + section;
+        int band_leds = end - start;
+        int lit_count = (int)(band_levels[band] * band_leds * 40.0f);
+        if (lit_count > band_leds) lit_count = band_leds;
 
-        for (int i = 0; i < section; i++) {
-            if (i < lit_count) {
-                leds[start + i] = colors[band];
-            } else {
-                leds[start + i] = CRGB::Black;
-            }
+        for (int i = 0; i < band_leds; i++) {
+            leds[start + i] = (i < lit_count) ? colors[band] : CRGB::Black;
         }
     }
 }
