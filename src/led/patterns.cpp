@@ -73,12 +73,14 @@ void FrequencyBars::render(CRGB* leds, int num_leds) {
         CRGB::Green,       // Mid
         CRGB::Blue         // High
     };
+    // Bass is naturally ~10-30x louder than high bands; scale each independently
+    static const float scales[4] = {6.0f, 50.0f, 60.0f, 100.0f};
 
     for (int band = 0; band < 4; band++) {
         int start = band * section;
         int end = (band == 3) ? num_leds : start + section;
         int band_leds = end - start;
-        int lit_count = (int)(band_levels[band] * band_leds * 40.0f);
+        int lit_count = (int)(band_levels[band] * band_leds * scales[band]);
         if (lit_count > band_leds) lit_count = band_leds;
 
         for (int i = 0; i < band_leds; i++) {
