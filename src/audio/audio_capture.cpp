@@ -52,7 +52,7 @@ static const i2s_config_t i2s_config = {
     .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
     .dma_buf_count = 4,
     .dma_buf_len = SAMPLES,
-    .use_apll = false,
+    .use_apll = true,
     .tx_desc_auto_clear = false,
     .fixed_mclk = 0
 };
