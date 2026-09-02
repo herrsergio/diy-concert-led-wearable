@@ -36,6 +36,7 @@
 #define BEAT_MIN_INTERVAL_MS  200   // Max ~300 BPM
 #define BEAT_SENSITIVITY      2.0f  // Adaptive threshold multiplier
 #define BEAT_HISTORY_SIZE     43    // ~1 second of FFT frames at 43Hz
+#define BEAT_NOISE_FLOOR      0.03f // Minimum bass level to attempt beat detection
 
 // --- Timing ---
 #define AUDIO_TICK_MS     23        // ~43Hz audio processing rate
