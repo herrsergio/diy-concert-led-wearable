@@ -104,6 +104,12 @@ void loop() {
 
             if (++audio_log_counter >= 43) {
                 audio_log_counter = 0;
+                int32_t max_raw = 0;
+                for (size_t i = 0; i < SAMPLES; i++) {
+                    int32_t v = audio_buffer[i] < 0 ? -audio_buffer[i] : audio_buffer[i];
+                    if (v > max_raw) max_raw = v;
+                }
+                Serial.printf("[MIC] max_raw=%ld\n", max_raw);
                 Serial.printf("[BANDS] bass=%.3f lo_mid=%.3f mid=%.3f high=%.3f\n",
                     current_bands.bass, current_bands.low_mid,
                     current_bands.mid, current_bands.high);
