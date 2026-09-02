@@ -45,5 +45,8 @@ uint8_t mode_manager_get_pattern_index() {
 }
 
 const char* mode_manager_get_pattern_name() {
-    return patterns[pattern_idx]->name();
+    static const char* names[NUM_PATTERNS] = {
+        "RainbowWave", "PulseBeat", "StrobeKick", "FrequencyBars", "SKZColors"
+    };
+    return names[pattern_idx];
 }
