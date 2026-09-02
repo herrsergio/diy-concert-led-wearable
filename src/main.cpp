@@ -14,6 +14,8 @@ static unsigned long last_led_render = 0;
 static FrequencyBands current_bands = {0, 0, 0, 0, 0};
 static BeatState current_beat = {false, 0, 0};
 
+static uint16_t audio_log_counter = 0;
+
 // Button state
 static unsigned long btn_mode_pressed_at = 0;
 static bool btn_mode_was_pressed = false;
@@ -89,9 +91,23 @@ void loop() {
         last_audio_tick = now;
 
         size_t samples_read = audio_capture_read(audio_buffer, SAMPLES);
-        if (samples_read == SAMPLES) {
+        if (samples_read != SAMPLES) {
+            Serial.printf("[MIC] read %u/%u samples\n", samples_read, SAMPLES);
+        } else {
             current_bands = fft_process(audio_buffer, SAMPLES);
             current_beat = beat_detect(current_bands);
+
+            if (current_beat.beat_detected) {
+                Serial.printf("[BEAT] intensity=%.2f decay=%.2f\n",
+                    current_beat.intensity, current_beat.decay);
+            }
+
+            if (++audio_log_counter >= 43) {
+                audio_log_counter = 0;
+                Serial.printf("[BANDS] bass=%.3f lo_mid=%.3f mid=%.3f high=%.3f\n",
+                    current_bands.bass, current_bands.low_mid,
+                    current_bands.mid, current_bands.high);
+            }
         }
     }
 
