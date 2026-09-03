@@ -32,7 +32,9 @@ pio run -e probe --target upload --target monitor
 
 This reads the full stereo frame and prints `[PROBE] ch0 peak=... dc=... | ch1 peak=...` once per second. Clap next to the mic: the half whose peak jumps is the one carrying audio, and `AUDIO_MIC_CHANNEL_FMT` in `audio_capture.cpp` must select it. If neither half responds, the fault is upstream: wiring, the SD line, the 3.3V supply, or the microphone itself.
 
-The tell in a serial capture is that `mid` and `high` are identical with and without music. Acoustic sound moves every band; variation confined to `bass` alone is low-frequency drift on an input that is not carrying signal.
+Do NOT diagnose this from the band values. `mid` and `high` reading nearly identically with and without music looks damning but proves nothing: `band_energy()` divides each band by its bin count, and `high` spans 279 bins against `bass`'s 4, so genuine content is averaged down into the noise. A whistle that reads 0.00004 in `mid` is a single bin at 200x the noise floor. The probe above is the only reliable test.
+
+If the bands are flat AND the probe shows the microphone responding, suspect the capture rate rather than the microphone: the `[I2S]` diagnostic line reports the RX overflow count and the real interval between reads. A `gap_avg` above 23220 us means the reader is slower than the microphone, the driver is discarding DMA buffers, and every discarded buffer splices the sample stream into a broadband step that the beat detector cannot distinguish from a drum hit.
 
 ### Tests
 
