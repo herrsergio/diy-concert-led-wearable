@@ -23,6 +23,16 @@
 #define SAMPLE_RATE       44100
 #define SAMPLES           1024      // FFT window size (must be power of 2)
 
+// DMA ring geometry. The legacy I2S driver enforces a HARD limit of 4092 bytes
+// per DMA buffer: real_dma_buf_size = dma_buf_len * channels * bits/8. It does
+// not reject an oversized request -- i2s_check_cfg_validity() only rejects
+// dma_buf_len outside 8..1024, and i2s_get_buf_size() then SILENTLY clamps it
+// (esp-idf v4.4.7, components/driver/i2s.c:686-694). dma_buf_len = SAMPLES was
+// therefore clamped to 1023 frames mono and 511 in the stereo probe build.
+// 256 frames is legal in both: 256 * 2 * 4 = 2048 bytes at worst.
+#define I2S_DMA_BUF_LEN   256       // frames per DMA buffer (<= 511 for stereo)
+#define I2S_DMA_BUF_COUNT 8         // 8 * 256 = 2048 frames = 46.4 ms of ring
+
 // --- I2S Frame Diagnostics ---
 // With L/R tied to a fixed level the INMP441 drives microphone data during only
 // one half of the I2S frame and leaves the bus undriven during the other half.
