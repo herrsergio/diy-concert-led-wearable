@@ -83,7 +83,7 @@ This prints one line per second showing the peak and DC level of both halves of 
 
 Clap or whistle next to the microphone. One half should jump by a large factor while the other stays flat. The half that jumps is carrying audio, and `AUDIO_MIC_CHANNEL_FMT` in `src/audio/audio_capture.cpp` must be set to select it. If neither half reacts, the problem is the wiring, the SD line, the 3.3V supply, or the microphone.
 
-Why this matters: with the INMP441's L/R pin tied to a fixed level, the microphone drives data during only one half of the I2S frame and leaves the bus undriven during the other. Reading the undriven half produces low-level values that drift slowly and ignore sound, which looks very much like a working but quiet microphone. In the serial log the giveaway is that the `mid` and `high` bands read identically with and without music.
+Why this matters: with the INMP441's L/R pin tied to a fixed level, the microphone drives data during only one half of the I2S frame and leaves the bus undriven during the other. Reading the undriven half produces low-level values that drift slowly and ignore sound, which looks very much like a working but quiet microphone. Note that `mid` and `high` reading nearly the same with and without music is NOT a reliable tell: `band_energy()` divides each band by its bin count, and `high` spans 279 bins against `bass`'s 4, so real acoustic content is averaged down until it looks flat. Use the probe, not the band values.
 
 ## Simulator (Wokwi)
 
