@@ -42,12 +42,24 @@ size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
 #else
 
 #include <driver/i2s.h>
+#include <Arduino.h>
+
+// Which half of the I2S frame the microphone data is taken from. ONLY_RIGHT was
+// chosen empirically because ONLY_LEFT returned zeros, but see the I2S_PROBE
+// notes in config.h: reading the half the microphone does not drive also
+// produces a plausible-looking signal, so verify with the probe before trusting
+// this. In probe mode the full stereo frame is read instead.
+#ifdef I2S_PROBE
+#define AUDIO_MIC_CHANNEL_FMT  I2S_CHANNEL_FMT_RIGHT_LEFT
+#else
+#define AUDIO_MIC_CHANNEL_FMT  I2S_CHANNEL_FMT_ONLY_RIGHT
+#endif
 
 static const i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate = SAMPLE_RATE,
     .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,
-    .channel_format = I2S_CHANNEL_FMT_ONLY_RIGHT,
+    .channel_format = AUDIO_MIC_CHANNEL_FMT,
     .communication_format = I2S_COMM_FORMAT_STAND_I2S,
     .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
     .dma_buf_count = 4,
@@ -70,10 +82,62 @@ void audio_capture_init() {
     i2s_zero_dma_buffer(I2S_PORT);
 }
 
+#ifdef I2S_PROBE
+
+// Diagnostic read: pull the whole stereo frame so both halves can be compared
+// side by side. Peaks are printed in the same raw units as [MIC] max_raw, where
+// full scale is 2147483392 (24-bit sample left-aligned in 32 bits).
+static int32_t probe_buffer[SAMPLES * 2];
+static uint16_t probe_counter = 0;
+
+size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
+    size_t want = num_samples * 2 * sizeof(int32_t);
+    if (want > sizeof(probe_buffer)) want = sizeof(probe_buffer);
+
+    size_t bytes_read = 0;
+    i2s_read(I2S_PORT, probe_buffer, want, &bytes_read, portMAX_DELAY);
+
+    size_t frames = (bytes_read / sizeof(int32_t)) / 2;
+
+    int32_t peak_a = 0, peak_b = 0;
+    int64_t sum_a = 0, sum_b = 0;
+
+    for (size_t i = 0; i < frames; i++) {
+        int32_t a = probe_buffer[i * 2];
+        int32_t b = probe_buffer[i * 2 + 1];
+
+        sum_a += a;
+        sum_b += b;
+
+        int32_t abs_a = a < 0 ? -a : a;
+        int32_t abs_b = b < 0 ? -b : b;
+        if (abs_a > peak_a) peak_a = abs_a;
+        if (abs_b > peak_b) peak_b = abs_b;
+
+        // Forward the selected half so the FFT and patterns keep running
+        buffer[i] = (I2S_PROBE_CHANNEL == 0) ? a : b;
+    }
+
+    // One line per second at the ~43Hz audio tick rate
+    if (++probe_counter >= 43) {
+        probe_counter = 0;
+        long dc_a = frames ? (long)(sum_a / (int64_t)frames) : 0;
+        long dc_b = frames ? (long)(sum_b / (int64_t)frames) : 0;
+        Serial.printf("[PROBE] ch0 peak=%10ld dc=%10ld | ch1 peak=%10ld dc=%10ld  (forwarding ch%d)\n",
+                      (long)peak_a, dc_a, (long)peak_b, dc_b, I2S_PROBE_CHANNEL);
+    }
+
+    return frames;
+}
+
+#else
+
 size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
     size_t bytes_read = 0;
     i2s_read(I2S_PORT, buffer, num_samples * sizeof(int32_t), &bytes_read, portMAX_DELAY);
     return bytes_read / sizeof(int32_t);
 }
 
-#endif
+#endif  // I2S_PROBE
+
+#endif  // SIMULATE_AUDIO
