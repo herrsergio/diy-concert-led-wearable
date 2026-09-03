@@ -188,7 +188,10 @@ size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
 
     size_t frames = (bytes_read / sizeof(int32_t)) / 2;
 
-    int32_t peak_a = 0, peak_b = 0;
+    // Peaks accumulate across the whole reporting window. Resetting them every
+    // call meant the printed line described one 23 ms window out of each ~1000,
+    // so a clap or any other transient was almost always missed.
+    static int32_t peak_a = 0, peak_b = 0;
     int64_t sum_a = 0, sum_b = 0;
 
     for (size_t i = 0; i < frames; i++) {
@@ -207,13 +210,17 @@ size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
         buffer[i] = (I2S_PROBE_CHANNEL == 0) ? a : b;
     }
 
-    // One line per second at the ~43Hz audio tick rate
+    // One line per 43 audio ticks (~1 s). peak is over the whole window; dc is
+    // still the mean of the most recent window only.
     if (++probe_counter >= 43) {
         probe_counter = 0;
         long dc_a = frames ? (long)(sum_a / (int64_t)frames) : 0;
         long dc_b = frames ? (long)(sum_b / (int64_t)frames) : 0;
-        Serial.printf("[PROBE] ch0 peak=%10ld dc=%10ld | ch1 peak=%10ld dc=%10ld  (forwarding ch%d)\n",
-                      (long)peak_a, dc_a, (long)peak_b, dc_b, I2S_PROBE_CHANNEL);
+        Serial.printf("[PROBE] ch0 peak=%10ld (%.3f%%FS) dc=%10ld | ch1 peak=%10ld dc=%10ld  (forwarding ch%d)\n",
+                      (long)peak_a, 100.0 * (double)peak_a / 2147483392.0,
+                      dc_a, (long)peak_b, dc_b, I2S_PROBE_CHANNEL);
+        peak_a = 0;
+        peak_b = 0;
     }
 
     i2s_diag_report();
