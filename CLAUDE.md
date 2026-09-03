@@ -18,8 +18,21 @@ Environments in `platformio.ini`:
 | Env | Purpose |
 |---|---|
 | `esp32wroom32` | Real hardware. The default env, so a bare `pio run` builds it. |
+| `probe` | Real hardware plus `-DI2S_PROBE`, the I2S frame diagnostic. |
 | `wokwi` | Simulator build, synthetic audio instead of I2S. |
 | `native` | Host-side unit tests. |
+
+### Diagnosing the microphone
+
+If the bands barely move when music plays, check the capture path before touching any detector tunable. The failure mode to rule out first: with L/R tied to a fixed level the INMP441 drives only one half of the I2S frame, and reading the undriven half gives low-level values that wander at low frequency and do not respond to sound, which is easy to mistake for a working but quiet microphone.
+
+```bash
+pio run -e probe --target upload --target monitor
+```
+
+This reads the full stereo frame and prints `[PROBE] ch0 peak=... dc=... | ch1 peak=...` once per second. Clap next to the mic: the half whose peak jumps is the one carrying audio, and `AUDIO_MIC_CHANNEL_FMT` in `audio_capture.cpp` must select it. If neither half responds, the fault is upstream: wiring, the SD line, the 3.3V supply, or the microphone itself.
+
+The tell in a serial capture is that `mid` and `high` are identical with and without music. Acoustic sound moves every band; variation confined to `bass` alone is low-frequency drift on an input that is not carrying signal.
 
 ### Tests
 
