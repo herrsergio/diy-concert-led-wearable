@@ -16,6 +16,26 @@ static BeatState current_beat = {false, 0, 0};
 
 static uint16_t audio_log_counter = 0;
 
+// Diagnostic accumulators. Every one of these covers EVERY audio tick in the
+// reporting window. Printing the current window instead observed only 1024
+// samples out of each ~43000, a 2.3% duty cycle, so a transient such as a hand
+// clap was missed roughly 97% of the time. That makes a responsive microphone
+// indistinguishable from a dead one and invalidates any dynamic-range estimate
+// read off these lines.
+static int32_t log_peak_raw = 0;
+static float log_band_min[BAND_COUNT];
+static float log_band_max[BAND_COUNT];
+static uint16_t log_beats = 0;
+
+static void diag_window_reset() {
+    log_peak_raw = 0;
+    log_beats = 0;
+    for (int i = 0; i < BAND_COUNT; i++) {
+        log_band_min[i] = 1e9f;
+        log_band_max[i] = 0.0f;
+    }
+}
+
 // Button state
 static unsigned long btn_mode_pressed_at = 0;
 static bool btn_mode_was_pressed = false;
@@ -100,6 +120,7 @@ void setup() {
     Serial.println("Ready! Mode: Audio Reactive");
     Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
 
+    diag_window_reset();
     last_audio_tick = millis();
 }
 
@@ -131,24 +152,45 @@ void loop() {
             if (current_beat.beat_detected) {
                 Serial.printf("[BEAT] intensity=%.2f decay=%.2f\n",
                     current_beat.intensity, current_beat.decay);
+                log_beats++;
+            }
+
+            int32_t max_raw = 0;
+            for (size_t i = 0; i < SAMPLES; i++) {
+                int32_t v = audio_buffer[i] < 0 ? -audio_buffer[i] : audio_buffer[i];
+                if (v > max_raw) max_raw = v;
+            }
+            if (max_raw > log_peak_raw) log_peak_raw = max_raw;
+
+            const float band_now[BAND_COUNT] = {
+                current_bands.bass, current_bands.low_mid,
+                current_bands.mid, current_bands.high
+            };
+            for (int i = 0; i < BAND_COUNT; i++) {
+                if (band_now[i] < log_band_min[i]) log_band_min[i] = band_now[i];
+                if (band_now[i] > log_band_max[i]) log_band_max[i] = band_now[i];
             }
 
             if (++audio_log_counter >= 43) {
                 audio_log_counter = 0;
-                int32_t max_raw = 0;
-                for (size_t i = 0; i < SAMPLES; i++) {
-                    int32_t v = audio_buffer[i] < 0 ? -audio_buffer[i] : audio_buffer[i];
-                    if (v > max_raw) max_raw = v;
-                }
-                Serial.printf("[MIC] max_raw=%ld\n", max_raw);
-                // Magnitudes are gain-normalized, so they are small; print
-                // enough decimals to be useful when tuning.
-                Serial.printf("[BANDS] bass=%.5f lo_mid=%.5f mid=%.5f high=%.5f\n",
-                    current_bands.bass, current_bands.low_mid,
-                    current_bands.mid, current_bands.high);
-                Serial.printf("[NORM]  bass=%.2f lo_mid=%.2f mid=%.2f high=%.2f\n",
+                // Peak over the whole window, so a transient cannot slip between
+                // two reports.
+                Serial.printf("[MIC] peak_raw=%ld (%.3f%%FS)\n",
+                    (long)log_peak_raw, 100.0f * (float)log_peak_raw / 2147483392.0f);
+                // Min..max per band over the whole window. A band that is only
+                // noise has a narrow range; real content widens it.
+                Serial.printf("[BANDS] bass=%.5f..%.5f lo_mid=%.5f..%.5f "
+                              "mid=%.5f..%.5f high=%.5f..%.5f\n",
+                    log_band_min[BAND_BASS], log_band_max[BAND_BASS],
+                    log_band_min[BAND_LOW_MID], log_band_max[BAND_LOW_MID],
+                    log_band_min[BAND_MID], log_band_max[BAND_MID],
+                    log_band_min[BAND_HIGH], log_band_max[BAND_HIGH]);
+                Serial.printf("[NORM]  bass=%.2f lo_mid=%.2f mid=%.2f high=%.2f "
+                              "beats=%u/43\n",
                     current_bands.norm[BAND_BASS], current_bands.norm[BAND_LOW_MID],
-                    current_bands.norm[BAND_MID], current_bands.norm[BAND_HIGH]);
+                    current_bands.norm[BAND_MID], current_bands.norm[BAND_HIGH],
+                    log_beats);
+                diag_window_reset();
             }
         }
     }
