@@ -46,7 +46,7 @@ public:
     void update(const FrequencyBands& bands, const BeatState& beat) override;
     void render(CRGB* leds, int num_leds) override;
 private:
-    float band_levels[4] = {0, 0, 0, 0};
+    float band_levels[BAND_COUNT] = {0, 0, 0, 0};
 };
 
 class SKZColors : public Pattern {
