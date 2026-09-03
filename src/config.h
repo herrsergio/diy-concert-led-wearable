@@ -23,6 +23,26 @@
 #define SAMPLE_RATE       44100
 #define SAMPLES           1024      // FFT window size (must be power of 2)
 
+// --- I2S Frame Diagnostics ---
+// With L/R tied to a fixed level the INMP441 drives microphone data during only
+// one half of the I2S frame and leaves the bus undriven during the other half.
+// Selecting the undriven half yields low-level values that wander at low
+// frequency and do not respond to sound at all, which looks deceptively like a
+// working but very quiet microphone.
+//
+// Build with -DI2S_PROBE (or `pio run -e probe`) to read the whole stereo frame
+// and print the peak and DC level of both halves once per second. Clap or
+// whistle next to the microphone: the half whose peak jumps by a large factor is
+// the one carrying audio, and that is the half AUDIO_MIC_CHANNEL_FMT must
+// select in audio_capture.cpp. If neither half responds, the fault is upstream
+// of this setting: wiring, the SD line, the 3.3V supply, or the microphone.
+//
+// I2S_PROBE_CHANNEL picks which half is forwarded to the FFT while probing, so
+// the patterns keep running. 0 is the first sample of each frame pair.
+#ifndef I2S_PROBE_CHANNEL
+#define I2S_PROBE_CHANNEL 0
+#endif
+
 // --- Buttons ---
 #define BTN_MODE_PIN      4         // Pattern/mode cycle button
 #define BTN_BRIGHT_PIN    5         // Brightness adjust button
