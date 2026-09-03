@@ -1,0 +1,626 @@
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+Music LED Strip - Initializing...
+[I2S] requested dma_buf_len=256 count=8 chan=2 -> 2048 bytes/buf (driver limit 4092)
+[I2S] driver_install: ESP_OK
+[I2S] set_pin: ESP_OK
+Ready! Mode: Audio Reactive
+Pattern: RainbowWave
+[PROBE] ch0 peak=2134178816 (99.380%FS) dc= -23607449 | ch1 peak=1073676290 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=36us wait_max=75us gap_avg=22465us gap_max=23001us
+[MIC] peak_raw=2134178816 (99.380%FS)
+[BANDS] bass=0.00006..0.21821 lo_mid=0.00003..0.03441 mid=0.00002..0.00805 high=0.00002..0.00215
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[PROBE] ch0 peak=  24994304 (1.164%FS) dc=    388189 | ch1 peak=2147483647 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=4290us wait_max=8897us gap_avg=23000us gap_max=29928us
+[MIC] peak_raw=24994304 (1.164%FS)
+[BANDS] bass=0.00006..0.00054 lo_mid=0.00002..0.00006 mid=0.00002..0.00003 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.01 beats=0/43
+[PROBE] ch0 peak=   7883264 (0.367%FS) dc=   -916679 | ch1 peak=         5 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=12425us wait_max=15859us gap_avg=23103us gap_max=38491us
+[MIC] peak_raw=7883264 (0.367%FS)
+[BANDS] bass=0.00007..0.00061 lo_mid=0.00003..0.00007 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.01 lo_mid=0.00 mid=0.00 high=0.01 beats=0/43
+[PROBE] ch0 peak=   8346624 (0.389%FS) dc=   3851329 | ch1 peak=         6 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=223us wait_max=1814us gap_avg=23501us gap_max=45566us
+[MIC] peak_raw=8346624 (0.389%FS)
+[BANDS] bass=0.00007..0.00071 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[PROBE] ch0 peak=  10622976 (0.495%FS) dc=   1882669 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6606us wait_max=11273us gap_avg=22999us gap_max=31097us
+[MIC] peak_raw=10622976 (0.495%FS)
+[BANDS] bass=0.00006..0.00061 lo_mid=0.00002..0.00006 mid=0.00002..0.00005 high=0.00002..0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.01 high=0.01 beats=0/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.62 decay=0.92
+[PROBE] ch0 peak=  10335744 (0.481%FS) dc=   -629566 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13223us wait_max=15859us gap_avg=23158us gap_max=40635us
+[MIC] peak_raw=10335744 (0.481%FS)
+[BANDS] bass=0.00006..0.00114 lo_mid=0.00002..0.00012 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.02 beats=2/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.58 decay=0.92
+[PROBE] ch0 peak=   8878592 (0.413%FS) dc=   4865068 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=120us wait_max=1189us gap_avg=23516us gap_max=45555us
+[MIC] peak_raw=8878592 (0.413%FS)
+[BANDS] bass=0.00005..0.00096 lo_mid=0.00002..0.00010 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.80 decay=0.92
+[PROBE] ch0 peak=   8641536 (0.402%FS) dc=   2786236 | ch1 peak=  14680065 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5996us wait_max=10650us gap_avg=22999us gap_max=30624us
+[MIC] peak_raw=8641536 (0.402%FS)
+[BANDS] bass=0.00005..0.00090 lo_mid=0.00003..0.00010 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.01 lo_mid=0.01 mid=0.00 high=0.01 beats=1/43
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   8938496 (0.416%FS) dc=    330855 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13084us wait_max=15859us gap_avg=23143us gap_max=39990us
+[MIC] peak_raw=8938496 (0.416%FS)
+[BANDS] bass=0.00006..0.00075 lo_mid=0.00002..0.00012 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.01 lo_mid=0.01 mid=0.00 high=0.02 beats=1/43
+[BEAT] intensity=0.51 decay=0.92
+[PROBE] ch0 peak=   9185280 (0.428%FS) dc=   4361946 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=177us wait_max=1564us gap_avg=23507us gap_max=45402us
+[MIC] peak_raw=9185280 (0.428%FS)
+[BANDS] bass=0.00007..0.00086 lo_mid=0.00002..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.01 lo_mid=0.01 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.67 decay=0.92
+[PROBE] ch0 peak=   9251328 (0.431%FS) dc=  -2757533 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6362us wait_max=11022us gap_avg=23000us gap_max=30892us
+[MIC] peak_raw=9251328 (0.431%FS)
+[BANDS] bass=0.00007..0.00073 lo_mid=0.00002..0.00007 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.01 high=0.04 beats=1/43
+[BEAT] intensity=0.98 decay=0.92
+[BEAT] intensity=0.83 decay=0.92
+[PROBE] ch0 peak=   8829952 (0.411%FS) dc=   2365925 | ch1 peak=    131070 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13182us wait_max=15859us gap_avg=23155us gap_max=40391us
+[MIC] peak_raw=8829952 (0.411%FS)
+[BANDS] bass=0.00002..0.00111 lo_mid=0.00003..0.00013 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.01 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.85 decay=0.92
+[BEAT] intensity=0.71 decay=0.92
+[PROBE] ch0 peak=   8249344 (0.384%FS) dc=   -480331 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=89us wait_max=939us gap_avg=23518us gap_max=45359us
+[MIC] peak_raw=8249344 (0.384%FS)
+[BANDS] bass=0.00006..0.00068 lo_mid=0.00002..0.00008 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.03 lo_mid=0.01 mid=0.02 high=0.00 beats=2/43
+[BEAT] intensity=0.55 decay=0.92
+[PROBE] ch0 peak=   8019456 (0.373%FS) dc=  -2593270 | ch1 peak=  67108862 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5752us wait_max=10398us gap_avg=22999us gap_max=30285us
+[MIC] peak_raw=8019456 (0.373%FS)
+[BANDS] bass=0.00007..0.00072 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.02 lo_mid=0.01 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.76 decay=0.92
+[BEAT] intensity=0.63 decay=0.92
+[PROBE] ch0 peak=   8224256 (0.383%FS) dc=   -128673 | ch1 peak=         2 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=12993us wait_max=15860us gap_avg=23137us gap_max=39748us
+[MIC] peak_raw=8224256 (0.383%FS)
+[BANDS] bass=0.00005..0.00085 lo_mid=0.00002..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.04 lo_mid=0.00 mid=0.03 high=0.00 beats=3/43
+[BEAT] intensity=0.82 decay=0.92
+[BEAT] intensity=0.84 decay=0.92
+[PROBE] ch0 peak=   9544704 (0.444%FS) dc=   1061399 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=137us wait_max=1315us gap_avg=23513us gap_max=45437us
+[MIC] peak_raw=9544704 (0.444%FS)
+[BANDS] bass=0.00007..0.00068 lo_mid=0.00002..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.11 lo_mid=0.09 mid=0.02 high=0.00 beats=2/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   9754112 (0.454%FS) dc=  -2503972 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6118us wait_max=10772us gap_avg=23000us gap_max=30634us
+[MIC] peak_raw=9754112 (0.454%FS)
+[BANDS] bass=0.00005..0.00078 lo_mid=0.00002..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.01 lo_mid=0.01 mid=0.01 high=0.00 beats=2/43
+[BEAT] intensity=0.62 decay=0.92
+[BEAT] intensity=0.55 decay=0.92
+[PROBE] ch0 peak=  14580224 (0.679%FS) dc=   3408765 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13118us wait_max=15868us gap_avg=23146us gap_max=40151us
+[MIC] peak_raw=14580224 (0.679%FS)
+[BANDS] bass=0.00006..0.00071 lo_mid=0.00003..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.02 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   8493568 (0.396%FS) dc=    868649 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=200us wait_max=1689us gap_avg=23504us gap_max=45404us
+[MIC] peak_raw=8493568 (0.396%FS)
+[BANDS] bass=0.00008..0.00084 lo_mid=0.00002..0.00010 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.05 lo_mid=0.03 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.95 decay=0.92
+[PROBE] ch0 peak=   8585216 (0.400%FS) dc=    814202 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6485us wait_max=11147us gap_avg=23000us gap_max=31065us
+[MIC] peak_raw=8585216 (0.400%FS)
+[BANDS] bass=0.00005..0.00072 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.20 lo_mid=0.07 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.73 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.59 decay=0.92
+[PROBE] ch0 peak=   9190912 (0.428%FS) dc=   -468658 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13199us wait_max=15867us gap_avg=23155us gap_max=40495us
+[MIC] peak_raw=9190912 (0.428%FS)
+[BANDS] bass=0.00004..0.00067 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.18 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.65 decay=0.92
+[BEAT] intensity=0.59 decay=0.92
+[PROBE] ch0 peak=   8742912 (0.407%FS) dc=    103629 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=104us wait_max=1064us gap_avg=23519us gap_max=45412us
+[MIC] peak_raw=8742912 (0.407%FS)
+[BANDS] bass=0.00005..0.00062 lo_mid=0.00002..0.00008 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.17 lo_mid=0.11 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.63 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   8391168 (0.391%FS) dc=   3641260 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5874us wait_max=10522us gap_avg=23000us gap_max=30398us
+[MIC] peak_raw=8391168 (0.391%FS)
+[BANDS] bass=0.00005..0.00082 lo_mid=0.00002..0.00012 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.25 lo_mid=0.18 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.85 decay=0.92
+[PROBE] ch0 peak=   8233984 (0.383%FS) dc=   1632659 | ch1 peak=       255 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13046us wait_max=15459us gap_avg=23140us gap_max=39881us
+[MIC] peak_raw=8233984 (0.383%FS)
+[BANDS] bass=0.00008..0.00068 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.09 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.76 decay=0.92
+[BEAT] intensity=0.72 decay=0.92
+[PROBE] ch0 peak=   8129024 (0.379%FS) dc=   3934980 | ch1 peak=  67108862 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=156us wait_max=1439us gap_avg=23510us gap_max=45401us
+[MIC] peak_raw=8129024 (0.379%FS)
+[BANDS] bass=0.00005..0.00071 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.53 decay=0.92
+[BEAT] intensity=0.74 decay=0.92
+[PROBE] ch0 peak=  10092544 (0.470%FS) dc=  -2398056 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6240us wait_max=10898us gap_avg=22999us gap_max=30689us
+[MIC] peak_raw=10092544 (0.470%FS)
+[BANDS] bass=0.00008..0.00090 lo_mid=0.00002..0.00011 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.65 decay=0.92
+[BEAT] intensity=0.55 decay=0.92
+[BEAT] intensity=0.82 decay=0.92
+[PROBE] ch0 peak=   9358336 (0.436%FS) dc=   1683766 | ch1 peak= 536870911 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13140us wait_max=15867us gap_avg=23149us gap_max=40168us
+[MIC] peak_raw=9358336 (0.436%FS)
+[BANDS] bass=0.00008..0.00083 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.63 decay=0.92
+[BEAT] intensity=0.81 decay=0.92
+[PROBE] ch0 peak=  10002944 (0.466%FS) dc=   1664445 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=224us wait_max=1814us gap_avg=23501us gap_max=45310us
+[MIC] peak_raw=10002944 (0.466%FS)
+[BANDS] bass=0.00006..0.00089 lo_mid=0.00002..0.00013 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.07 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.51 decay=0.92
+[PROBE] ch0 peak=   8173568 (0.381%FS) dc=  -2098158 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6607us wait_max=11273us gap_avg=22999us gap_max=31156us
+[MIC] peak_raw=8173568 (0.381%FS)
+[BANDS] bass=0.00005..0.00073 lo_mid=0.00002..0.00006 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[PROBE] ch0 peak=   9222144 (0.429%FS) dc=  -2476067 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13261us wait_max=15860us gap_avg=23158us gap_max=40537us
+[MIC] peak_raw=9222144 (0.429%FS)
+[BANDS] bass=0.00008..0.00054 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=0.76 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[PROBE] ch0 peak=  10230784 (0.476%FS) dc=  -2588225 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=120us wait_max=1189us gap_avg=23516us gap_max=45322us
+[MIC] peak_raw=10230784 (0.476%FS)
+[BANDS] bass=0.00005..0.00056 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.85 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.60 decay=0.92
+[PROBE] ch0 peak=   8910336 (0.415%FS) dc=   2608484 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5996us wait_max=10650us gap_avg=22999us gap_max=30453us
+[MIC] peak_raw=8910336 (0.415%FS)
+[BANDS] bass=0.00007..0.00076 lo_mid=0.00003..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.60 decay=0.92
+[BEAT] intensity=0.66 decay=0.92
+[PROBE] ch0 peak=   7972864 (0.371%FS) dc=   1378821 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13088us wait_max=15866us gap_avg=23143us gap_max=39889us
+[MIC] peak_raw=7972864 (0.371%FS)
+[BANDS] bass=0.00005..0.00054 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   9116672 (0.425%FS) dc=   2610075 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=177us wait_max=1564us gap_avg=23507us gap_max=45308us
+[MIC] peak_raw=9116672 (0.425%FS)
+[BANDS] bass=0.00005..0.00065 lo_mid=0.00002..0.00007 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.96 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[PROBE] ch0 peak=   8871424 (0.413%FS) dc=   2250174 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6363us wait_max=11024us gap_avg=22999us gap_max=30834us
+[MIC] peak_raw=8871424 (0.413%FS)
+[BANDS] bass=0.00005..0.00084 lo_mid=0.00002..0.00007 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.67 decay=0.92
+[BEAT] intensity=0.69 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   7383040 (0.344%FS) dc=   1054454 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13172us wait_max=15857us gap_avg=23152us gap_max=40264us
+[MIC] peak_raw=7383040 (0.344%FS)
+[BANDS] bass=0.00005..0.00074 lo_mid=0.00002..0.00008 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.72 decay=0.92
+[BEAT] intensity=0.56 decay=0.92
+[PROBE] ch0 peak=   8321024 (0.387%FS) dc=   3638550 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=250us wait_max=1939us gap_avg=23498us gap_max=45297us
+[MIC] peak_raw=8321024 (0.387%FS)
+[BANDS] bass=0.00005..0.00077 lo_mid=0.00003..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.95 decay=0.92
+[BEAT] intensity=0.73 decay=0.92
+[PROBE] ch0 peak=   8274944 (0.385%FS) dc=   4015863 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6729us wait_max=11398us gap_avg=23000us gap_max=31175us
+[MIC] peak_raw=8274944 (0.385%FS)
+[BANDS] bass=0.00007..0.00094 lo_mid=0.00002..0.00015 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.82 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.57 decay=0.92
+[PROBE] ch0 peak=   7430144 (0.346%FS) dc=   -147488 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13272us wait_max=15867us gap_avg=23161us gap_max=40718us
+[MIC] peak_raw=7430144 (0.346%FS)
+[BANDS] bass=0.00007..0.00074 lo_mid=0.00002..0.00010 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.39 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.54 decay=0.92
+[PROBE] ch0 peak=   7587328 (0.353%FS) dc=  -3774503 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=137us wait_max=1315us gap_avg=23513us gap_max=45433us
+[MIC] peak_raw=7587328 (0.353%FS)
+[BANDS] bass=0.00007..0.00074 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   9028608 (0.420%FS) dc=    653486 | ch1 peak=   1048575 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6119us wait_max=10773us gap_avg=23000us gap_max=30563us
+[MIC] peak_raw=9028608 (0.420%FS)
+[BANDS] bass=0.00005..0.00101 lo_mid=0.00002..0.00015 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.38 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.63 decay=0.92
+[BEAT] intensity=0.68 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   7834624 (0.365%FS) dc=   1668123 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13086us wait_max=15861us gap_avg=23146us gap_max=40151us
+[MIC] peak_raw=7834624 (0.365%FS)
+[BANDS] bass=0.00008..0.00069 lo_mid=0.00003..0.00009 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.82 decay=0.92
+[PROBE] ch0 peak=   7880192 (0.367%FS) dc=   3844958 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=200us wait_max=1689us gap_avg=23504us gap_max=45329us
+[MIC] peak_raw=7880192 (0.367%FS)
+[BANDS] bass=0.00007..0.00062 lo_mid=0.00003..0.00008 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.64 decay=0.92
+[PROBE] ch0 peak=   8555008 (0.398%FS) dc=   5430182 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6485us wait_max=11149us gap_avg=22999us gap_max=30934us
+[MIC] peak_raw=8555008 (0.398%FS)
+[BANDS] bass=0.00005..0.00070 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.05 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.55 decay=0.92
+[PROBE] ch0 peak=   7752704 (0.361%FS) dc=   -732652 | ch1 peak=     24577 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13231us wait_max=15861us gap_avg=23155us gap_max=40482us
+[MIC] peak_raw=7752704 (0.361%FS)
+[BANDS] bass=0.00005..0.00062 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.62 decay=0.92
+[BEAT] intensity=0.97 decay=0.92
+[BEAT] intensity=0.85 decay=0.92
+[PROBE] ch0 peak=   7340544 (0.342%FS) dc=   2584523 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=277us wait_max=2064us gap_avg=23495us gap_max=45310us
+[MIC] peak_raw=7340544 (0.342%FS)
+[BANDS] bass=0.00005..0.00084 lo_mid=0.00002..0.00010 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.43 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.67 decay=0.92
+[PROBE] ch0 peak=   8518656 (0.397%FS) dc=   4047207 | ch1 peak=1073741823 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6851us wait_max=11522us gap_avg=23000us gap_max=31408us
+[MIC] peak_raw=8518656 (0.397%FS)
+[BANDS] bass=0.00006..0.00066 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.39 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.67 decay=0.92
+[BEAT] intensity=0.54 decay=0.92
+[PROBE] ch0 peak=   7812608 (0.364%FS) dc=  -1401696 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13282us wait_max=15461us gap_avg=23164us gap_max=40864us
+[MIC] peak_raw=7812608 (0.364%FS)
+[BANDS] bass=0.00006..0.00070 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[PROBE] ch0 peak=   7847936 (0.365%FS) dc=     -4320 | ch1 peak=     16383 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=156us wait_max=1440us gap_avg=23510us gap_max=45341us
+[MIC] peak_raw=7847936 (0.365%FS)
+[BANDS] bass=0.00007..0.00058 lo_mid=0.00003..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[PROBE] ch0 peak=  11827712 (0.551%FS) dc=  -2866185 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6241us wait_max=10899us gap_avg=22999us gap_max=30699us
+[MIC] peak_raw=11827712 (0.551%FS)
+[BANDS] bass=0.00008..0.00069 lo_mid=0.00003..0.00006 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.26 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=0.54 decay=0.92
+[BEAT] intensity=0.67 decay=0.92
+[BEAT] intensity=0.67 decay=0.92
+[PROBE] ch0 peak=   9098240 (0.424%FS) dc=  -3205854 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13146us wait_max=15860us gap_avg=23162us gap_max=40275us
+[MIC] peak_raw=9098240 (0.424%FS)
+[BANDS] bass=0.00005..0.00071 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.91 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[PROBE] ch0 peak=   8696832 (0.405%FS) dc=   1753699 | ch1 peak=  67108862 dc=      1052  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=224us wait_max=1815us gap_avg=23488us gap_max=44766us
+[MIC] peak_raw=8696832 (0.405%FS)
+[BANDS] bass=0.00005..0.00062 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.59 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.50 decay=0.92
+[BEAT] intensity=0.67 decay=0.92
+[PROBE] ch0 peak=   8369152 (0.390%FS) dc=  -3216478 | ch1 peak=2147483647 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6607us wait_max=11273us gap_avg=23000us gap_max=31196us
+[MIC] peak_raw=8369152 (0.390%FS)
+[BANDS] bass=0.00007..0.00068 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.86 decay=0.92
+[BEAT] intensity=0.58 decay=0.92
+[PROBE] ch0 peak=   7560192 (0.352%FS) dc=  -2723692 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13230us wait_max=15461us gap_avg=23158us gap_max=40553us
+[MIC] peak_raw=7560192 (0.352%FS)
+[BANDS] bass=0.00003..0.00079 lo_mid=0.00003..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.09 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.59 decay=0.92
+[BEAT] intensity=0.85 decay=0.92
+[PROBE] ch0 peak=   8113664 (0.378%FS) dc=  -3422471 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=120us wait_max=1190us gap_avg=23516us gap_max=45407us
+[MIC] peak_raw=8113664 (0.378%FS)
+[BANDS] bass=0.00008..0.00094 lo_mid=0.00002..0.00014 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.20 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.62 decay=0.92
+[BEAT] intensity=0.72 decay=0.92
+[PROBE] ch0 peak=   9711616 (0.452%FS) dc=  -4837136 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5997us wait_max=10649us gap_avg=23000us gap_max=30549us
+[MIC] peak_raw=9711616 (0.452%FS)
+[BANDS] bass=0.00007..0.00065 lo_mid=0.00003..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.51 decay=0.92
+[PROBE] ch0 peak=   8546304 (0.398%FS) dc=   2807423 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13087us wait_max=15863us gap_avg=23143us gap_max=39898us
+[MIC] peak_raw=8546304 (0.398%FS)
+[BANDS] bass=0.00006..0.00059 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.56 decay=0.92
+[BEAT] intensity=0.73 decay=0.92
+[PROBE] ch0 peak=   9939456 (0.463%FS) dc=  -2338733 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=177us wait_max=1565us gap_avg=23507us gap_max=45310us
+[MIC] peak_raw=9939456 (0.463%FS)
+[BANDS] bass=0.00005..0.00075 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.99 decay=0.92
+[BEAT] intensity=0.76 decay=0.92
+[PROBE] ch0 peak=   9640960 (0.449%FS) dc=   1748758 | ch1 peak=   4194302 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6363us wait_max=11022us gap_avg=23000us gap_max=30827us
+[MIC] peak_raw=9640960 (0.449%FS)
+[BANDS] bass=0.00003..0.00079 lo_mid=0.00002..0.00011 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.49 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   7988224 (0.372%FS) dc=   2780658 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13184us wait_max=15866us gap_avg=23152us gap_max=40377us
+[MIC] peak_raw=7988224 (0.372%FS)
+[BANDS] bass=0.00007..0.00091 lo_mid=0.00002..0.00014 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   8478208 (0.395%FS) dc=   1448478 | ch1 peak=      1022 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=250us wait_max=1940us gap_avg=23498us gap_max=45321us
+[MIC] peak_raw=8478208 (0.395%FS)
+[BANDS] bass=0.00006..0.00121 lo_mid=0.00002..0.00015 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   8965120 (0.417%FS) dc=   2817403 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6729us wait_max=11399us gap_avg=22999us gap_max=31225us
+[MIC] peak_raw=8965120 (0.417%FS)
+[BANDS] bass=0.00005..0.00065 lo_mid=0.00003..0.00007 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.28 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[PROBE] ch0 peak=   8038912 (0.374%FS) dc=  -2940799 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13287us wait_max=15859us gap_avg=23161us gap_max=40716us
+[MIC] peak_raw=8038912 (0.374%FS)
+[BANDS] bass=0.00004..0.00059 lo_mid=0.00002..0.00007 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=0.69 decay=0.92
+[PROBE] ch0 peak=   8292864 (0.386%FS) dc=   3287548 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=137us wait_max=1315us gap_avg=23513us gap_max=45340us
+[MIC] peak_raw=8292864 (0.386%FS)
+[BANDS] bass=0.00008..0.00079 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.10 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   8431104 (0.393%FS) dc=   2142744 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6119us wait_max=10774us gap_avg=22999us gap_max=30632us
+[MIC] peak_raw=8431104 (0.393%FS)
+[BANDS] bass=0.00007..0.00096 lo_mid=0.00002..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.80 decay=0.92
+[PROBE] ch0 peak=   7882240 (0.367%FS) dc=   2994984 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13121us wait_max=15868us gap_avg=23146us gap_max=40053us
+[MIC] peak_raw=7882240 (0.367%FS)
+[BANDS] bass=0.00005..0.00055 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.40 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[PROBE] ch0 peak=   8198144 (0.382%FS) dc=   2254480 | ch1 peak=2147483647 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=200us wait_max=1690us gap_avg=23504us gap_max=45386us
+[MIC] peak_raw=8198144 (0.382%FS)
+[BANDS] bass=0.00004..0.00044 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=0.56 decay=0.92
+[BEAT] intensity=0.99 decay=0.92
+[PROBE] ch0 peak=   8586752 (0.400%FS) dc=  -2119434 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6486us wait_max=11149us gap_avg=22999us gap_max=30969us
+[MIC] peak_raw=8586752 (0.400%FS)
+[BANDS] bass=0.00007..0.00076 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.26 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.59 decay=0.92
+[BEAT] intensity=0.75 decay=0.92
+[PROBE] ch0 peak=   9490432 (0.442%FS) dc=  -1232168 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13198us wait_max=15861us gap_avg=23158us gap_max=40513us
+[MIC] peak_raw=9490432 (0.442%FS)
+[BANDS] bass=0.00006..0.00050 lo_mid=0.00002..0.00005 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.94 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.64 decay=0.92
+[BEAT] intensity=0.50 decay=0.92
+[PROBE] ch0 peak=   8602624 (0.401%FS) dc=  -2056168 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=104us wait_max=1065us gap_avg=23515us gap_max=45261us
+[MIC] peak_raw=8602624 (0.401%FS)
+[BANDS] bass=0.00005..0.00055 lo_mid=0.00003..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.65 decay=0.92
+[PROBE] ch0 peak=   8145920 (0.379%FS) dc=  -3270326 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5875us wait_max=10524us gap_avg=22999us gap_max=30352us
+[MIC] peak_raw=8145920 (0.379%FS)
+[BANDS] bass=0.00007..0.00058 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.46 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.64 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   7949824 (0.370%FS) dc=   2217004 | ch1 peak=2147483647 dc=   3190817  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13040us wait_max=15437us gap_avg=23140us gap_max=39866us
+[MIC] peak_raw=7949824 (0.370%FS)
+[BANDS] bass=0.00008..0.00085 lo_mid=0.00002..0.00011 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.62 decay=0.92
+[BEAT] intensity=0.51 decay=0.92
+[PROBE] ch0 peak=   8797633 (0.410%FS) dc=    291112 | ch1 peak=2147483647 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=157us wait_max=1440us gap_avg=23510us gap_max=45377us
+[MIC] peak_raw=8797633 (0.410%FS)
+[BANDS] bass=0.00006..0.00061 lo_mid=0.00003..0.00010 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=1.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.64 decay=0.92
+[PROBE] ch0 peak=  11711488 (0.545%FS) dc=   3078662 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6241us wait_max=10898us gap_avg=23000us gap_max=30787us
+[MIC] peak_raw=11711488 (0.545%FS)
+[BANDS] bass=0.00008..0.00076 lo_mid=0.00002..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.58 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   7979520 (0.372%FS) dc=  -3663112 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13170us wait_max=15868us gap_avg=23149us gap_max=40231us
+[MIC] peak_raw=7979520 (0.372%FS)
+[BANDS] bass=0.00007..0.00091 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[PROBE] ch0 peak=  10046976 (0.468%FS) dc=   3493331 | ch1 peak=  67108862 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=224us wait_max=1815us gap_avg=23501us gap_max=45340us
+[MIC] peak_raw=10046976 (0.468%FS)
+[BANDS] bass=0.00005..0.00055 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   8224256 (0.383%FS) dc=   -523368 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6608us wait_max=11274us gap_avg=22999us gap_max=31094us
+[MIC] peak_raw=8224256 (0.383%FS)
+[BANDS] bass=0.00006..0.00056 lo_mid=0.00002..0.00007 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.55 decay=0.92
+[PROBE] ch0 peak=   7342592 (0.342%FS) dc=  -3034253 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13246us wait_max=15865us gap_avg=23158us gap_max=40534us
+[MIC] peak_raw=7342592 (0.342%FS)
+[BANDS] bass=0.00004..0.00052 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.74 decay=0.92
+[BEAT] intensity=0.93 decay=0.92
+[BEAT] intensity=0.59 decay=0.92
+[PROBE] ch0 peak=   7397888 (0.344%FS) dc=   2115120 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=120us wait_max=1190us gap_avg=23516us gap_max=45332us
+[MIC] peak_raw=7397888 (0.344%FS)
+[BANDS] bass=0.00008..0.00098 lo_mid=0.00002..0.00013 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.86 decay=0.92
+[PROBE] ch0 peak=   8737792 (0.407%FS) dc=  -3071435 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=5997us wait_max=10651us gap_avg=22999us gap_max=30423us
+[MIC] peak_raw=8737792 (0.407%FS)
+[BANDS] bass=0.00007..0.00083 lo_mid=0.00003..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.74 decay=0.92
+[BEAT] intensity=0.88 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   9875968 (0.460%FS) dc=   1510181 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13069us wait_max=15469us gap_avg=23147us gap_max=39914us
+[MIC] peak_raw=9875968 (0.460%FS)
+[BANDS] bass=0.00004..0.00084 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00003
+[NORM]  bass=0.28 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.55 decay=0.92
+[PROBE] ch0 peak=   8673280 (0.404%FS) dc=  -2219928 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=177us wait_max=1565us gap_avg=23504us gap_max=45292us
+[MIC] peak_raw=8673280 (0.404%FS)
+[BANDS] bass=0.00008..0.00100 lo_mid=0.00003..0.00013 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.77 decay=0.92
+[PROBE] ch0 peak=   9504256 (0.443%FS) dc=  -1911237 | ch1 peak=   4194302 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6364us wait_max=11025us gap_avg=22999us gap_max=30822us
+[MIC] peak_raw=9504256 (0.443%FS)
+[BANDS] bass=0.00006..0.00063 lo_mid=0.00002..0.00005 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.39 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.51 decay=0.92
+[BEAT] intensity=0.72 decay=0.92
+[PROBE] ch0 peak=   8008192 (0.373%FS) dc=   -887480 | ch1 peak=1073741822 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13185us wait_max=15857us gap_avg=23152us gap_max=40398us
+[MIC] peak_raw=8008192 (0.373%FS)
+[BANDS] bass=0.00005..0.00067 lo_mid=0.00003..0.00006 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.75 decay=0.92
+[PROBE] ch0 peak=   7180800 (0.334%FS) dc=   1681602 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=250us wait_max=1940us gap_avg=23498us gap_max=45323us
+[MIC] peak_raw=7180800 (0.334%FS)
+[BANDS] bass=0.00007..0.00096 lo_mid=0.00003..0.00012 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.11 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[PROBE] ch0 peak=   7708160 (0.359%FS) dc=  -3854122 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6730us wait_max=11399us gap_avg=23000us gap_max=31270us
+[MIC] peak_raw=7708160 (0.359%FS)
+[BANDS] bass=0.00009..0.00064 lo_mid=0.00003..0.00009 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[PROBE] ch0 peak=  10224640 (0.476%FS) dc=  -6648577 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13288us wait_max=15865us gap_avg=23161us gap_max=40681us
+[MIC] peak_raw=10224640 (0.476%FS)
+[BANDS] bass=0.00007..0.00053 lo_mid=0.00003..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=0.76 decay=0.92
+[BEAT] intensity=0.90 decay=0.92
+[PROBE] ch0 peak=  12420096 (0.578%FS) dc=  -2336490 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=137us wait_max=1315us gap_avg=23513us gap_max=45337us
+[MIC] peak_raw=12420096 (0.578%FS)
+[BANDS] bass=0.00006..0.00064 lo_mid=0.00002..0.00008 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.71 decay=0.92
+[PROBE] ch0 peak=   8744960 (0.407%FS) dc=   -720724 | ch1 peak=   4194305 dc=      4096  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6120us wait_max=10774us gap_avg=23000us gap_max=30565us
+[MIC] peak_raw=8744960 (0.407%FS)
+[BANDS] bass=0.00004..0.00102 lo_mid=0.00002..0.00016 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.35 lo_mid=0.00 mid=0.00 high=0.00 beats=1/43
+[BEAT] intensity=0.90 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   8191488 (0.381%FS) dc=   4761920 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13119us wait_max=15868us gap_avg=23146us gap_max=40143us
+[MIC] peak_raw=8191488 (0.381%FS)
+[BANDS] bass=0.00004..0.00101 lo_mid=0.00003..0.00015 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.88 decay=0.92
+[PROBE] ch0 peak=   8618496 (0.401%FS) dc=  -2166334 | ch1 peak=      2047 dc=         2  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=200us wait_max=1690us gap_avg=23504us gap_max=45301us
+[MIC] peak_raw=8618496 (0.401%FS)
+[BANDS] bass=0.00005..0.00066 lo_mid=0.00002..0.00006 mid=0.00002..0.00005 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[BEAT] intensity=0.97 decay=0.92
+[BEAT] intensity=0.92 decay=0.92
+[PROBE] ch0 peak=   8095232 (0.377%FS) dc=   2172630 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=6486us wait_max=11149us gap_avg=23000us gap_max=30978us
+[MIC] peak_raw=8095232 (0.377%FS)
+[BANDS] bass=0.00007..0.00085 lo_mid=0.00002..0.00007 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.55 lo_mid=0.00 mid=0.00 high=0.00 beats=2/43
+[PROBE] ch0 peak=   8067072 (0.376%FS) dc=  -2801014 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=13233us wait_max=15869us gap_avg=23155us gap_max=40411us
+[MIC] peak_raw=8067072 (0.376%FS)
+[BANDS] bass=0.00008..0.00052 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=0/43
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   7825408 (0.364%FS) dc=    834652 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=0 reads=43 wait_avg=277us wait_max=2065us gap_avg=23495us gap_max=45347us
+[MIC] peak_raw=7825408 (0.364%FS)
+[BANDS] bass=0.00007..0.00060 lo_mid=0.00002..0.00006 mid=0.00002..0.00004 high=0.00002..0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00 beats=3/43
+[BEAT] intensity=0.80 decay=0.92
