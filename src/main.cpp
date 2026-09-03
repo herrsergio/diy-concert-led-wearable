@@ -26,10 +26,14 @@ static int32_t log_peak_raw = 0;
 static float log_band_min[BAND_COUNT];
 static float log_band_max[BAND_COUNT];
 static uint16_t log_beats = 0;
+static float log_peak_mag = 0.0f;      // strongest bin seen in the window
+static uint16_t log_peak_bin = 0;      // and which bin it was
 
 static void diag_window_reset() {
     log_peak_raw = 0;
     log_beats = 0;
+    log_peak_mag = 0.0f;
+    log_peak_bin = 0;
     for (int i = 0; i < BAND_COUNT; i++) {
         log_band_min[i] = 1e9f;
         log_band_max[i] = 0.0f;
@@ -171,6 +175,11 @@ void loop() {
                 if (band_now[i] > log_band_max[i]) log_band_max[i] = band_now[i];
             }
 
+            if (current_bands.peak_mag > log_peak_mag) {
+                log_peak_mag = current_bands.peak_mag;
+                log_peak_bin = current_bands.peak_bin;
+            }
+
             if (++audio_log_counter >= 43) {
                 audio_log_counter = 0;
                 // Peak over the whole window, so a transient cannot slip between
@@ -190,6 +199,14 @@ void loop() {
                     current_bands.norm[BAND_BASS], current_bands.norm[BAND_LOW_MID],
                     current_bands.norm[BAND_MID], current_bands.norm[BAND_HIGH],
                     log_beats);
+                // Strongest single bin in the window. Broadband noise leaves no
+                // bin standing out; any tone, note or voice produces one well
+                // above the band means printed above.
+                Serial.printf("[TONE]  bin=%u f=%.0fHz mag=%.5f (%.0fx the mid band mean)\n",
+                    log_peak_bin,
+                    (float)log_peak_bin * (float)SAMPLE_RATE / (float)SAMPLES,
+                    log_peak_mag,
+                    log_band_max[BAND_MID] > 0.0f ? log_peak_mag / log_band_max[BAND_MID] : 0.0f);
                 diag_window_reset();
             }
         }
