@@ -1,0 +1,483 @@
+--- Terminal on /dev/ttyUSB0 | 115200 8-N-1
+--- Available filters and text transformations: debug, default, direct, esp32_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+[PROBE] ch0 peak=   5156352 dc=   1815712 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=490 reads=43 wait_avg=32us wait_max=40us gap_avg=33494us gap_max=54691us
+[MIC] max_raw=5156352
+[BANDS] bass=0.00012 lo_mid=0.00006 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5770240 dc=   1932292 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=527 reads=43 wait_avg=32us wait_max=40us gap_avg=33259us gap_max=44405us
+[MIC] max_raw=5770240
+[BANDS] bass=0.00035 lo_mid=0.00006 mid=0.00003 high=0.00002
+[NORM]  bass=0.11 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.94 decay=0.92
+[PROBE] ch0 peak=   5152256 dc=   -861028 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=565 reads=43 wait_avg=33us wait_max=40us gap_avg=33283us gap_max=44428us
+[MIC] max_raw=5152256
+[BANDS] bass=0.00040 lo_mid=0.00005 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.64 decay=0.92
+[PROBE] ch0 peak=   7056384 dc=  -4554200 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=602 reads=43 wait_avg=33us wait_max=41us gap_avg=33265us gap_max=44333us
+[MIC] max_raw=7056384
+[BANDS] bass=0.00015 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5533184 dc=   -410109 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=640 reads=43 wait_avg=32us wait_max=40us gap_avg=33247us gap_max=44347us
+[MIC] max_raw=5533184
+[BANDS] bass=0.00030 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.72 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.60 decay=0.92
+[PROBE] ch0 peak=   7423488 dc=  -3797441 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=676 reads=43 wait_avg=33us wait_max=41us gap_avg=33299us gap_max=44320us
+[MIC] max_raw=7423488
+[BANDS] bass=0.00023 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.67 lo_mid=0.77 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   5268992 dc=    261562 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=714 reads=43 wait_avg=32us wait_max=40us gap_avg=33293us gap_max=44393us
+[MIC] max_raw=5268992
+[BANDS] bass=0.00079 lo_mid=0.00013 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6290944 dc=  -1223687 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=751 reads=43 wait_avg=32us wait_max=47us gap_avg=33263us gap_max=44426us
+[MIC] max_raw=6290944
+[BANDS] bass=0.00071 lo_mid=0.00011 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5227008 dc=  -2159792 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=789 reads=43 wait_avg=32us wait_max=40us gap_avg=33257us gap_max=44366us
+[MIC] max_raw=5227008
+[BANDS] bass=0.00042 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.73 decay=0.92
+[PROBE] ch0 peak=   4545536 dc=   -626838 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=826 reads=43 wait_avg=32us wait_max=40us gap_avg=33265us gap_max=44315us
+[MIC] max_raw=4545536
+[BANDS] bass=0.00027 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.18 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5894656 dc=   1507398 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=864 reads=43 wait_avg=32us wait_max=40us gap_avg=33248us gap_max=44341us
+[MIC] max_raw=5894656
+[BANDS] bass=0.00025 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.76 decay=0.92
+[PROBE] ch0 peak=   6551040 dc=    809159 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=900 reads=43 wait_avg=32us wait_max=42us gap_avg=33266us gap_max=44417us
+[MIC] max_raw=6551040
+[BANDS] bass=0.00051 lo_mid=0.00005 mid=0.00005 high=0.00003
+[NORM]  bass=0.48 lo_mid=0.33 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[BEAT] intensity=0.59 decay=0.92
+[PROBE] ch0 peak=   5455872 dc=   2556351 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=938 reads=43 wait_avg=32us wait_max=48us gap_avg=33291us gap_max=44451us
+[MIC] max_raw=5455872
+[BANDS] bass=0.00013 lo_mid=0.00006 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4935680 dc=   1378652 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=975 reads=43 wait_avg=32us wait_max=40us gap_avg=33261us gap_max=44378us
+[MIC] max_raw=4935680
+[BANDS] bass=0.00062 lo_mid=0.00010 mid=0.00003 high=0.00002
+[NORM]  bass=0.30 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6315520 dc=   2793584 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=1012 reads=43 wait_avg=32us wait_max=40us gap_avg=33269us gap_max=44482us
+[MIC] max_raw=6315520
+[BANDS] bass=0.00013 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5604352 dc=    628497 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1050 reads=43 wait_avg=33us wait_max=42us gap_avg=33255us gap_max=44423us
+[MIC] max_raw=5604352
+[BANDS] bass=0.00050 lo_mid=0.00006 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4789760 dc=   1374691 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1087 reads=43 wait_avg=33us wait_max=41us gap_avg=33251us gap_max=44378us
+[MIC] max_raw=4789760
+[BANDS] bass=0.00019 lo_mid=0.00003 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   8186368 dc=   3770496 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=1124 reads=43 wait_avg=32us wait_max=40us gap_avg=33251us gap_max=44387us
+[MIC] max_raw=8186368
+[BANDS] bass=0.00049 lo_mid=0.00009 mid=0.00003 high=0.00002
+[NORM]  bass=0.89 lo_mid=0.94 mid=0.00 high=0.00
+[BEAT] intensity=0.69 decay=0.92
+[BEAT] intensity=0.68 decay=0.92
+[BEAT] intensity=0.64 decay=0.92
+[PROBE] ch0 peak=   7155712 dc=   3786469 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=1161 reads=43 wait_avg=32us wait_max=40us gap_avg=33310us gap_max=44425us
+[MIC] max_raw=7155712
+[BANDS] bass=0.00014 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4974080 dc=   1271837 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1199 reads=43 wait_avg=34us wait_max=40us gap_avg=33258us gap_max=44391us
+[MIC] max_raw=4974080
+[BANDS] bass=0.00034 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.17 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4637184 dc=    669479 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1236 reads=43 wait_avg=32us wait_max=40us gap_avg=33258us gap_max=44415us
+[MIC] max_raw=4637184
+[BANDS] bass=0.00030 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   8996864 dc=   4537890 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1273 reads=43 wait_avg=32us wait_max=40us gap_avg=33257us gap_max=44429us
+[MIC] max_raw=8996864
+[BANDS] bass=0.00026 lo_mid=0.00004 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.61 decay=0.92
+[PROBE] ch0 peak=   5616128 dc=  -1190478 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1311 reads=43 wait_avg=32us wait_max=40us gap_avg=33268us gap_max=44375us
+[MIC] max_raw=5616128
+[BANDS] bass=0.00033 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.83 decay=0.92
+[PROBE] ch0 peak=   6379520 dc=   2651398 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1347 reads=43 wait_avg=32us wait_max=40us gap_avg=33270us gap_max=44354us
+[MIC] max_raw=6379520
+[BANDS] bass=0.00040 lo_mid=0.00006 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6090752 dc=   2385413 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1385 reads=43 wait_avg=32us wait_max=40us gap_avg=33261us gap_max=44414us
+[MIC] max_raw=6090752
+[BANDS] bass=0.00027 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5616640 dc=   2286890 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1422 reads=43 wait_avg=33us wait_max=48us gap_avg=33262us gap_max=44371us
+[MIC] max_raw=5616640
+[BANDS] bass=0.00019 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.12 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5119488 dc=  -2196321 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1460 reads=43 wait_avg=32us wait_max=40us gap_avg=33259us gap_max=44414us
+[MIC] max_raw=5119488
+[BANDS] bass=0.00013 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5269504 dc=   -933927 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1497 reads=43 wait_avg=32us wait_max=40us gap_avg=33248us gap_max=44321us
+[MIC] max_raw=5269504
+[BANDS] bass=0.00048 lo_mid=0.00006 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.70 decay=0.92
+[PROBE] ch0 peak=   4015104 dc=   1388770 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1535 reads=43 wait_avg=33us wait_max=40us gap_avg=33268us gap_max=44312us
+[MIC] max_raw=4015104
+[BANDS] bass=0.00014 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.36 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.52 decay=0.92
+[PROBE] ch0 peak=   5014016 dc=   -472716 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1571 reads=43 wait_avg=32us wait_max=40us gap_avg=33261us gap_max=44388us
+[MIC] max_raw=5014016
+[BANDS] bass=0.00068 lo_mid=0.00009 mid=0.00004 high=0.00003
+[NORM]  bass=0.50 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.92 decay=0.92
+[BEAT] intensity=0.52 decay=0.92
+[PROBE] ch0 peak=   7201280 dc=  -3621718 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=1609 reads=43 wait_avg=32us wait_max=40us gap_avg=33293us gap_max=44335us
+[MIC] max_raw=7201280
+[BANDS] bass=0.00023 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   7188992 dc=  -3580937 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1646 reads=43 wait_avg=32us wait_max=40us gap_avg=33257us gap_max=44343us
+[MIC] max_raw=7188992
+[BANDS] bass=0.00034 lo_mid=0.00007 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.80 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   4554752 dc=    549107 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1683 reads=43 wait_avg=33us wait_max=41us gap_avg=33284us gap_max=44341us
+[MIC] max_raw=4554752
+[BANDS] bass=0.00045 lo_mid=0.00005 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.66 decay=0.92
+[PROBE] ch0 peak=   6113280 dc=  -2462733 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1721 reads=43 wait_avg=32us wait_max=40us gap_avg=33268us gap_max=44399us
+[MIC] max_raw=6113280
+[BANDS] bass=0.00028 lo_mid=0.00005 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[PROBE] ch0 peak=   4899328 dc=   -358406 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1758 reads=43 wait_avg=33us wait_max=41us gap_avg=33270us gap_max=44337us
+[MIC] max_raw=4899328
+[BANDS] bass=0.00059 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.73 decay=0.92
+[PROBE] ch0 peak=   5246976 dc=   2319305 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1795 reads=43 wait_avg=33us wait_max=40us gap_avg=33288us gap_max=44339us
+[MIC] max_raw=5246976
+[BANDS] bass=0.00011 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.51 mid=0.00 high=0.00
+[BEAT] intensity=0.63 decay=0.92
+[BEAT] intensity=0.52 decay=0.92
+[PROBE] ch0 peak=   5912576 dc=  -1851826 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1832 reads=43 wait_avg=32us wait_max=40us gap_avg=33292us gap_max=44401us
+[MIC] max_raw=5912576
+[BANDS] bass=0.00072 lo_mid=0.00011 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5568000 dc=   2904040 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=1870 reads=43 wait_avg=32us wait_max=48us gap_avg=33256us gap_max=44357us
+[MIC] max_raw=5568000
+[BANDS] bass=0.00010 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.69 decay=0.92
+[PROBE] ch0 peak=   7307264 dc=  -2242684 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1907 reads=43 wait_avg=33us wait_max=40us gap_avg=33269us gap_max=44388us
+[MIC] max_raw=7307264
+[BANDS] bass=0.00068 lo_mid=0.00007 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5191168 dc=   -711661 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1945 reads=43 wait_avg=32us wait_max=40us gap_avg=33247us gap_max=44354us
+[MIC] max_raw=5191168
+[BANDS] bass=0.00023 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5880320 dc=   2208789 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=1982 reads=43 wait_avg=32us wait_max=40us gap_avg=33251us gap_max=44315us
+[MIC] max_raw=5880320
+[BANDS] bass=0.00016 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.70 decay=0.92
+[PROBE] ch0 peak=   8276480 dc=  -4629386 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=2019 reads=43 wait_avg=32us wait_max=40us gap_avg=33291us gap_max=44410us
+[MIC] max_raw=8276480
+[BANDS] bass=0.00042 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.83 decay=0.92
+[BEAT] intensity=0.52 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[PROBE] ch0 peak=   5542912 dc=    934348 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2056 reads=43 wait_avg=32us wait_max=41us gap_avg=33306us gap_max=44374us
+[MIC] max_raw=5542912
+[BANDS] bass=0.00052 lo_mid=0.00010 mid=0.00004 high=0.00004
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6441984 dc=   1387053 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2094 reads=43 wait_avg=33us wait_max=40us gap_avg=33260us gap_max=44382us
+[MIC] max_raw=6441984
+[BANDS] bass=0.00077 lo_mid=0.00013 mid=0.00004 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.59 decay=0.92
+[PROBE] ch0 peak=   4781568 dc=   1238326 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2131 reads=43 wait_avg=33us wait_max=40us gap_avg=33273us gap_max=44443us
+[MIC] max_raw=4781568
+[BANDS] bass=0.00030 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.66 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6008832 dc=   2815721 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=2169 reads=43 wait_avg=32us wait_max=40us gap_avg=33248us gap_max=44420us
+[MIC] max_raw=6008832
+[BANDS] bass=0.00012 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.64 decay=0.92
+[PROBE] ch0 peak=   7880704 dc=  -5896998 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=2206 reads=43 wait_avg=32us wait_max=40us gap_avg=33265us gap_max=44391us
+[MIC] max_raw=7880704
+[BANDS] bass=0.00013 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[PROBE] ch0 peak=   7001088 dc=  -2609399 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2242 reads=43 wait_avg=32us wait_max=40us gap_avg=33263us gap_max=44313us
+[BEAT] intensity=0.51 decay=0.92
+[MIC] max_raw=7001088
+[BANDS] bass=0.00079 lo_mid=0.00013 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6437376 dc=   -671267 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2281 reads=43 wait_avg=32us wait_max=40us gap_avg=33495us gap_max=54685us
+[MIC] max_raw=6437376
+[BANDS] bass=0.00067 lo_mid=0.00012 mid=0.00003 high=0.00002
+[NORM]  bass=0.59 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.82 decay=0.92
+[PROBE] ch0 peak=   5563392 dc=    429668 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2318 reads=43 wait_avg=32us wait_max=40us gap_avg=33272us gap_max=44374us
+[MIC] max_raw=5563392
+[BANDS] bass=0.00041 lo_mid=0.00007 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.94 decay=0.92
+[PROBE] ch0 peak=   6884352 dc=  -3318767 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2356 reads=43 wait_avg=33us wait_max=41us gap_avg=33267us gap_max=44433us
+[MIC] max_raw=6884352
+[BANDS] bass=0.00026 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.63 decay=0.92
+[PROBE] ch0 peak=   5339136 dc=  -1712108 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2393 reads=43 wait_avg=33us wait_max=40us gap_avg=33264us gap_max=44435us
+[MIC] max_raw=5339136
+[BANDS] bass=0.00044 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.76 decay=0.92
+[PROBE] ch0 peak=   4755968 dc=    603977 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2431 reads=43 wait_avg=32us wait_max=40us gap_avg=33265us gap_max=44307us
+[MIC] max_raw=4755968
+[BANDS] bass=0.00028 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.60 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.56 decay=0.92
+[BEAT] intensity=0.70 decay=0.92
+[PROBE] ch0 peak=   5632000 dc=   1641701 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2467 reads=43 wait_avg=32us wait_max=40us gap_avg=33281us gap_max=44456us
+[BEAT] intensity=0.60 decay=0.92
+[MIC] max_raw=5632000
+[BANDS] bass=0.00079 lo_mid=0.00014 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.68 decay=0.92
+[PROBE] ch0 peak=   5622784 dc=   -110077 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2505 reads=43 wait_avg=32us wait_max=40us gap_avg=33511us gap_max=54675us
+[MIC] max_raw=5622784
+[BANDS] bass=0.00043 lo_mid=0.00007 mid=0.00005 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   7007744 dc=  -1332454 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2543 reads=43 wait_avg=32us wait_max=42us gap_avg=33251us gap_max=44326us
+[BEAT] intensity=0.65 decay=0.92
+[MIC] max_raw=7007744
+[BANDS] bass=0.00080 lo_mid=0.00011 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5306880 dc=   1327251 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2581 reads=43 wait_avg=32us wait_max=40us gap_avg=33490us gap_max=54660us
+[MIC] max_raw=5306880
+[BANDS] bass=0.00031 lo_mid=0.00004 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.56 decay=0.92
+[PROBE] ch0 peak=   4549632 dc=  -1363494 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2619 reads=43 wait_avg=32us wait_max=45us gap_avg=33271us gap_max=44413us
+[MIC] max_raw=4549632
+[BANDS] bass=0.00047 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.84 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.61 decay=0.92
+[BEAT] intensity=0.90 decay=0.92
+[PROBE] ch0 peak=   5209088 dc=   2116279 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2656 reads=43 wait_avg=32us wait_max=48us gap_avg=33285us gap_max=44375us
+[MIC] max_raw=5209088
+[BANDS] bass=0.00010 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.73 decay=0.92
+[BEAT] intensity=0.52 decay=0.92
+[PROBE] ch0 peak=   4584960 dc=  -1268985 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2693 reads=43 wait_avg=32us wait_max=48us gap_avg=33287us gap_max=44423us
+[MIC] max_raw=4584960
+[BANDS] bass=0.00029 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.14 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.50 decay=0.92
+[PROBE] ch0 peak=   6946304 dc=   3267324 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=2730 reads=43 wait_avg=33us wait_max=40us gap_avg=33280us gap_max=44329us
+[MIC] max_raw=6946304
+[BANDS] bass=0.00022 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4937216 dc=  -2128622 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2768 reads=43 wait_avg=33us wait_max=41us gap_avg=33266us gap_max=44424us
+[MIC] max_raw=4937216
+[BANDS] bass=0.00028 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4738560 dc=   -942211 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2805 reads=43 wait_avg=33us wait_max=40us gap_avg=33254us gap_max=44336us
+[MIC] max_raw=4738560
+[BANDS] bass=0.00030 lo_mid=0.00005 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.15 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6600192 dc=   2820243 | ch1 peak= 536870910 dc=    786575  (forwarding ch0)
+[I2S] ovf=2842 reads=43 wait_avg=33us wait_max=40us gap_avg=33255us gap_max=44347us
+[MIC] max_raw=6600192
+[BANDS] bass=0.00025 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.71 decay=0.92
+[PROBE] ch0 peak=   5414912 dc=   -990751 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2880 reads=43 wait_avg=32us wait_max=40us gap_avg=33265us gap_max=44413us
+[MIC] max_raw=5414912
+[BANDS] bass=0.00065 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=1.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.52 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.58 decay=0.92
+[BEAT] intensity=0.64 decay=0.92
+[BEAT] intensity=0.64 decay=0.92
+[PROBE] ch0 peak=   4627456 dc=    437612 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2917 reads=43 wait_avg=33us wait_max=41us gap_avg=33341us gap_max=44429us
+[MIC] max_raw=4627456
+[BANDS] bass=0.00045 lo_mid=0.00009 mid=0.00005 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.65 decay=0.92
+[BEAT] intensity=0.65 decay=0.92
+[PROBE] ch0 peak=   7881728 dc=   3914080 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=2954 reads=43 wait_avg=32us wait_max=40us gap_avg=33290us gap_max=44391us
+[MIC] max_raw=7881728
+[BANDS] bass=0.00050 lo_mid=0.00009 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.72 decay=0.92
+[PROBE] ch0 peak=   7436800 dc=   3847060 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[I2S] ovf=2992 reads=43 wait_avg=32us wait_max=41us gap_avg=33277us gap_max=44409us
+[MIC] max_raw=7436800
+[BANDS] bass=0.00028 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.71 decay=0.92
+[PROBE] ch0 peak=   5196800 dc=  -2519499 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3029 reads=43 wait_avg=33us wait_max=41us gap_avg=33274us gap_max=44376us
+[MIC] max_raw=5196800
+[BANDS] bass=0.00020 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   6673920 dc=   2138720 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3066 reads=43 wait_avg=32us wait_max=40us gap_avg=33247us gap_max=44302us
+[MIC] max_raw=6673920
+[BANDS] bass=0.00026 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.11 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4850688 dc=   -819975 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3104 reads=43 wait_avg=32us wait_max=40us gap_avg=33248us gap_max=44422us
+[MIC] max_raw=4850688
+[BANDS] bass=0.00038 lo_mid=0.00005 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.92 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.68 decay=0.92
+[PROBE] ch0 peak=   8496128 dc=  -5460049 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[I2S] ovf=3140 reads=43 wait_avg=33us wait_max=41us gap_avg=33301us gap_max=44412us
+[MIC] max_raw=8496128
+[BANDS] bass=0.00039 lo_mid=0.00007 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4732416 dc=    216578 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3178 reads=43 wait_avg=34us wait_max=40us gap_avg=33267us gap_max=44368us
+[MIC] max_raw=4732416
+[BANDS] bass=0.00040 lo_mid=0.00005 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.25 mid=0.00 high=0.00
+[BEAT] intensity=0.60 decay=0.92
+[PROBE] ch0 peak=   5616128 dc=   -666291 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3215 reads=43 wait_avg=33us wait_max=40us gap_avg=33276us gap_max=44446us
+[MIC] max_raw=5616128
+[BANDS] bass=0.00050 lo_mid=0.00007 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4860416 dc=    657854 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3253 reads=43 wait_avg=32us wait_max=41us gap_avg=33252us gap_max=44356us
+[MIC] max_raw=4860416
+[BANDS] bass=0.00029 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.94 decay=0.92
+[BEAT] intensity=0.94 decay=0.92
+[PROBE] ch0 peak=   4774912 dc=    121649 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3290 reads=43 wait_avg=34us wait_max=40us gap_avg=33284us gap_max=44405us
+[MIC] max_raw=4774912
+[BANDS] bass=0.00028 lo_mid=0.00005 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.76 decay=0.92
+[BEAT] intensity=0.67 decay=0.92
+[PROBE] ch0 peak=   5287936 dc=   1399821 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3328 reads=43 wait_avg=33us wait_max=42us gap_avg=33280us gap_max=44374us
+[MIC] max_raw=5287936
+[BANDS] bass=0.00030 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   5278720 dc=   2113667 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3364 reads=43 wait_avg=33us wait_max=40us gap_avg=33277us gap_max=44412us
+[MIC] max_raw=5278720
+[BANDS] bass=0.00015 lo_mid=0.00003 mid=0.00002 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.75 decay=0.92
+[PROBE] ch0 peak=   4929536 dc=    746940 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3402 reads=43 wait_avg=32us wait_max=41us gap_avg=33271us gap_max=44389us
+[MIC] max_raw=4929536
+[BANDS] bass=0.00054 lo_mid=0.00009 mid=0.00003 high=0.00003
+[NORM]  bass=0.29 lo_mid=0.00 mid=0.00 high=0.00
+����������������������������������������������������������������
+[PROBE] ch0 peak=   5976064 dc=   1336679 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3439 reads=43 wait_avg=33us wait_max=40us gap_avg=33271us gap_max=44437us
+[MIC] max_raw=5976064
+[BANDS] bass=0.00018 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.01 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4844544 dc=   1929144 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[I2S] ovf=3477 reads=43 wait_avg=32us wait_max=40us gap_avg=33254us gap_max=44416us
+[MIC] max_raw=4844544
+[BANDS] bass=0.00016 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
