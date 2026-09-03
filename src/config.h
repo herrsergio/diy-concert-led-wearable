@@ -1,6 +1,13 @@
 #pragma once
 
+// Target: ESP32-WROOM-32 module (ESP32-D0WD-V3). Pin choices below are valid
+// for that module: GPIO 34-39 are input-only, and GPIO 16/17 are free because
+// WROOM-32 has no PSRAM (they are taken on WROVER modules).
+
 // --- LED Strip Configuration ---
+// GPIO 2 is a boot strapping pin. It works as LED data here, but if uploads
+// ever start failing, disconnect the strip's data line while flashing or move
+// this to a non-strapping pin such as GPIO 13, 18 or 19.
 #define LED_PIN           2
 #define NUM_LEDS          60
 #define LED_TYPE          WS2812B
@@ -33,10 +40,42 @@
 #define FFT_BAND_MID_HIGH     4000
 #define FFT_BAND_HIGH_HIGH    16000
 
+// Band magnitudes are divided by the FFT coherent gain so a full-scale sine
+// reads ~1.0 in its band. Hamming window coherent gain = 0.54.
+#define FFT_COHERENT_GAIN     0.54f
+#define FFT_MAG_SCALE         ((SAMPLES / 2.0f) * FFT_COHERENT_GAIN)
+
 #define BEAT_MIN_INTERVAL_MS  200   // Max ~300 BPM
-#define BEAT_SENSITIVITY      1.5f  // Adaptive threshold multiplier
 #define BEAT_HISTORY_SIZE     43    // ~1 second of FFT frames at 43Hz
-#define BEAT_NOISE_FLOOR      0.15f // Minimum bass level to attempt beat detection
+
+// Onset threshold = mean(flux) + BEAT_SENSITIVITY_SIGMA * stddev(flux).
+// This is a *shape* test, not a loudness test, so it works at any volume.
+// Higher = fewer false beats but more missed beats. 3.0 measured best.
+#define BEAT_SENSITIVITY_SIGMA 3.0f
+
+// A beat also requires the instantaneous bass to exceed the slow running
+// average by this factor. Stationary noise has a low crest factor and fails
+// this; a kick drum has a high crest factor and passes. This is what actually
+// rejects a noisy room, so tune it before touching anything else.
+#define BEAT_CREST_FACTOR     2.0f
+#define BEAT_LEVEL_AVG_ALPHA  0.02f // Slow bass average (~1.1s time constant)
+
+// Absolute gate, in gain-normalized units. Only meant to reject near-digital
+// silence; discrimination between music and noise is done by the two tests
+// above. Do NOT raise this to fight false beats -- the value range for room
+// noise overlaps the range for quiet music, so no setting can separate them.
+#define BEAT_NOISE_FLOOR      0.0004f
+
+#define BEAT_DECAY_PER_TICK   0.92f // Pulse fade per audio tick (~277ms tau)
+
+// --- Visual Auto-Gain ---
+// Each band is mapped from its own running [floor..peak] window into 0..1 so
+// patterns stay responsive at any volume. A band whose peak/floor ratio is
+// below BAND_AGC_MIN_RATIO carries no dynamics (i.e. it is just noise) and is
+// forced to 0, which is what keeps the LEDs dark in a quiet room.
+#define BAND_AGC_PEAK_DECAY   0.995f
+#define BAND_AGC_FLOOR_RISE   1.02f
+#define BAND_AGC_MIN_RATIO    2.0f
 
 // --- Timing ---
 #define AUDIO_TICK_MS     23        // ~43Hz audio processing rate
