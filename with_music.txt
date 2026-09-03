@@ -1,0 +1,117 @@
+--- Terminal on /dev/ttyUSB0 | 115200 8-N-1
+--- Available filters and text transformations: debug, default, direct, esp32_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+[BEAT] intensity=0.81 decay=0.92
+[MIC] max_raw=5285376
+[BANDS] bass=0.00028 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.61 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[MIC] max_raw=5060096
+[BANDS] bass=0.00017 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.77 decay=0.92
+[BEAT] intensity=0.52 decay=0.92
+[BEAT] intensity=0.50 decay=0.92
+[MIC] max_raw=4767232
+[BANDS] bass=0.00008 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.61 decay=0.92
+[BEAT] intensity=0.77 decay=0.92
+[MIC] max_raw=5587456
+[BANDS] bass=0.00054 lo_mid=0.00012 mid=0.00005 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.99 decay=0.92
+[BEAT] intensity=0.64 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[MIC] max_raw=5009408
+[BANDS] bass=0.00058 lo_mid=0.00010 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.74 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.98 decay=0.92
+[MIC] max_raw=4101120
+[BANDS] bass=0.00044 lo_mid=0.00005 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=4728320
+[BANDS] bass=0.00019 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.56 decay=0.92
+[BEAT] intensity=0.55 decay=0.92
+[MIC] max_raw=4564992
+[BANDS] bass=0.00032 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.81 decay=0.92
+[BEAT] intensity=0.50 decay=0.92
+[BEAT] intensity=0.64 decay=0.92
+[BEAT] intensity=0.52 decay=0.92
+[MIC] max_raw=5722112
+[BANDS] bass=0.00094 lo_mid=0.00018 mid=0.00005 high=0.00002
+[NORM]  bass=1.00 lo_mid=1.00 mid=0.00 high=0.00
+[BEAT] intensity=0.83 decay=0.92
+[BEAT] intensity=0.56 decay=0.92
+[BEAT] intensity=0.59 decay=0.92
+[MIC] max_raw=5986304
+[BANDS] bass=0.00017 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.94 decay=0.92
+[BEAT] intensity=0.63 decay=0.92
+[MIC] max_raw=3837440
+[BANDS] bass=0.00031 lo_mid=0.00006 mid=0.00004 high=0.00003
+[NORM]  bass=0.26 lo_mid=0.40 mid=0.00 high=0.00
+[BEAT] intensity=0.50 decay=0.92
+[MIC] max_raw=4351488
+[BANDS] bass=0.00036 lo_mid=0.00004 mid=0.00004 high=0.00003
+[NORM]  bass=0.60 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.66 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.79 decay=0.92
+[MIC] max_raw=4604928
+[BANDS] bass=0.00020 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.02 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.65 decay=0.92
+[MIC] max_raw=5904896
+[BANDS] bass=0.00028 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.40 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.59 decay=0.92
+[BEAT] intensity=0.51 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[MIC] max_raw=5925376
+[BANDS] bass=0.00024 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.49 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.58 decay=0.92
+[BEAT] intensity=0.87 decay=0.92
+[BEAT] intensity=0.74 decay=0.92
+[BEAT] intensity=0.69 decay=0.92
+[MIC] max_raw=4178944
+[BANDS] bass=0.00010 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.62 decay=0.92
+[MIC] max_raw=6959616
+[BANDS] bass=0.00025 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.44 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=7246336
+[BANDS] bass=0.00050 lo_mid=0.00008 mid=0.00004 high=0.00002
+[NORM]  bass=0.40 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5496320
+[BANDS] bass=0.00015 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=6095872
+[BANDS] bass=0.00011 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=7216640
+[BANDS] bass=0.00015 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.61 decay=0.92
+[MIC] max_raw=5699072
+[BANDS] bass=0.00012 lo_mid=0.00002 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.66 decay=0.92
+[MIC] max_raw=4380160
+[BANDS] bass=0.00035 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.68 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.84 decay=0.92
+[MIC] max_raw=4411904
+[BANDS] bass=0.00052 lo_mid=0.00003 mid=0.00002 high=0.00003
+[NORM]  bass=1.00 lo_mid=0.00 mid=0.00 high=0.00
