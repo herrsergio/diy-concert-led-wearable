@@ -82,6 +82,16 @@ void setup() {
     pinMode(BTN_BRIGHT_PIN, INPUT_PULLUP);
 
     led_controller_init();
+
+    // Startup flash BEFORE audio_capture_init(). Starting I2S and then sitting
+    // in delay(1000) leaves the DMA ring un-drained for ~20 ring depths, which
+    // guarantees a backlog of dropped buffers before loop() ever runs.
+    fill_solid(leds, NUM_LEDS, CRGB::Red);
+    led_show();
+    delay(1000);
+    fill_solid(leds, NUM_LEDS, CRGB::Black);
+    led_show();
+
     audio_capture_init();
     fft_processor_init();
     beat_detector_init();
@@ -90,9 +100,7 @@ void setup() {
     Serial.println("Ready! Mode: Audio Reactive");
     Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
 
-    fill_solid(leds, NUM_LEDS, CRGB::Red);
-    led_show();
-    delay(1000);
+    last_audio_tick = millis();
 }
 
 void loop() {
@@ -101,8 +109,17 @@ void loop() {
     handle_buttons(now);
 
     // Audio processing tick (~43Hz)
+    // Advance by exactly AUDIO_TICK_MS rather than resetting to now, so the
+    // schedule does not drift: `= now` makes the real period AUDIO_TICK_MS plus
+    // however long the rest of the loop took, and any period above 23.22 ms is a
+    // permanent deficit against the microphone that no ring depth can absorb.
+    // 23 ms is marginally faster than production, so i2s_read blocks briefly and
+    // the audio path ends up paced by the I2S clock itself.
     if (now - last_audio_tick >= AUDIO_TICK_MS) {
-        last_audio_tick = now;
+        last_audio_tick += AUDIO_TICK_MS;
+        // If we fell far behind (a long blocking operation), resync instead of
+        // running a catch-up burst.
+        if (now - last_audio_tick >= AUDIO_TICK_MS) last_audio_tick = now;
 
         size_t samples_read = audio_capture_read(audio_buffer, SAMPLES);
         if (samples_read != SAMPLES) {
