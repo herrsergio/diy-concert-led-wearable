@@ -138,6 +138,19 @@ FrequencyBands fft_process(const int32_t* samples, size_t num_samples) {
     bands.high    = band_energy(FFT_BAND_MID_HIGH, FFT_BAND_HIGH_HIGH);
     bands.overall = (bands.bass + bands.low_mid + bands.mid + bands.high) / 4.0f;
 
+    // Bin 0 is skipped: it is the residual DC that dcRemoval could not take out
+    // and would otherwise always win.
+    uint16_t pk_bin = 1;
+    float pk_mag = 0.0f;
+    for (int i = 1; i < SAMPLES / 2; i++) {
+        if (v_real[i] > pk_mag) {
+            pk_mag = v_real[i];
+            pk_bin = (uint16_t)i;
+        }
+    }
+    bands.peak_bin = pk_bin;
+    bands.peak_mag = pk_mag / FFT_MAG_SCALE;
+
     auto_gain_apply(bands);
     return bands;
 }
