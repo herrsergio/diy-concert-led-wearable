@@ -69,19 +69,19 @@
 </head>
 <body>
     <h1>Music LED Strip - Wiring Diagram</h1>
-    <p class="subtitle">ESP32-S3 + WS2812B + INMP441 | Breadboard Layout</p>
+    <p class="subtitle">ESP32-WROOM-32 + WS2812B + INMP441 | Breadboard Layout</p>
 
     <div class="diagram-container">
         <svg viewBox="0 0 920 620" xmlns="http://www.w3.org/2000/svg" width="920" height="620">
             <!-- Background -->
             <rect width="920" height="620" fill="#1a1a2e" rx="10"/>
 
-            <!-- ESP32-S3 Module -->
+            <!-- ESP32-WROOM-32 Module -->
             <rect x="340" y="180" width="160" height="280" rx="8" fill="#2d2d44" stroke="#5555aa" stroke-width="2"/>
             <rect x="395" y="170" width="50" height="15" rx="3" fill="#444" stroke="#666" stroke-width="1"/>
-            <text x="420" y="181" text-anchor="middle" font-size="7" fill="#aaa">USB-C</text>
-            <text x="420" y="210" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">ESP32-S3</text>
-            <text x="420" y="225" text-anchor="middle" font-size="9" fill="#888">DevKitC-1</text>
+            <text x="420" y="181" text-anchor="middle" font-size="7" fill="#aaa">USB</text>
+            <text x="420" y="210" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">ESP32-WROOM-32</text>
+            <text x="420" y="225" text-anchor="middle" font-size="9" fill="#888">ESP32-D0WD-V3</text>
 
             <!-- ESP32 Pin Labels - Left Side -->
             <text x="350" y="260" text-anchor="end" font-size="9" fill="#ff6b6b">5V</text>
@@ -98,7 +98,7 @@
             <circle cx="340" cy="357" r="4" fill="#6bcfff"/>
 
             <!-- ESP32 Pin Labels - Right Side -->
-            <text x="490" y="260" text-anchor="start" font-size="9" fill="#39ff14">GPIO 38</text>
+            <text x="490" y="260" text-anchor="start" font-size="9" fill="#39ff14">GPIO 2</text>
             <circle cx="500" cy="257" r="4" fill="#39ff14"/>
             <text x="490" y="300" text-anchor="start" font-size="9" fill="#ff9f43">GPIO 4</text>
             <circle cx="500" cy="297" r="4" fill="#ff9f43"/>
@@ -140,7 +140,7 @@
             <rect x="586" y="253" width="5" height="8" fill="#ffd700"/>
             <text x="585" y="278" text-anchor="middle" font-size="8" fill="#aaa">470&#937;</text>
 
-            <!-- Wire: GPIO 38 -> Resistor -> DIN -->
+            <!-- Wire: GPIO 2 -> Resistor -> DIN -->
             <line x1="504" y1="257" x2="560" y2="257" stroke="#39ff14" stroke-width="2"/>
             <line x1="610" y1="257" x2="640" y2="257" stroke="#39ff14" stroke-width="2"/>
             <line x1="640" y1="257" x2="640" y2="103" stroke="#39ff14" stroke-width="2"/>
@@ -321,7 +321,7 @@
         <h3>Wiring Notes</h3>
         <p><strong>470 ohm resistor</strong> on the data line protects the first LED from voltage spikes. Place it as close to the strip's DIN pin as possible.</p>
         <p><strong>1000uF capacitor</strong> across the strip's power rails prevents inrush current from damaging LEDs on power-on. Observe polarity (+ to 5V).</p>
-        <p><strong>INMP441 L/R pin</strong> tied to GND selects the left I2S channel. The firmware reads I2S_CHANNEL_FMT_ONLY_LEFT.</p>
+        <p><strong>INMP441 L/R pin</strong> is tied to GND. The firmware reads I2S_CHANNEL_FMT_ONLY_RIGHT, which is the setting that actually produces samples on this wiring. ONLY_LEFT was tried first and returned silence.</p>
         <p><strong>Buttons</strong> use ESP32 internal pull-ups (INPUT_PULLUP). Press connects to GND (active LOW). No external resistors needed.</p>
         <p><strong>For breadboard testing</strong>: power everything from USB-C on the ESP32. The onboard 5V pin provides USB voltage directly to the strip.</p>
         <p><strong>For wearable build</strong>: add 18650 + TP4056 (charging) + MT3608 (boost to 5V) + slide switch. See bottom section of diagram.</p>
