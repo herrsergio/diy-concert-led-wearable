@@ -42,6 +42,9 @@ size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
 #else
 
 #include <driver/i2s.h>
+#include <esp_err.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/queue.h>
 #include <Arduino.h>
 
 // Which half of the I2S frame the microphone data is taken from. ONLY_RIGHT was
@@ -76,10 +79,97 @@ static const i2s_pin_config_t pin_config = {
     .data_in_num = I2S_SD_PIN
 };
 
+// --- I2S health diagnostics ------------------------------------------------
+// When the RX ring overflows, the legacy I2S driver discards the OLDEST DMA
+// buffer (esp-idf v4.4.7, components/driver/i2s.c, I2S_INTR_IN_SUC_EOF handler),
+// so the next i2s_read() returns audio that is not temporally adjacent to the
+// previous read. That join is a step discontinuity: broadband and with a high
+// crest factor, which is exactly what a spectral-flux onset detector calls a
+// drum hit. No BEAT_SENSITIVITY_SIGMA or BEAT_NOISE_FLOOR value can reject it.
+//
+// The driver reports the event as I2S_EVENT_RX_Q_OVF, but only if it was
+// installed with a real event queue instead of (0, NULL).
+static QueueHandle_t i2s_evt_queue = NULL;
+static uint32_t i2s_ovf_count = 0;   // RX ring overflows since boot (cumulative)
+static uint32_t read_calls = 0;
+static uint32_t wait_us_max = 0;     // longest block inside i2s_read
+static uint64_t wait_us_sum = 0;
+static uint32_t gap_us_max = 0;      // longest interval between consecutive reads
+static uint64_t gap_us_sum = 0;
+static uint32_t last_read_us = 0;
+static uint16_t diag_counter = 0;
+
+// Drain the event queue without blocking; only overflows are of interest.
+static void i2s_diag_poll() {
+    i2s_event_t evt;
+    while (i2s_evt_queue && xQueueReceive(i2s_evt_queue, &evt, 0) == pdTRUE) {
+        if (evt.type == I2S_EVENT_RX_Q_OVF) i2s_ovf_count++;
+    }
+}
+
+// i2s_read plus timing. The two numbers together say whether the reader keeps
+// up with the microphone, which produces 1024 frames every 23.22 ms:
+//   wait_avg near 0 and gap_avg above 23220 us -> a backlog stands permanently,
+//                                                 the ring overflows every buffer
+//   wait_avg of several ms                     -> reader is self-paced, ring healthy
+static size_t i2s_read_timed(void* dest, size_t bytes) {
+    uint32_t entry = micros();
+    if (last_read_us) {
+        uint32_t gap = entry - last_read_us;
+        gap_us_sum += gap;
+        if (gap > gap_us_max) gap_us_max = gap;
+    }
+    last_read_us = entry;
+
+    size_t bytes_read = 0;
+    i2s_read(I2S_PORT, dest, bytes, &bytes_read, portMAX_DELAY);
+
+    uint32_t wait = micros() - entry;
+    wait_us_sum += wait;
+    if (wait > wait_us_max) wait_us_max = wait;
+    read_calls++;
+
+    i2s_diag_poll();
+    return bytes_read;
+}
+
+// One line per second at the ~43Hz audio tick rate. Self-gating.
+static void i2s_diag_report() {
+    if (++diag_counter < 43) return;
+    diag_counter = 0;
+    uint32_t n = read_calls ? read_calls : 1;
+    Serial.printf("[I2S] ovf=%lu reads=%lu wait_avg=%luus wait_max=%luus "
+                  "gap_avg=%luus gap_max=%luus\n",
+                  (unsigned long)i2s_ovf_count, (unsigned long)read_calls,
+                  (unsigned long)(wait_us_sum / n), (unsigned long)wait_us_max,
+                  (unsigned long)(gap_us_sum / n), (unsigned long)gap_us_max);
+    read_calls = 0;
+    wait_us_sum = 0; wait_us_max = 0;
+    gap_us_sum = 0;  gap_us_max = 0;
+}
+
 void audio_capture_init() {
-    i2s_driver_install(I2S_PORT, &i2s_config, 0, NULL);
-    i2s_set_pin(I2S_PORT, &pin_config);
+    // Report the DMA geometry against the driver's hard limit. i2s_check_cfg_
+    // validity() only rejects dma_buf_len outside 8..1024, then i2s_get_buf_size()
+    // SILENTLY clamps it so that dma_buf_len * chan * bytes_per_sample stays at
+    // or below I2S_DMA_BUFFER_MAX_SIZE (4092). A request that passes validation
+    // can therefore yield a far shallower ring than asked for.
+    const int chan = (AUDIO_MIC_CHANNEL_FMT == I2S_CHANNEL_FMT_RIGHT_LEFT) ? 2 : 1;
+    const int bytes_per_buf = i2s_config.dma_buf_len * chan * 4;
+    Serial.printf("[I2S] requested dma_buf_len=%d count=%d chan=%d -> %d bytes/buf"
+                  " (driver limit 4092)%s\n",
+                  i2s_config.dma_buf_len, i2s_config.dma_buf_count, chan,
+                  bytes_per_buf,
+                  bytes_per_buf > 4092 ? "  *** WILL BE CLAMPED ***" : "");
+
+    esp_err_t err = i2s_driver_install(I2S_PORT, &i2s_config, 16, &i2s_evt_queue);
+    Serial.printf("[I2S] driver_install: %s\n", esp_err_to_name(err));
+
+    err = i2s_set_pin(I2S_PORT, &pin_config);
+    Serial.printf("[I2S] set_pin: %s\n", esp_err_to_name(err));
+
     i2s_zero_dma_buffer(I2S_PORT);
+    last_read_us = 0;
 }
 
 #ifdef I2S_PROBE
@@ -94,8 +184,7 @@ size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
     size_t want = num_samples * 2 * sizeof(int32_t);
     if (want > sizeof(probe_buffer)) want = sizeof(probe_buffer);
 
-    size_t bytes_read = 0;
-    i2s_read(I2S_PORT, probe_buffer, want, &bytes_read, portMAX_DELAY);
+    size_t bytes_read = i2s_read_timed(probe_buffer, want);
 
     size_t frames = (bytes_read / sizeof(int32_t)) / 2;
 
@@ -127,14 +216,15 @@ size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
                       (long)peak_a, dc_a, (long)peak_b, dc_b, I2S_PROBE_CHANNEL);
     }
 
+    i2s_diag_report();
     return frames;
 }
 
 #else
 
 size_t audio_capture_read(int32_t* buffer, size_t num_samples) {
-    size_t bytes_read = 0;
-    i2s_read(I2S_PORT, buffer, num_samples * sizeof(int32_t), &bytes_read, portMAX_DELAY);
+    size_t bytes_read = i2s_read_timed(buffer, num_samples * sizeof(int32_t));
+    i2s_diag_report();
     return bytes_read / sizeof(int32_t);
 }
 
