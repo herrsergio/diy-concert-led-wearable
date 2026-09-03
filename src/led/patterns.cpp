@@ -20,7 +20,9 @@ void PulseBeat::render(CRGB* leds, int num_leds) {
 // --- RainbowWave ---
 
 void RainbowWave::update(const FrequencyBands& bands, const BeatState& beat) {
-    speed = 1.0f + bands.mid * 20.0f;
+    // norm[] is auto-gained 0..1; bands.mid is a raw magnitude that is far too
+    // small to move the speed noticeably.
+    speed = 1.0f + bands.norm[BAND_MID] * 4.0f;
     if (beat.beat_detected) {
         speed += 5.0f;
     }
@@ -58,30 +60,33 @@ void StrobeKick::render(CRGB* leds, int num_leds) {
 // --- FrequencyBars ---
 
 void FrequencyBars::update(const FrequencyBands& bands, const BeatState& beat) {
-    // Smooth with exponential moving average
-    band_levels[0] = band_levels[0] * 0.7f + bands.bass * 0.3f;
-    band_levels[1] = band_levels[1] * 0.7f + bands.low_mid * 0.3f;
-    band_levels[2] = band_levels[2] * 0.7f + bands.mid * 0.3f;
-    band_levels[3] = band_levels[3] * 0.7f + bands.high * 0.3f;
+    // bands.norm[] is already smoothed and auto-gained to 0..1 per band by the
+    // FFT stage. The previous version multiplied raw FFT magnitudes by hardcoded
+    // scales, which saturated every section to fully lit at all times: the bass
+    // term alone computed a lit count of ~355 out of 15 LEDs, and mere room
+    // noise produced 16/15, 136/15, 162/15 and 268/15 for the four bands.
+    for (int i = 0; i < BAND_COUNT; i++) {
+        band_levels[i] = bands.norm[i];
+    }
 }
 
 void FrequencyBars::render(CRGB* leds, int num_leds) {
-    int section = num_leds / 4;
-    CRGB colors[4] = {
+    int section = num_leds / BAND_COUNT;
+    static const CRGB colors[BAND_COUNT] = {
         CRGB::Red,         // Bass
         CRGB::Orange,      // Low-mid
         CRGB::Green,       // Mid
         CRGB::Blue         // High
     };
-    // Bass is naturally ~10-30x louder than high bands; scale each independently
-    static const float scales[4] = {6.0f, 50.0f, 60.0f, 100.0f};
 
-    for (int band = 0; band < 4; band++) {
+    for (int band = 0; band < BAND_COUNT; band++) {
         int start = band * section;
-        int end = (band == 3) ? num_leds : start + section;
+        int end = (band == BAND_COUNT - 1) ? num_leds : start + section;
         int band_leds = end - start;
-        int lit_count = (int)(band_levels[band] * band_leds * scales[band]);
+
+        int lit_count = (int)(band_levels[band] * band_leds + 0.5f);
         if (lit_count > band_leds) lit_count = band_leds;
+        if (lit_count < 0) lit_count = 0;
 
         for (int i = 0; i < band_leds; i++) {
             leds[start + i] = (i < lit_count) ? colors[band] : CRGB::Black;
