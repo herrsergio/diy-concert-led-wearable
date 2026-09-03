@@ -1,0 +1,206 @@
+--- Terminal on /dev/ttyUSB0 | 115200 8-N-1
+--- Available filters and text transformations: debug, default, direct, esp32_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+[PROBE] ch0 peak=   6755840 dc=   3619964 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[MIC] max_raw=6755840
+[BANDS] bass=0.00017 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BTN] MODE pressed
+[BTN] MODE released, duration=198ms
+[BTN] -> pattern 1: PulseBeat
+[PROBE] ch0 peak=   4893184 dc=    872477 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4893184
+[BANDS] bass=0.00050 lo_mid=0.00007 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4718080 dc=    384481 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4718080
+[BANDS] bass=0.00039 lo_mid=0.00005 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4349952 dc=  -2452787 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4349952
+[BANDS] bass=0.00010 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.76 decay=0.92
+[BEAT] intensity=0.84 decay=0.92
+[PROBE] ch0 peak=   5563392 dc=   2931453 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5563392
+[BANDS] bass=0.00010 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.46 mid=0.00 high=0.00
+[BEAT] intensity=0.94 decay=0.92
+[BEAT] intensity=0.51 decay=0.92
+[BEAT] intensity=0.54 decay=0.92
+[BTN] MODE pressed
+[BTN] MODE released, duration=132ms
+[BTN] -> pattern 2: StrobeKick
+[PROBE] ch0 peak=   4442624 dc=   -806757 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4442624
+[BANDS] bass=0.00031 lo_mid=0.00006 mid=0.00004 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4584960 dc=   -331035 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4584960
+[BANDS] bass=0.00052 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.53 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5288960 dc=   2651513 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5288960
+[BANDS] bass=0.00014 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.02 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5640704 dc=  -2008979 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5640704
+[BANDS] bass=0.00027 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=1.00 decay=0.92
+[BTN] MODE pressed
+[BTN] MODE released, duration=165ms
+[BTN] -> pattern 3: FrequencyBars
+[PROBE] ch0 peak=   5928960 dc=  -3326628 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[MIC] max_raw=5928960
+[BANDS] bass=0.00010 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.03 mid=0.00 high=0.00
+[BEAT] intensity=0.96 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   4544000 dc=  -1967747 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4544000
+[BANDS] bass=0.00017 lo_mid=0.00006 mid=0.00003 high=0.00002
+[NORM]  bass=0.51 lo_mid=0.55 mid=0.00 high=0.00
+[BEAT] intensity=0.62 decay=0.92
+[PROBE] ch0 peak=   4445184 dc=   -648540 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4445184
+[BANDS] bass=0.00066 lo_mid=0.00011 mid=0.00003 high=0.00002
+[NORM]  bass=0.93 lo_mid=0.00 mid=0.00 high=0.00
+[BTN] MODE pressed
+[BTN] MODE released, duration=165ms
+[BTN] -> pattern 4: SKZColors
+[BEAT] intensity=0.70 decay=0.92
+[PROBE] ch0 peak=   6827520 dc=  -1983070 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=6827520
+[BANDS] bass=0.00063 lo_mid=0.00010 mid=0.00005 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BTN] MODE pressed
+[BTN] MODE released, duration=164ms
+[BTN] -> pattern 0: RainbowWave
+[PROBE] ch0 peak=   8385536 dc=   3359308 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[MIC] max_raw=8385536
+[BANDS] bass=0.00025 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5163520 dc=   2667125 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5163520
+[BANDS] bass=0.00009 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.64 decay=0.92
+[BEAT] intensity=0.56 decay=0.92
+[PROBE] ch0 peak=   7865344 dc=  -2606744 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=7865344
+[BANDS] bass=0.00053 lo_mid=0.00005 mid=0.00003 high=0.00003
+[NORM]  bass=0.75 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.86 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=  14197760 dc= -11721045 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[MIC] max_raw=14197760
+[BANDS] bass=0.00010 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.22 lo_mid=0.26 mid=0.00 high=0.00
+[BEAT] intensity=0.94 decay=0.92
+[BEAT] intensity=0.99 decay=0.92
+[BEAT] intensity=0.68 decay=0.92
+[PROBE] ch0 peak=   7862272 dc=   5021591 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[MIC] max_raw=7862272
+[BANDS] bass=0.00023 lo_mid=0.00005 mid=0.00002 high=0.00002
+[NORM]  bass=0.71 lo_mid=0.52 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4448256 dc=   1344480 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4448256
+[BANDS] bass=0.00035 lo_mid=0.00009 mid=0.00002 high=0.00002
+[NORM]  bass=0.30 lo_mid=0.48 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4397056 dc=  -1361741 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4397056
+[BANDS] bass=0.00031 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.22 lo_mid=0.02 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5091328 dc=   2389691 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5091328
+[BANDS] bass=0.00010 lo_mid=0.00002 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.66 decay=0.92
+[PROBE] ch0 peak=   5180928 dc=  -2359036 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5180928
+[BANDS] bass=0.00022 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.04 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.63 decay=0.92
+[BEAT] intensity=0.73 decay=0.92
+[BEAT] intensity=0.59 decay=0.92
+[PROBE] ch0 peak=   4983296 dc=   -400488 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4983296
+[BANDS] bass=0.00062 lo_mid=0.00009 mid=0.00003 high=0.00002
+[NORM]  bass=0.96 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.78 decay=0.92
+[BEAT] intensity=0.82 decay=0.92
+[PROBE] ch0 peak=   6466048 dc=  -2860662 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=6466048
+[BANDS] bass=0.00027 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.78 decay=0.92
+[PROBE] ch0 peak=   8671232 dc=  -4948094 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=8671232
+[BANDS] bass=0.00050 lo_mid=0.00011 mid=0.00003 high=0.00002
+[NORM]  bass=0.39 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.85 decay=0.92
+[PROBE] ch0 peak=   5647872 dc=   2513813 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[MIC] max_raw=5647872
+[BANDS] bass=0.00013 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.55 decay=0.92
+[PROBE] ch0 peak=  23696384 dc= -18827060 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[MIC] max_raw=23696384
+[BANDS] bass=0.00023 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.65 lo_mid=0.13 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5364736 dc=   1993815 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5364736
+[BANDS] bass=0.00017 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.42 lo_mid=0.11 mid=0.00 high=0.00
+[BEAT] intensity=0.70 decay=0.92
+[PROBE] ch0 peak=   5497856 dc=  -3052640 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[MIC] max_raw=5497856
+[BANDS] bass=0.00012 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.36 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5454336 dc=    877262 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5454336
+[BANDS] bass=0.00074 lo_mid=0.00008 mid=0.00003 high=0.00003
+[NORM]  bass=1.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[PROBE] ch0 peak=   4924928 dc=   -485615 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4924928
+[BANDS] bass=0.00038 lo_mid=0.00005 mid=0.00004 high=0.00004
+[NORM]  bass=0.18 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4815872 dc=   1373267 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4815872
+[BANDS] bass=0.00027 lo_mid=0.00005 mid=0.00003 high=0.00003
+[NORM]  bass=0.49 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   5142016 dc=   2286213 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5142016
+[BANDS] bass=0.00026 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[PROBE] ch0 peak=   4644352 dc=   1997601 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=4644352
+[BANDS] bass=0.00007 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.87 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   5057536 dc=   1167343 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=5057536
+[BANDS] bass=0.00073 lo_mid=0.00012 mid=0.00004 high=0.00003
+[NORM]  bass=0.73 lo_mid=0.70 mid=0.00 high=0.00
+[BEAT] intensity=0.85 decay=0.92
+[PROBE] ch0 peak=  14901760 dc=  -9051169 | ch1 peak=         1 dc=         1  (forwarding ch0)
+[MIC] max_raw=14901760
+[BANDS] bass=0.00091 lo_mid=0.00015 mid=0.00004 high=0.00002
+[NORM]  bass=0.59 lo_mid=0.49 mid=0.00 high=0.00
+[BEAT] intensity=0.52 decay=0.92
+[PROBE] ch0 peak=   7219200 dc=   3879331 | ch1 peak=         0 dc=         0  (forwarding ch0)
+[MIC] max_raw=7219200
+[BANDS] bass=0.00008 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=1.00 decay=0.92
+[PROBE] ch0 peak=   6425600 dc=   2090708 | ch1 peak=         1 dc=         0  (forwarding ch0)
+[MIC] max_raw=6425600
+[BANDS] bass=0.00043 lo_mid=0.00006 mid=0.00003 high=0.00002
+[NORM]  bass=0.17 lo_mid=0.15 mid=0.00 high=0.00
