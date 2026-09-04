@@ -207,6 +207,19 @@ void loop() {
                     (float)log_peak_bin * (float)SAMPLE_RATE / (float)SAMPLES,
                     log_peak_mag,
                     log_band_max[BAND_MID] > 0.0f ? log_peak_mag / log_band_max[BAND_MID] : 0.0f);
+                // Which gate is limiting. A beat needs all four to pass, so
+                // the smallest percentage is the binding constraint.
+                // crestkill is the share of frames where the noise floor and
+                // the flux threshold both passed and only the crest test
+                // rejected. If that stays high while music plays, and only
+                // then, BEAT_CREST_FACTOR is what is eating the beats. Check
+                // the microphone with `pio run -e probe` first.
+                BeatGateStats g = beat_detector_stats_take();
+                float pct = g.frames ? 100.0f / (float)g.frames : 0.0f;
+                Serial.printf("[GATE]  floor=%.0f%% crest=%.0f%% flux=%.0f%% "
+                              "crestkill=%.0f%% (of %u frames)\n",
+                    g.pass_floor * pct, g.pass_crest * pct,
+                    g.pass_flux * pct, g.rej_crest_with_flux * pct, g.frames);
                 diag_window_reset();
             }
         }
