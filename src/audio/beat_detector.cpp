@@ -24,6 +24,7 @@ static float prev_bass = 0;
 static float bass_level_avg = 0;
 static unsigned long last_beat_time = 0;
 static float current_decay = 0;
+static BeatGateStats gate_stats = {};
 
 void beat_detector_init() {
     for (int i = 0; i < BEAT_HISTORY_SIZE; i++) {
@@ -35,6 +36,13 @@ void beat_detector_init() {
     bass_level_avg = 0;
     last_beat_time = 0;
     current_decay = 0;
+    gate_stats = BeatGateStats();
+}
+
+BeatGateStats beat_detector_stats_take() {
+    BeatGateStats out = gate_stats;
+    gate_stats = BeatGateStats();
+    return out;
 }
 
 BeatState beat_detect(const FrequencyBands& bands) {
@@ -71,8 +79,20 @@ BeatState beat_detect(const FrequencyBands& bands) {
     bool interval_passed = (now - last_beat_time) >= BEAT_MIN_INTERVAL_MS;
     bool crest_passed = bands.bass > bass_level_avg * BEAT_CREST_FACTOR;
 
+    bool flux_passed = flux > threshold;
+
     bool is_beat = warmed_up && above_floor && interval_passed &&
-                   crest_passed && flux > threshold;
+                   crest_passed && flux_passed;
+
+    // Diagnostics only, drained once per second by main.cpp.
+    if (warmed_up) {
+        gate_stats.frames++;
+        if (above_floor) gate_stats.pass_floor++;
+        if (crest_passed) gate_stats.pass_crest++;
+        if (flux_passed) gate_stats.pass_flux++;
+        if (above_floor && flux_passed && !crest_passed) gate_stats.rej_crest_with_flux++;
+        if (is_beat) gate_stats.beats++;
+    }
 
     if (is_beat) {
         state.beat_detected = true;
