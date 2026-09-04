@@ -77,9 +77,16 @@ FrequencyBands fft_process(const int32_t* samples, size_t num_samples) {
 
 #include <arduinoFFT.h>
 
-static double v_real[SAMPLES];
-static double v_imag[SAMPLES];
-static ArduinoFFT<double> fft(v_real, v_imag, SAMPLES, SAMPLE_RATE);
+// Single precision, not double. The Xtensa LX6 in the ESP32-D0WD-V3 has a
+// single-precision FPU only, so every double operation in a 1024-point FFT is
+// software-emulated. That put the audio tick at ~33 ms against the 23.22 ms the
+// microphone needs to produce one window, so the reader fell permanently behind
+// and the I2S driver discarded ~30% of all audio. See the overflow diagnostics
+// in audio_capture.cpp. ArduinoFFT<float> is explicitly instantiated by the
+// library (arduinoFFT.cpp: template class ArduinoFFT<float>).
+static float v_real[SAMPLES];
+static float v_imag[SAMPLES];
+static ArduinoFFT<float> fft(v_real, v_imag, SAMPLES, SAMPLE_RATE);
 
 // Returns the mean magnitude over [freq_low, freq_high), divided by the FFT
 // coherent gain so the result is comparable to input amplitude rather than
@@ -108,10 +115,10 @@ void fft_processor_init() {
 }
 
 FrequencyBands fft_process(const int32_t* samples, size_t num_samples) {
-    // Convert I2S 32-bit samples to double, normalize.
+    // Convert I2S 32-bit samples to float, normalize.
     // INMP441 outputs 24-bit data left-aligned in a 32-bit word.
     for (size_t i = 0; i < num_samples && i < SAMPLES; i++) {
-        v_real[i] = (double)(samples[i] >> 8) / 8388608.0;
+        v_real[i] = (float)(samples[i] >> 8) / 8388608.0f;
         v_imag[i] = 0.0;
     }
 
@@ -130,6 +137,19 @@ FrequencyBands fft_process(const int32_t* samples, size_t num_samples) {
     bands.mid     = band_energy(FFT_BAND_LOWMID_HIGH, FFT_BAND_MID_HIGH);
     bands.high    = band_energy(FFT_BAND_MID_HIGH, FFT_BAND_HIGH_HIGH);
     bands.overall = (bands.bass + bands.low_mid + bands.mid + bands.high) / 4.0f;
+
+    // Bin 0 is skipped: it is the residual DC that dcRemoval could not take out
+    // and would otherwise always win.
+    uint16_t pk_bin = 1;
+    float pk_mag = 0.0f;
+    for (int i = 1; i < SAMPLES / 2; i++) {
+        if (v_real[i] > pk_mag) {
+            pk_mag = v_real[i];
+            pk_bin = (uint16_t)i;
+        }
+    }
+    bands.peak_bin = pk_bin;
+    bands.peak_mag = pk_mag / FFT_MAG_SCALE;
 
     auto_gain_apply(bands);
     return bands;

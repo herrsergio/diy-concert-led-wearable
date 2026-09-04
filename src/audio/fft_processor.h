@@ -24,6 +24,16 @@ struct FrequencyBands {
     // Auto-gained 0.0-1.0 per band, indexed by Band. Volume-independent and
     // forced to 0 when the band carries no dynamics. Use these for visuals.
     float norm[BAND_COUNT];
+
+    // Strongest single bin in the spectrum, for deciding whether the input
+    // carries tonal content at all. The band values above are per-bin MEANS, so
+    // a wide band averages real content down into the noise: `high` spans 279
+    // bins against `bass`'s 4. That makes a flat band ambiguous. A single
+    // dominant bin is not: broadband noise has no bin standing out from its
+    // neighbours, while a note, a voice or a whistle produces one.
+    // peak_mag is gain-normalized on the same scale as the band values.
+    uint16_t peak_bin;
+    float peak_mag;
 };
 
 void fft_processor_init();

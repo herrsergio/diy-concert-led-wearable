@@ -67,6 +67,24 @@ pio test -e native
 
 They drive the real beat detector against synthetic silence, room noise and beats at several volumes and tempos, then assert false-beat rates and BPM tracking. These exist because the original detector fired about 4 false beats per second on plain room noise while looking perfectly reasonable in source form.
 
+## Troubleshooting the microphone
+
+If the LEDs react the same way whether or not music is playing, verify the microphone is actually capturing audio before adjusting any beat detection setting:
+
+```bash
+pio run -e probe --target upload --target monitor
+```
+
+This prints one line per second showing the peak and DC level of both halves of the I2S frame:
+
+```
+[PROBE] ch0 peak=   5285376 dc=      1024 | ch1 peak= 218103808 dc=       -64  (forwarding ch0)
+```
+
+Clap or whistle next to the microphone. One half should jump by a large factor while the other stays flat. The half that jumps is carrying audio, and `AUDIO_MIC_CHANNEL_FMT` in `src/audio/audio_capture.cpp` must be set to select it. If neither half reacts, the problem is the wiring, the SD line, the 3.3V supply, or the microphone.
+
+Why this matters: with the INMP441's L/R pin tied to a fixed level, the microphone drives data during only one half of the I2S frame and leaves the bus undriven during the other. Reading the undriven half produces low-level values that drift slowly and ignore sound, which looks very much like a working but quiet microphone. Note that `mid` and `high` reading nearly the same with and without music is NOT a reliable tell: `band_energy()` divides each band by its bin count, and `high` spans 279 bins against `bass`'s 4, so real acoustic content is averaged down until it looks flat. Use the probe, not the band values.
+
 ## Simulator (Wokwi)
 
 You can test patterns and button behavior without hardware using the [Wokwi simulator](https://wokwi.com/).

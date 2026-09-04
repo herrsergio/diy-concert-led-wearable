@@ -16,6 +16,30 @@ static BeatState current_beat = {false, 0, 0};
 
 static uint16_t audio_log_counter = 0;
 
+// Diagnostic accumulators. Every one of these covers EVERY audio tick in the
+// reporting window. Printing the current window instead observed only 1024
+// samples out of each ~43000, a 2.3% duty cycle, so a transient such as a hand
+// clap was missed roughly 97% of the time. That makes a responsive microphone
+// indistinguishable from a dead one and invalidates any dynamic-range estimate
+// read off these lines.
+static int32_t log_peak_raw = 0;
+static float log_band_min[BAND_COUNT];
+static float log_band_max[BAND_COUNT];
+static uint16_t log_beats = 0;
+static float log_peak_mag = 0.0f;      // strongest bin seen in the window
+static uint16_t log_peak_bin = 0;      // and which bin it was
+
+static void diag_window_reset() {
+    log_peak_raw = 0;
+    log_beats = 0;
+    log_peak_mag = 0.0f;
+    log_peak_bin = 0;
+    for (int i = 0; i < BAND_COUNT; i++) {
+        log_band_min[i] = 1e9f;
+        log_band_max[i] = 0.0f;
+    }
+}
+
 // Button state
 static unsigned long btn_mode_pressed_at = 0;
 static bool btn_mode_was_pressed = false;
@@ -82,6 +106,16 @@ void setup() {
     pinMode(BTN_BRIGHT_PIN, INPUT_PULLUP);
 
     led_controller_init();
+
+    // Startup flash BEFORE audio_capture_init(). Starting I2S and then sitting
+    // in delay(1000) leaves the DMA ring un-drained for ~20 ring depths, which
+    // guarantees a backlog of dropped buffers before loop() ever runs.
+    fill_solid(leds, NUM_LEDS, CRGB::Red);
+    led_show();
+    delay(1000);
+    fill_solid(leds, NUM_LEDS, CRGB::Black);
+    led_show();
+
     audio_capture_init();
     fft_processor_init();
     beat_detector_init();
@@ -90,9 +124,8 @@ void setup() {
     Serial.println("Ready! Mode: Audio Reactive");
     Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
 
-    fill_solid(leds, NUM_LEDS, CRGB::Red);
-    led_show();
-    delay(1000);
+    diag_window_reset();
+    last_audio_tick = millis();
 }
 
 void loop() {
@@ -101,8 +134,17 @@ void loop() {
     handle_buttons(now);
 
     // Audio processing tick (~43Hz)
+    // Advance by exactly AUDIO_TICK_MS rather than resetting to now, so the
+    // schedule does not drift: `= now` makes the real period AUDIO_TICK_MS plus
+    // however long the rest of the loop took, and any period above 23.22 ms is a
+    // permanent deficit against the microphone that no ring depth can absorb.
+    // 23 ms is marginally faster than production, so i2s_read blocks briefly and
+    // the audio path ends up paced by the I2S clock itself.
     if (now - last_audio_tick >= AUDIO_TICK_MS) {
-        last_audio_tick = now;
+        last_audio_tick += AUDIO_TICK_MS;
+        // If we fell far behind (a long blocking operation), resync instead of
+        // running a catch-up burst.
+        if (now - last_audio_tick >= AUDIO_TICK_MS) last_audio_tick = now;
 
         size_t samples_read = audio_capture_read(audio_buffer, SAMPLES);
         if (samples_read != SAMPLES) {
@@ -114,24 +156,71 @@ void loop() {
             if (current_beat.beat_detected) {
                 Serial.printf("[BEAT] intensity=%.2f decay=%.2f\n",
                     current_beat.intensity, current_beat.decay);
+                log_beats++;
+            }
+
+            int32_t max_raw = 0;
+            for (size_t i = 0; i < SAMPLES; i++) {
+                int32_t v = audio_buffer[i] < 0 ? -audio_buffer[i] : audio_buffer[i];
+                if (v > max_raw) max_raw = v;
+            }
+            if (max_raw > log_peak_raw) log_peak_raw = max_raw;
+
+            const float band_now[BAND_COUNT] = {
+                current_bands.bass, current_bands.low_mid,
+                current_bands.mid, current_bands.high
+            };
+            for (int i = 0; i < BAND_COUNT; i++) {
+                if (band_now[i] < log_band_min[i]) log_band_min[i] = band_now[i];
+                if (band_now[i] > log_band_max[i]) log_band_max[i] = band_now[i];
+            }
+
+            if (current_bands.peak_mag > log_peak_mag) {
+                log_peak_mag = current_bands.peak_mag;
+                log_peak_bin = current_bands.peak_bin;
             }
 
             if (++audio_log_counter >= 43) {
                 audio_log_counter = 0;
-                int32_t max_raw = 0;
-                for (size_t i = 0; i < SAMPLES; i++) {
-                    int32_t v = audio_buffer[i] < 0 ? -audio_buffer[i] : audio_buffer[i];
-                    if (v > max_raw) max_raw = v;
-                }
-                Serial.printf("[MIC] max_raw=%ld\n", max_raw);
-                // Magnitudes are gain-normalized, so they are small; print
-                // enough decimals to be useful when tuning.
-                Serial.printf("[BANDS] bass=%.5f lo_mid=%.5f mid=%.5f high=%.5f\n",
-                    current_bands.bass, current_bands.low_mid,
-                    current_bands.mid, current_bands.high);
-                Serial.printf("[NORM]  bass=%.2f lo_mid=%.2f mid=%.2f high=%.2f\n",
+                // Peak over the whole window, so a transient cannot slip between
+                // two reports.
+                Serial.printf("[MIC] peak_raw=%ld (%.3f%%FS)\n",
+                    (long)log_peak_raw, 100.0f * (float)log_peak_raw / 2147483392.0f);
+                // Min..max per band over the whole window. A band that is only
+                // noise has a narrow range; real content widens it.
+                Serial.printf("[BANDS] bass=%.5f..%.5f lo_mid=%.5f..%.5f "
+                              "mid=%.5f..%.5f high=%.5f..%.5f\n",
+                    log_band_min[BAND_BASS], log_band_max[BAND_BASS],
+                    log_band_min[BAND_LOW_MID], log_band_max[BAND_LOW_MID],
+                    log_band_min[BAND_MID], log_band_max[BAND_MID],
+                    log_band_min[BAND_HIGH], log_band_max[BAND_HIGH]);
+                Serial.printf("[NORM]  bass=%.2f lo_mid=%.2f mid=%.2f high=%.2f "
+                              "beats=%u/43\n",
                     current_bands.norm[BAND_BASS], current_bands.norm[BAND_LOW_MID],
-                    current_bands.norm[BAND_MID], current_bands.norm[BAND_HIGH]);
+                    current_bands.norm[BAND_MID], current_bands.norm[BAND_HIGH],
+                    log_beats);
+                // Strongest single bin in the window. Broadband noise leaves no
+                // bin standing out; any tone, note or voice produces one well
+                // above the band means printed above.
+                Serial.printf("[TONE]  bin=%u f=%.0fHz mag=%.5f (%.0fx the mid band mean)\n",
+                    log_peak_bin,
+                    (float)log_peak_bin * (float)SAMPLE_RATE / (float)SAMPLES,
+                    log_peak_mag,
+                    log_band_max[BAND_MID] > 0.0f ? log_peak_mag / log_band_max[BAND_MID] : 0.0f);
+                // Which gate is limiting. A beat needs all four to pass, so
+                // the smallest percentage is the binding constraint.
+                // crestkill is the share of frames where the noise floor and
+                // the flux threshold both passed and only the crest test
+                // rejected. If that stays high while music plays, and only
+                // then, BEAT_CREST_FACTOR is what is eating the beats. Check
+                // the microphone with `pio run -e probe` first.
+                BeatGateStats g = beat_detector_stats_take();
+                float pct = g.frames ? 100.0f / (float)g.frames : 0.0f;
+                Serial.printf("[GATE]  floor=%.0f%% crest=%.0f%% flux=%.0f%% "
+                              "crestkill=%.0f%% (of %u frames)\n",
+                    g.pass_floor * pct, g.pass_crest * pct,
+                    g.pass_flux * pct, g.rej_crest_with_flux * pct, g.frames);
+                diag_window_reset();
             }
         }
     }

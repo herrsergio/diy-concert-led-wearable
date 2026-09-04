@@ -18,8 +18,23 @@ Environments in `platformio.ini`:
 | Env | Purpose |
 |---|---|
 | `esp32wroom32` | Real hardware. The default env, so a bare `pio run` builds it. |
+| `probe` | Real hardware plus `-DI2S_PROBE`, the I2S frame diagnostic. |
 | `wokwi` | Simulator build, synthetic audio instead of I2S. |
 | `native` | Host-side unit tests. |
+
+### Diagnosing the microphone
+
+If the bands barely move when music plays, check the capture path before touching any detector tunable. The failure mode to rule out first: with L/R tied to a fixed level the INMP441 drives only one half of the I2S frame, and reading the undriven half gives low-level values that wander at low frequency and do not respond to sound, which is easy to mistake for a working but quiet microphone.
+
+```bash
+pio run -e probe --target upload --target monitor
+```
+
+This reads the full stereo frame and prints `[PROBE] ch0 peak=... dc=... | ch1 peak=...` once per second. Clap next to the mic: the half whose peak jumps is the one carrying audio, and `AUDIO_MIC_CHANNEL_FMT` in `audio_capture.cpp` must select it. If neither half responds, the fault is upstream: wiring, the SD line, the 3.3V supply, or the microphone itself.
+
+Do NOT diagnose this from the band values. `mid` and `high` reading nearly identically with and without music looks damning but proves nothing: `band_energy()` divides each band by its bin count, and `high` spans 279 bins against `bass`'s 4, so genuine content is averaged down into the noise. A whistle that reads 0.00004 in `mid` is a single bin at 200x the noise floor. The probe above is the only reliable test.
+
+If the bands are flat AND the probe shows the microphone responding, suspect the capture rate rather than the microphone: the `[I2S]` diagnostic line reports the RX overflow count and the real interval between reads. A `gap_avg` above 23220 us means the reader is slower than the microphone, the driver is discarding DMA buffers, and every discarded buffer splices the sample stream into a broadband step that the beat detector cannot distinguish from a drum hit.
 
 ### Tests
 
@@ -55,7 +70,17 @@ INMP441 mic (I2S) -> audio_capture -> fft_processor -> beat_detector
 - `bass` / `low_mid` / `mid` / `high` / `overall` are **gain-normalized FFT magnitudes**, divided by `FFT_MAG_SCALE` so a full-scale sine reads about 1.0 in its band. In practice music sits far below 1.0, so these are for detection logic and diagnostics, not for driving brightness.
 - `norm[BAND_COUNT]`, indexed by the `Band` enum, is **auto-gained 0.0 to 1.0** per band. Patterns should use this. Each band is mapped from its own running floor/peak window, and a band whose peak/floor ratio falls below `BAND_AGC_MIN_RATIO` is forced to 0, which is what keeps the strip dark in a quiet room.
 
-`beat_detector` thresholds flux at `mean + BEAT_SENSITIVITY_SIGMA * stddev`, not `mean * k`. A plain multiplier fires on roughly half of all frames for any stationary signal, which the minimum-interval limiter turns into a false-beat metronome. It also requires a crest test (`bass > slow_avg * BEAT_CREST_FACTOR`), which is what actually rejects a noisy room. `BEAT_NOISE_FLOOR` only rejects near-digital silence: raising it cannot fix false beats, because the bass level of a noisy room overlaps the bass level of quiet music.
+`beat_detector` thresholds flux at `mean + BEAT_SENSITIVITY_SIGMA * stddev`, not `mean * k`. A plain multiplier fires on roughly half of all frames for any stationary signal, which the minimum-interval limiter turns into a false-beat metronome. `BEAT_NOISE_FLOOR` is the only absolute gate and rejects near-digital silence: raising it cannot fix false beats, because the bass level of a noisy room overlaps the bass level of quiet music.
+
+A beat also requires a crest test, `bass > slow_avg * BEAT_CREST_FACTOR`, shipped at 2.0. The reference is an EMA of the bass band itself, so the test is self-normalizing and rises to track whatever is playing, which means a kick buried in a continuous bassline has to beat twice its own one-second average. That property makes this the prime suspect whenever PulseBeat responds to hand claps but not to music, and on synthetic signals it looks conclusive: a 120 BPM kick level with its own bassline scores 0.03 beats/s at 2.0 against 1.57 at 1.3, where 2.00 is correct.
+
+Lowering it was measured and then rejected. The real cause of that symptom was a damaged microphone, and with a healthy INMP441 the patterns track music correctly at 2.0. The synthetic kick is a pure 80 Hz sine, a harsher case for a self-normalizing gate than real music, so that column overstates the problem. **Diagnose the capture path with the probe build before any detector tunable.** If a change is ever justified, `BEAT_SENSITIVITY_SIGMA` and `BEAT_CREST_FACTOR` must move together: crest 1.3 at sigma 3.0 gives 1.2 to 1.35 false beats/s on stationary noise at 1% FS RMS and up, failing `test_no_false_beats_on_ambient_noise`, and sigma 4.0 is what buys that back. `config.h` carries the measured table.
+
+The `[GATE]` diagnostic line reports each gate's pass rate plus `crestkill`, the share of frames where the noise floor and flux threshold both passed and only the crest test rejected. That is the on-device evidence to require before touching either tunable.
+
+Three other fixes for the same symptom were measured and refuted, so do not retry them without new evidence. A DC-blocking highpass does not reduce false beats on low-frequency drift, because the flux threshold is scale-free and attenuating the input does not change its shape. Defining the flux background by threshold crossings instead of by beat outcome (the `!is_beat` exclusion in `beat_detector.cpp`) makes ambient noise far worse, around 3.0/s, because the threshold then collapses. Using `min(bass, low_mid)` as the onset signal eliminates drift entirely but could not be validated, because the synthetic kick has no low_mid content.
+
+Note that the low-frequency drift figures throughout come from a model fitted to the microphone that turned out to be damaged and has since been replaced. A healthy unit may not drift at all.
 
 `main.cpp` clears `beat_detected` after each render, because the 16ms render tick would otherwise see one beat on two consecutive frames.
 - **`src/led/`** -- LED output. `led_controller` wraps FastLED with power management (1500mA cap). `patterns.h/cpp` defines the `Pattern` base class and all pattern implementations. New patterns implement `update()` (receive audio data) and `render()` (write to LED array).

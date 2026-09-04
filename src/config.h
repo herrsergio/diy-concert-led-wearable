@@ -23,6 +23,36 @@
 #define SAMPLE_RATE       44100
 #define SAMPLES           1024      // FFT window size (must be power of 2)
 
+// DMA ring geometry. The legacy I2S driver enforces a HARD limit of 4092 bytes
+// per DMA buffer: real_dma_buf_size = dma_buf_len * channels * bits/8. It does
+// not reject an oversized request -- i2s_check_cfg_validity() only rejects
+// dma_buf_len outside 8..1024, and i2s_get_buf_size() then SILENTLY clamps it
+// (esp-idf v4.4.7, components/driver/i2s.c:686-694). dma_buf_len = SAMPLES was
+// therefore clamped to 1023 frames mono and 511 in the stereo probe build.
+// 256 frames is legal in both: 256 * 2 * 4 = 2048 bytes at worst.
+#define I2S_DMA_BUF_LEN   256       // frames per DMA buffer (<= 511 for stereo)
+#define I2S_DMA_BUF_COUNT 8         // 8 * 256 = 2048 frames = 46.4 ms of ring
+
+// --- I2S Frame Diagnostics ---
+// With L/R tied to a fixed level the INMP441 drives microphone data during only
+// one half of the I2S frame and leaves the bus undriven during the other half.
+// Selecting the undriven half yields low-level values that wander at low
+// frequency and do not respond to sound at all, which looks deceptively like a
+// working but very quiet microphone.
+//
+// Build with -DI2S_PROBE (or `pio run -e probe`) to read the whole stereo frame
+// and print the peak and DC level of both halves once per second. Clap or
+// whistle next to the microphone: the half whose peak jumps by a large factor is
+// the one carrying audio, and that is the half AUDIO_MIC_CHANNEL_FMT must
+// select in audio_capture.cpp. If neither half responds, the fault is upstream
+// of this setting: wiring, the SD line, the 3.3V supply, or the microphone.
+//
+// I2S_PROBE_CHANNEL picks which half is forwarded to the FFT while probing, so
+// the patterns keep running. 0 is the first sample of each frame pair.
+#ifndef I2S_PROBE_CHANNEL
+#define I2S_PROBE_CHANNEL 0
+#endif
+
 // --- Buttons ---
 #define BTN_MODE_PIN      4         // Pattern/mode cycle button
 #define BTN_BRIGHT_PIN    5         // Brightness adjust button
@@ -51,13 +81,49 @@
 // Onset threshold = mean(flux) + BEAT_SENSITIVITY_SIGMA * stddev(flux).
 // This is a *shape* test, not a loudness test, so it works at any volume.
 // Higher = fewer false beats but more missed beats. 3.0 measured best.
+//
+// Coupled with BEAT_CREST_FACTOR below: lowering the crest factor requires
+// raising this to keep the false-beat rate on loud room noise under the limit
+// test_no_false_beats_on_ambient_noise asserts. See the table there.
+#ifndef BEAT_SENSITIVITY_SIGMA
 #define BEAT_SENSITIVITY_SIGMA 3.0f
+#endif
 
 // A beat also requires the instantaneous bass to exceed the slow running
 // average by this factor. Stationary noise has a low crest factor and fails
-// this; a kick drum has a high crest factor and passes. This is what actually
-// rejects a noisy room, so tune it before touching anything else.
+// this; a kick drum has a high crest factor and passes.
+//
+// The reference is an EMA of the bass band ITSELF, so the test is
+// self-normalizing: during continuous music the reference rises to track the
+// music's own bassline, and a kick buried in that bassline has to beat twice
+// its own one-second average. That property makes this factor the prime
+// suspect whenever PulseBeat responds to hand claps but not to music, and on
+// synthetic signals the case against it looks conclusive.
+//
+// Lowering it was measured and then REJECTED. The real cause of that symptom
+// was a damaged microphone; with a healthy INMP441 the patterns track music
+// correctly at 2.0. The synthetic kick used for the measurements is a pure
+// 80 Hz sine, a harsher case for a self-normalizing gate than real music, so
+// the "kick == bassline" column below overstates the problem. Diagnose the
+// capture path with `pio run -e probe` BEFORE any detector tunable.
+//
+// If on-device evidence ever does implicate this gate, the two tunables must
+// move together (90 s per run, beats/s):
+//
+//   sigma  crest | ambient   dense mix  kick == bassline
+//   (want)       |  < 0.50      2.00          2.00
+//     3.0   2.0  |   0.20       1.83          0.03      <- shipped
+//     3.0   1.3  |   1.35       1.97          1.57      fails ambient
+//     4.0   2.0  |   0.25       1.53          0.03
+//     4.0   1.3  |   0.43       1.83          1.33
+//     4.5   1.3  |   0.45       1.63          1.23      music degrades
+//
+// The evidence to look for is `crestkill` on the `[GATE]` serial line: the
+// share of frames where the noise floor and the flux threshold both passed and
+// only this test rejected. Staying high while music plays is the signature.
+#ifndef BEAT_CREST_FACTOR
 #define BEAT_CREST_FACTOR     2.0f
+#endif
 #define BEAT_LEVEL_AVG_ALPHA  0.02f // Slow bass average (~1.1s time constant)
 
 // Absolute gate, in gain-normalized units. Only meant to reject near-digital

@@ -1,0 +1,142 @@
+--- Terminal on /dev/ttyUSB0 | 115200 8-N-1
+--- Available filters and text transformations: debug, default, direct, esp32_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+[BEAT] intensity=0.75 decay=0.92
+[MIC] max_raw=4034560
+[BANDS] bass=0.00015 lo_mid=0.00002 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.66 decay=0.92
+[BEAT] intensity=0.63 decay=0.92
+[MIC] max_raw=5027328
+[BANDS] bass=0.00051 lo_mid=0.00013 mid=0.00005 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.59 decay=0.92
+[BEAT] intensity=0.72 decay=0.92
+[BEAT] intensity=0.51 decay=0.92
+[MIC] max_raw=5401600
+[BANDS] bass=0.00029 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.51 lo_mid=0.42 mid=0.00 high=0.00
+[BEAT] intensity=0.70 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[MIC] max_raw=5577728
+[BANDS] bass=0.00061 lo_mid=0.00007 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.50 decay=0.92
+[MIC] max_raw=4372480
+[BANDS] bass=0.00022 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.01 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.50 decay=0.92
+[MIC] max_raw=4614144
+[BANDS] bass=0.00018 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.03 mid=0.00 high=0.00
+[BEAT] intensity=0.61 decay=0.92
+[MIC] max_raw=5257728
+[BANDS] bass=0.00030 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.83 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5560320
+[BANDS] bass=0.00070 lo_mid=0.00011 mid=0.00003 high=0.00002
+[NORM]  bass=1.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5176320
+[BANDS] bass=0.00037 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5907968
+[BANDS] bass=0.00034 lo_mid=0.00006 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5324288
+[BANDS] bass=0.00008 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=4012032
+[BANDS] bass=0.00009 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=6122496
+[BANDS] bass=0.00028 lo_mid=0.00004 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.53 decay=0.92
+[MIC] max_raw=5710336
+[BANDS] bass=0.00037 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.57 decay=0.92
+[MIC] max_raw=4862976
+[BANDS] bass=0.00008 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.53 decay=0.92
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[MIC] max_raw=4585472
+[BANDS] bass=0.00025 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.68 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.79 decay=0.92
+[BEAT] intensity=1.00 decay=0.92
+[BEAT] intensity=0.55 decay=0.92
+[BEAT] intensity=0.56 decay=0.92
+[MIC] max_raw=5657088
+[BANDS] bass=0.00017 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=4784640
+[BANDS] bass=0.00032 lo_mid=0.00008 mid=0.00003 high=0.00002
+[NORM]  bass=0.60 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5757440
+[BANDS] bass=0.00025 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.55 decay=0.92
+[MIC] max_raw=5425664
+[BANDS] bass=0.00007 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.32 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=4502528
+[BANDS] bass=0.00015 lo_mid=0.00003 mid=0.00003 high=0.00002
+[NORM]  bass=0.48 lo_mid=0.42 mid=0.00 high=0.00
+[MIC] max_raw=4172288
+[BANDS] bass=0.00046 lo_mid=0.00011 mid=0.00004 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.55 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[MIC] max_raw=6374912
+[BANDS] bass=0.00018 lo_mid=0.00004 mid=0.00003 high=0.00002
+[NORM]  bass=0.10 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.67 decay=0.92
+[MIC] max_raw=5582848
+[BANDS] bass=0.00022 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.66 decay=0.92
+[BEAT] intensity=0.84 decay=0.92
+[MIC] max_raw=5507584
+[BANDS] bass=0.00076 lo_mid=0.00011 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=4818944
+[BANDS] bass=0.00080 lo_mid=0.00011 mid=0.00003 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=4410880
+[BANDS] bass=0.00030 lo_mid=0.00004 mid=0.00002 high=0.00003
+[NORM]  bass=0.80 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.57 decay=0.92
+[BEAT] intensity=0.89 decay=0.92
+[MIC] max_raw=4037632
+[BANDS] bass=0.00026 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.46 mid=0.00 high=0.00
+[BEAT] intensity=0.71 decay=0.92
+[BEAT] intensity=0.55 decay=0.92
+[BEAT] intensity=0.53 decay=0.92
+[MIC] max_raw=4715520
+[BANDS] bass=0.00019 lo_mid=0.00004 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[MIC] max_raw=5046784
+[BANDS] bass=0.00014 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.65 decay=0.92
+[MIC] max_raw=4677632
+[BANDS] bass=0.00019 lo_mid=0.00003 mid=0.00003 high=0.00003
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.54 decay=0.92
+[MIC] max_raw=5565952
+[BANDS] bass=0.00021 lo_mid=0.00004 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.70 decay=0.92
+[BEAT] intensity=0.51 decay=0.92
+[MIC] max_raw=4845056
+[BANDS] bass=0.00008 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.00 lo_mid=0.00 mid=0.00 high=0.00
+[BEAT] intensity=0.75 decay=0.92
+[MIC] max_raw=5603840
+[BANDS] bass=0.00020 lo_mid=0.00003 mid=0.00002 high=0.00002
+[NORM]  bass=0.03 lo_mid=0.00 mid=0.00 high=0.00
