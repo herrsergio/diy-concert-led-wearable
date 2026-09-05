@@ -20,6 +20,9 @@ void led_clear() {
 }
 
 void led_set_brightness(uint8_t brightness) {
+    // Single choke point for every control path, so neither the web slider nor a
+    // stale NVS value can exceed the configured ceiling.
+    if (brightness > BRIGHTNESS_LIMIT) brightness = BRIGHTNESS_LIMIT;
     FastLED.setBrightness(brightness);
 }
 
