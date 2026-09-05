@@ -6,7 +6,7 @@ A wearable, audio-reactive LED strip built on an ESP32-WROOM-32 that pulses and 
 
 - **Audio-reactive mode**: An INMP441 microphone captures ambient music, runs FFT analysis, and drives LED patterns synced to the beat
 - **BLE concert sync** (planned): Passively sniffs venue BLE broadcasts to mirror official lightstick colors
-- **Manual mode** (planned): Phone control via WiFi AP web interface
+- **Phone control**: The strip hosts its own WiFi access point and serves a web page for mode, pattern and brightness. Settings survive a power cycle.
 
 ## Hardware
 
@@ -118,10 +118,33 @@ The simulator environment defines `SIMULATE_AUDIO`, which replaces the I2S micro
 | FrequencyBars | Strip divided into 4 segments showing bass/lowMid/mid/high |
 | SKZColors | Cycles through Stray Kids colors (neon green, red, black, white) on beat |
 
+## Phone Control
+
+The firmware brings up its own WiFi access point at boot, so no venue network is needed.
+
+1. Join the network `SKZ-LED-Strip` (password `straykids`, both set in `src/config.h`).
+2. Open `http://skzled.local` in the phone browser, or the numeric address the firmware
+   prints to serial at boot. The numeric address always works; `.local` depends on the
+   phone's mDNS support.
+3. The page controls mode, pattern and brightness. Changes are saved to flash about five
+   seconds after the last one, so they survive a power cycle.
+
+The same three settings can be driven from a terminal:
+
+```bash
+curl "http://<ip>/api/state"
+curl -X POST "http://<ip>/api/set?brightness=200"
+curl -X POST "http://<ip>/api/set?mode=0&pattern=3"
+```
+
+The password is committed to the repository. For an LED strip the practical worst case is
+a stranger at the venue changing your colors, but do not reuse it anywhere that matters.
+
 ## Project Status
 
 - [x] Phase 1: Audio-reactive prototype (firmware complete, awaiting hardware)
-- [ ] Phase 2: Web interface and polish (WiFi AP, phone control, smooth transitions)
+- [x] Phase 2a: Web interface (WiFi AP, phone control of mode/pattern/brightness, NVS persistence)
+- [ ] Phase 2b: Polish (smooth pattern transitions)
 - [ ] Phase 3: BLE concert sync research (passive scanning, protocol analysis)
 - [ ] Phase 4: Wearable build (soldering, enclosure, form factor)
 
