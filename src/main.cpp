@@ -6,6 +6,8 @@
 #include "led/led_controller.h"
 #include "led/patterns.h"
 #include "modes/mode_manager.h"
+#include "settings/settings.h"
+#include "web/web_server.h"
 
 static int32_t audio_buffer[SAMPLES];
 static unsigned long last_audio_tick = 0;
@@ -107,6 +109,12 @@ void setup() {
 
     led_controller_init();
 
+    // mode_manager_init() resets mode and pattern to defaults, so it MUST come
+    // before settings_init(), which then applies whatever was restored from NVS
+    // over the top of those defaults.
+    mode_manager_init();
+    settings_init();
+
     // Startup flash BEFORE audio_capture_init(). Starting I2S and then sitting
     // in delay(1000) leaves the DMA ring un-drained for ~20 ring depths, which
     // guarantees a backlog of dropped buffers before loop() ever runs.
@@ -116,13 +124,19 @@ void setup() {
     fill_solid(leds, NUM_LEDS, CRGB::Black);
     led_show();
 
-    audio_capture_init();
+    // Bringing up the AP takes long enough to matter, so it happens before I2S
+    // for the same reason the startup flash does.
+    web_server_init();
+
     fft_processor_init();
     beat_detector_init();
-    mode_manager_init();
 
-    Serial.println("Ready! Mode: Audio Reactive");
-    Serial.printf("Pattern: %s\n", mode_manager_get_pattern_name());
+    // I2S LAST, so the DMA ring starts filling as late as possible and loop()
+    // begins draining it immediately.
+    audio_capture_init();
+
+    Serial.printf("Ready! Mode: %u  Pattern: %s\n",
+        (unsigned)mode_manager_get_mode(), mode_manager_get_pattern_name());
 
     diag_window_reset();
     last_audio_tick = millis();
@@ -132,6 +146,16 @@ void loop() {
     unsigned long now = millis();
 
     handle_buttons(now);
+
+    // Apply anything the core-0 web task queued, then republish the snapshot it
+    // reads. Done here, before the render tick, so a change made from the phone
+    // is visible on this same iteration. Costs one non-blocking queue peek when
+    // there is nothing pending.
+    web_server_service(now);
+
+    // Debounced write-back of mode/pattern/brightness to NVS. Detects changes by
+    // comparison, so it covers the web path, the button path and any future one.
+    settings_service(now);
 
     // Audio processing tick (~43Hz)
     // Advance by exactly AUDIO_TICK_MS rather than resetting to now, so the
