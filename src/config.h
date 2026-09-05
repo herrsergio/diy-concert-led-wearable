@@ -12,7 +12,18 @@
 #define NUM_LEDS          60
 #define LED_TYPE          WS2812B
 #define COLOR_ORDER       GRB
-#define MAX_BRIGHTNESS    128       // 0-255, capped for battery life (~50%)
+// Boot default only, NOT a cap. The web slider and the button ladder both go
+// above this; BRIGHTNESS_LIMIT below is the value actually enforced.
+#define MAX_BRIGHTNESS    128       // 0-255, first-boot brightness (~50%)
+
+// Enforced ceiling, applied inside led_set_brightness(). 255 makes the guard a
+// no-op today, which is deliberate: the real hardware protection is the FastLED
+// power cap in led_controller_init(), which scales the whole strip down on its
+// own. This constant exists so there is ONE named place to trade brightness for
+// battery life. Lowering it below 230 also requires fixing the button ladder in
+// handle_buttons(), which resets only once it reaches 200.
+#define BRIGHTNESS_LIMIT  255
+
 #define MAX_POWER_MW      7500      // 5V * 1500mA = 7.5W power budget
 
 // --- I2S Microphone (INMP441) ---
@@ -148,8 +159,33 @@
 #define LED_RENDER_MS     16        // ~60 FPS LED update rate
 
 // --- WiFi AP ---
+// NOTE: this password is committed to the repository. For a hobby LED strip the
+// practical worst case is a stranger at the venue changing your colours, but do
+// not reuse it anywhere that matters.
 #define WIFI_SSID         "SKZ-LED-Strip"
 #define WIFI_PASSWORD     "straykids"
+
+// mDNS hostname, reachable as http://<WIFI_HOSTNAME>.local from a phone joined
+// to the AP. mDNS is link-local multicast, so it needs no router and no uplink.
+// Mobile browser .local support varies, so web_server_init() also prints the raw
+// AP address to serial as the guaranteed fallback.
+#define WIFI_HOSTNAME     "skzled"
+
+// HTTP port and the core the web server task is pinned to. Core 0 is where the
+// lwIP TCP/IP task already lives (CONFIG_LWIP_TCPIP_TASK_AFFINITY_CPU0), while
+// the Arduino loopTask with the audio and LED ticks runs on core 1
+// (CONFIG_ARDUINO_RUNNING_CORE=1). Keeping HTTP off core 1 is what protects the
+// 23.22 ms I2S deadline.
+#define WEB_SERVER_PORT   80
+#define WEB_TASK_CORE     0
+#define WEB_TASK_STACK    4096
+#define WEB_CMD_QUEUE_LEN 8
+
+// --- Settings persistence (NVS) ---
+// Mode, pattern and brightness are written back this long after the LAST change,
+// so dragging the brightness slider produces one flash write instead of dozens.
+#define SETTINGS_NAMESPACE      "ledstrip"
+#define SETTINGS_SAVE_DEBOUNCE_MS 5000
 
 // --- BLE ---
 #define BLE_SCAN_INTERVAL 100       // ms between scan windows
