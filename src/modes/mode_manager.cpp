@@ -19,6 +19,20 @@ static Pattern* patterns[NUM_PATTERNS] = {
     &skz_colors
 };
 
+// Kept at file scope, not inside mode_manager_get_pattern_name(), so a UI can
+// enumerate every name without cycling the active pattern.
+//
+// The order MUST match patterns[] above, and note that it is NOT the declaration
+// order in patterns.h, where PulseBeat is declared first. The two orders really
+// do differ, so adding a pattern means editing both arrays in the same order.
+static const char* const PATTERN_NAMES[NUM_PATTERNS] = {
+    "RainbowWave",
+    "PulseBeat",
+    "StrobeKick",
+    "FrequencyBars",
+    "SKZColors"
+};
+
 Pattern* mode_manager_get_current_pattern() {
     return patterns[pattern_idx];
 }
@@ -45,8 +59,23 @@ uint8_t mode_manager_get_pattern_index() {
 }
 
 const char* mode_manager_get_pattern_name() {
-    static const char* names[NUM_PATTERNS] = {
-        "RainbowWave", "PulseBeat", "StrobeKick", "FrequencyBars", "SKZColors"
-    };
-    return names[pattern_idx];
+    return PATTERN_NAMES[pattern_idx];
+}
+
+void mode_manager_set_pattern(uint8_t index) {
+    if (index < NUM_PATTERNS) pattern_idx = index;
+}
+
+const char* mode_manager_get_pattern_name_at(uint8_t index) {
+    return (index < NUM_PATTERNS) ? PATTERN_NAMES[index] : nullptr;
+}
+
+uint8_t mode_manager_pattern_count() {
+    return NUM_PATTERNS;
+}
+
+bool mode_manager_is_valid_mode(uint8_t value) {
+    return value == (uint8_t)Mode::AUDIO_REACTIVE ||
+           value == (uint8_t)Mode::BLE_SYNC ||
+           value == (uint8_t)Mode::MANUAL;
 }
