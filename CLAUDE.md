@@ -50,6 +50,32 @@ The firmware runs two timed loops inside `loop()`:
 - **Audio tick** (~43Hz / 23ms): captures I2S samples, runs FFT, detects beats
 - **LED render tick** (~60 FPS / 16ms): updates the active pattern and calls `FastLED.show()`
 
+`loop()` also drains the web command queue and services the debounced NVS write on
+every iteration, both cheap enough not to matter next to the two ticks above.
+
+### Core Split
+
+There are two tasks on two cores, and the boundary between them is a hard rule, not a
+preference.
+
+| Core | Task | Work |
+|---|---|---|
+| 1 | Arduino `loopTask` | audio tick, LED render tick, buttons, command drain, NVS |
+| 0 | `web` task in `web_server.cpp` | `server.handleClient()` only |
+
+Core 1 is where `loop()` runs because `CONFIG_ARDUINO_RUNNING_CORE=1`, and lwIP already
+lives on core 0 (`CONFIG_LWIP_TCPIP_TASK_AFFINITY_CPU0`), so HTTP is served beside the
+network stack it talks to. The reason this matters is timing: the INMP441 produces one
+1024-sample window every 23.22 ms and the measured `gap_avg` already sits at 23.15 to
+23.22 ms, so there is no margin on core 1 to spend on anything else.
+
+**All state mutation and every FastLED call happen on core 1.** The core-0 task never
+writes shared state; it pushes a `WebCommand` onto a FreeRTOS queue that `loop()` drains,
+so the mutation model stays exactly as single-threaded as it was before the web interface
+existed and needs no locks. For reads, core 0 sees only an atomic snapshot that core 1
+republishes after each drain. Adding a control path means adding a command type, not a
+lock.
+
 ### Data Flow
 
 ```
@@ -84,7 +110,9 @@ Note that the low-frequency drift figures throughout come from a model fitted to
 
 `main.cpp` clears `beat_detected` after each render, because the 16ms render tick would otherwise see one beat on two consecutive frames.
 - **`src/led/`** -- LED output. `led_controller` wraps FastLED with power management (1500mA cap). `patterns.h/cpp` defines the `Pattern` base class and all pattern implementations. New patterns implement `update()` (receive audio data) and `render()` (write to LED array).
-- **`src/modes/`** -- State machine (AUDIO_REACTIVE / BLE_SYNC / MANUAL) and pattern registry. `mode_manager` owns the pattern instances and handles cycling.
+- **`src/modes/`** -- State machine (AUDIO_REACTIVE / BLE_SYNC / MANUAL) and pattern registry. `mode_manager` owns the pattern instances and handles cycling. `PATTERN_NAMES` must stay in the same order as the `patterns[]` registry, and note that order is NOT the declaration order in `patterns.h`.
+- **`src/web/`** -- WiFi SoftAP plus the HTTP control interface, in its own core-0 task. `web_server.cpp` holds the AP, mDNS, the handlers, the command queue and the snapshot; `web_page.h` holds the UI as one `PROGMEM` literal. Endpoints: `GET /`, `GET /api/state`, `POST /api/set?mode=&pattern=&brightness=` (any subset). JSON is hand-built with `snprintf` and the input side needs no parser because values arrive as query args, so **this phase adds no library dependency at all** despite the commented-out ArduinoJson entry in `platformio.ini`.
+- **`src/settings/`** -- NVS persistence of mode, pattern and brightness via `Preferences`. Deliberately outside `src/web/`, because the button path mutates the same state and must persist too. `settings_service()` detects change by **comparing** live state against the last value written rather than by a `mark_dirty()` call, so no control path can forget to flag itself, and it debounces by `SETTINGS_SAVE_DEBOUNCE_MS` so a slider drag collapses into one flash write. Loaded values are validated before use: a stale pattern index from a build with more patterns would otherwise index `patterns[]` out of bounds.
 - **`src/config.h`** -- All pin assignments, timing constants, and tunables in one place.
 
 ### Adding a New Pattern
@@ -114,7 +142,28 @@ WROOM-32 constraints worth remembering when reassigning pins:
 - `diagram.json` uses `board-esp32-devkit-c-v4`, which matches the real WROOM-32 target, and drives the strip on GPIO 2 as the firmware does. No pin swap is needed before flashing real hardware.
 - The `[env:wokwi]` build defines `SIMULATE_AUDIO=1` (bypasses I2S and FFT, generates synthetic band values directly, then runs them through the same auto-gain as the real path) and `BTN_LONG_PRESS_MS=5000` (simulation runs slower than real time, so button press durations are inflated).
 
+## Web Interface
+
+The strip brings up a SoftAP at boot (`WIFI_SSID` / `WIFI_PASSWORD` in `config.h`, both
+committed to the repo) and serves the control page on port 80. Reach it two ways: the
+numeric address, which `web_server_init()` prints to serial at boot rather than assuming a
+default, or `http://skzled.local` via mDNS. mDNS is link-local multicast, so it works
+against the ESP32's own AP with no router and no uplink, but mobile browser `.local`
+support varies, which is why the numeric address is printed as the guaranteed fallback.
+
+The server is **synchronous** (the bundled `WebServer.h`), and that is correct here rather
+than an oversight. Async only buys something when the server is serviced from a loop that
+has other work to do. This one has its own task, so blocking inside `handleClient()`
+blocks nothing but that task. Do not "fix" this to ESPAsyncWebServer: it would add two
+dependencies that are not vendored with the framework and buy nothing.
+
+Brightness has one enforced ceiling, `BRIGHTNESS_LIMIT`, applied inside
+`led_set_brightness()` so every control path passes through it. It ships at 255, making
+the guard a no-op, because the real hardware protection is FastLED's power cap. Do not
+clamp at `MAX_BRIGHTNESS` (128) instead: that is the boot default, and the button ladder
+in `handle_buttons()` steps to 230 and resets only at 200, so clamping at 128 would freeze
+it there and the reset would never fire.
+
 ## Future Modules (not yet implemented)
 
 - `src/ble/` -- NimBLE passive scanner for concert lightstick sync
-- `src/web/` -- ESP32 WiFi AP + async web server for phone control
